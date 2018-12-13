@@ -1,9 +1,10 @@
 from injector import inject
 
 class RepositoryBase(object):
-    @inject
-    def __init__(self, db):
-        pass
+    def __init__(self, db, item):
+        self.db = db
+        self.item = item
+        print(str(item))
 
     def session(self):
         pass
@@ -14,8 +15,8 @@ class RepositoryBase(object):
     def remove_by_id(self, id):
         pass
 
-    def get_all():
-        pass
+    def get_all(self):
+        return self.item.query.all()
 
-    def get_by_id(id):
+    def get_by_id(self, id):
         return str(id)

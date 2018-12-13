@@ -1,7 +1,7 @@
 # from models import Indicador
-from app.domain.repository import _base
+from app.domain.repository._base import RepositoryBase
+from injector import inject
 
-class IndicadorRepository(_base.RepositoryBase):
-    def __init__(self, db):
-        _base.RepositoryBase.__init__(self, db);
-        self.db = db
+class IndicadorRepository(RepositoryBase):
+    def __init__(self, db, item):
+        super(IndicadorRepository, self).__init__(db=db, item=item)

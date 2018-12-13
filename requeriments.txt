@@ -3,7 +3,7 @@ blinker==1.4
 Click==7.0
 Flask==1.0.2
 Flask-DebugToolbar==0.10.1
-Flask-Injector==0.11.0
+Flask-Injector==0.10.1
 Flask-Migrate==2.3.1
 Flask-Script==2.0.6
 Flask-SQLAlchemy==2.3.2

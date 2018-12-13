@@ -24,8 +24,8 @@ manager.add_command('db', MigrateCommand)
 app.register_blueprint(home, url_prefix='/')
 
 # models
+# from app.models.FonteDeDados import FonteDeDados
 from app.models.Indicador import Indicador
-from app.models.FonteDeDados import FonteDeDados
 
 # Injeção de dependencia
 from app.domain.repository.IndicadorRepository import IndicadorRepository
@@ -33,7 +33,7 @@ from app.domain.service.IndicadorService import IndicadorService
 
 def configure(binder: Binder) -> Binder:
     app = binder.injector.get(Flask)
-    binder.bind(IndicadorRepository, IndicadorRepository(db))
+    binder.bind(IndicadorRepository, to=IndicadorRepository(db, "batata"), scope=singleton)
     binder.bind(IndicadorService, IndicadorService())
     binder.bind(SQLAlchemy, to=db, scope=singleton)
 
