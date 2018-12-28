@@ -1,5 +1,5 @@
 from flask import Blueprint
-from app.domain.service.IndicadorService import IndicadorService
+from domain.service.IndicadorService import IndicadorService
 
 home = Blueprint('home', __name__)
 

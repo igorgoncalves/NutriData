@@ -1,7 +1,7 @@
-from app.domain.service._base import ServiceBase
-from app.domain.repository.IndicadorRepository import IndicadorRepository
+from domain.service._base import ServiceBase
+from domain.repository.IndicadorRepository import IndicadorRepository
 
-from app.models.Indicador import Indicador
+from domain.models.Indicador import Indicador
 
 class IndicadorService(ServiceBase):
     repository = IndicadorRepository()

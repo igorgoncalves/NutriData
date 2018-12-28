@@ -1,4 +1,4 @@
-from app.domain.repository._base import RepositoryBase
+from domain.repository._base import RepositoryBase
 
 class ServiceBase(object):
 

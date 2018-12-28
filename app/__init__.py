@@ -23,6 +23,6 @@ app.register_blueprint(home, url_prefix='/')
 
 
 # models
-from app.models import *
+from domain.models import *
 db.create_all()
 
