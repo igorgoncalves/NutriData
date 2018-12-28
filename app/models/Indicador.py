@@ -13,5 +13,6 @@ class Indicador(db.Model):
         self.objetivo = objetivo
         self.periodicidade = periodicidade
 
+    
     def __repr__(self):
         return "<Indicador %r>" % self.nome

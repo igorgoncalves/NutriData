@@ -1,14 +1,9 @@
 # base flask
 from flask import Flask
-from flask_injector import FlaskInjector
 from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 from flask_debugtoolbar import DebugToolbarExtension
-from injector import Binder, singleton
-
-# import controllers
-from app.blueprints.home import home
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -20,21 +15,13 @@ migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
+# import controllers
+from app.blueprints.home import home
+
 # blueprints
 app.register_blueprint(home, url_prefix='/')
 
 # models
-# from app.models.FonteDeDados import FonteDeDados
+from app.models.FonteDeDados import FonteDeDados
 from app.models.Indicador import Indicador
-
-# Injeção de dependencia
-from app.domain.repository.IndicadorRepository import IndicadorRepository
-from app.domain.service.IndicadorService import IndicadorService
-
-def configure(binder: Binder) -> Binder:
-    app = binder.injector.get(Flask)
-    binder.bind(IndicadorRepository, to=IndicadorRepository(db, "batata"), scope=singleton)
-    binder.bind(IndicadorService, IndicadorService())
-    binder.bind(SQLAlchemy, to=db, scope=singleton)
-
-FlaskInjector(app=app, modules=[configure])
+db.create_all()
