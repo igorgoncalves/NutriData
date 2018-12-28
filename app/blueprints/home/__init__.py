@@ -11,7 +11,5 @@ def hello():
     indicadores = _indicadorService.get_all()
     for indicador in indicadores:
         print (str(indicador))
-    
-    print ("dsadsa" + str(_indicadorService.get_by_id(1)))
 
     return str("Indicador 'Produção de frutas'")

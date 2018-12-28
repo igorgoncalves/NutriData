@@ -21,7 +21,8 @@ from app.blueprints.home import home
 # blueprints
 app.register_blueprint(home, url_prefix='/')
 
+
 # models
-from app.models.FonteDeDados import FonteDeDados
-from app.models.Indicador import Indicador
+from app.models import *
 db.create_all()
+
