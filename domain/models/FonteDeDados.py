@@ -1,11 +1,11 @@
-from app import db
+from domain.Database import *
 
-class FonteDeDados(db.Model):
+class FonteDeDados(db):
     __tablename__ = "fontesdedados"
 
-    id       = db.Column(db.Integer, primary_key=True)
-    nome     = db.Column(db.String)
-    endereco = db.Column(db.String)
+    id       = Column(Integer, primary_key=True)
+    nome     = Column(String)
+    endereco = Column(String)
 
     def __init__(self, nome, endereco):
         self.nome = nome
