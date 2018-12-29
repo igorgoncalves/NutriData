@@ -12,10 +12,12 @@ class ServiceBase(object):
         return self.repository.get_by_id(id)
 
     def create(self, item):
-        return self.repository.create(item)
+        self.repository.create(item)
+        self.repository.save()
     
     def delete(self, item):
         self.repository.delete(item)
+        self.repository.save()
     
     def delete_by_id(self, id):
         self.repository.delete_by_id(id)
