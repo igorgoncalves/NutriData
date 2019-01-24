@@ -1,12 +1,12 @@
-from app import db
+from domain.Database import *
 
-class Indicador(db.Model):
+class Indicador(db):
     __tablename__ = "indicadores"
 
-    id            = db.Column(db.Integer, primary_key=True)
-    nome          = db.Column(db.String)
-    objetivo      = db.Column(db.Text)
-    periodicidade = db.Column(db.Integer)
+    id            = Column(Integer, primary_key=True)
+    nome          = Column(String)
+    objetivo      = Column(Text)
+    periodicidade = Column(Integer)
 
     def __init__(self, nome, objetivo, periodicidade):
         self.nome = nome

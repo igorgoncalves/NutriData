@@ -1,4 +1,4 @@
-from app import db
+from domain.Database import *
 
 class RepositoryBase(object):
     
@@ -6,7 +6,7 @@ class RepositoryBase(object):
         self.item = item        
 
     def session(self):
-        return db.session
+        return session
 
     def create(self, item):        
         self.session().add(item)        
@@ -19,10 +19,10 @@ class RepositoryBase(object):
         self.session().delete(item)        
 
     def get_all(self):
-        return self.item.query.all()
+        return self.session().query(self.item).all()
 
     def get_by_id(self, id):
-        return self.item.query.filter_by(id=id).first()
-
+        return self.session().query(self.item).filter_by(id=id).first()
+    
     def save(self):
         self.session().commit()
