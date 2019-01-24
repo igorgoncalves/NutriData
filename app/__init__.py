@@ -17,7 +17,7 @@ migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
-#routes
+# routes
 from app.Routes import *
 
 # models
