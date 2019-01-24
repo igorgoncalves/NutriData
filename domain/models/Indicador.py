@@ -1,6 +1,6 @@
 from domain.Database import *
 
-class Indicador(db):
+class Indicador(Base):
     __tablename__ = "indicadores"
 
     id            = Column(Integer, primary_key=True)

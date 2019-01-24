@@ -15,13 +15,13 @@ def test_s_create():
 
 
 def test_r_get_by_id():
-    assert  isinstance(repository_indicador.get_by_id(1), Indicador)
+    assert  repository_indicador.get_by_id(1) == repository_indicador.get_all()[0]
 
 def test_s_delete():        
     ultimo = repository_indicador.get_all()[-1]    
     repository_indicador.delete(ultimo)
     assert  repository_indicador.get_by_id(ultimo.id) == None
 
-# Testes de serviço
-def test_s_get_by_id():
-    assert  isinstance(service_indicador.get_by_id(1), Indicador)
+# # Testes de serviço
+# def test_s_get_by_id():
+#     assert  isinstance(service_indicador.get_by_id(1), Indicador)

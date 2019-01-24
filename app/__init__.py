@@ -4,23 +4,21 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 from flask_debugtoolbar import DebugToolbarExtension
+from domain.Database import Base
+
 
 app = Flask(__name__)
 app.config.from_object('config')
 
 # components
-db      = SQLAlchemy(app)
+db      = SQLAlchemy(app, model_class=Base)
 toolbar = DebugToolbarExtension(app)
 migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
-# import controllers
-from app.blueprints.home import home
-
-# blueprints
-app.register_blueprint(home, url_prefix='/')
-
+#routes
+from app.Routes import *
 
 # models
 from domain.models import *

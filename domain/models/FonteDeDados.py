@@ -1,6 +1,6 @@
 from domain.Database import *
 
-class FonteDeDados(db):
+class FonteDeDados(Base):
     __tablename__ = "fontesdedados"
 
     id       = Column(Integer, primary_key=True)
