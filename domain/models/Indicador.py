@@ -1,17 +1,14 @@
-from domain.Database import *
+from mongoengine import *
 
-class Indicador(Base):
-    __tablename__ = "indicadores"
+class Indicador(Document):
 
-    id            = Column(Integer, primary_key=True)
-    nome          = Column(String)
-    objetivo      = Column(Text)
-    periodicidade = Column(Integer)
+    nome          = StringField(required=True, max_length=200)
+    objetivo      = StringField(required=True)    
 
-    def __init__(self, nome, objetivo, periodicidade):
+    def __init__(self, nome, objetivo, *args, **kwargs):
+        super(Document, self).__init__(*args, **kwargs)
         self.nome = nome
         self.objetivo = objetivo
-        self.periodicidade = periodicidade
 
     
     def __repr__(self):

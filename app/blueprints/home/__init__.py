@@ -7,9 +7,12 @@ _service_indicador = IndicadorService()
 
 @home.route("/")
 def hello():    
+    indicador = _service_indicador.create(nome="Indicador boladão", objetivo="mostrar quem é boladão")
+
     indicadores = _service_indicador.get_all()
+    
     
     for indicador in indicadores:
         print (str(indicador))
 
-    return str("Indicador 'Produção de frutas'")
+    return str(indicador.nome)

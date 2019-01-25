@@ -12,8 +12,7 @@ class ServiceBase(object):
         return self.repository.get_by_id(id)
 
     def create(self, item):
-        self.repository.create(item)
-        self.repository.save()
+        self.repository.create(item)        
     
     def delete(self, item):
         self.repository.delete(item)

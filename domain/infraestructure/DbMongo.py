@@ -1,6 +1,3 @@
-from pymongo import MongoClient
+from mongoengine import connect
 
-cliente = MongoClient('localhost', 27017)
-cliente = MongoClient('mongodb://localhost:27017/')
-
-db = cliente['test-database']
+connect('dbNutridata', host='localhost', port=27017)
