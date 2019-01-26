@@ -1,6 +1,7 @@
 from domain.service._base import ServiceBase
 from domain.repository.IndicadorRepository import IndicadorRepository
-from domain.models.Indicador import Indicador
+from domain.models.Indicador import Indicador, IndicadorSchema
+
 
 class IndicadorService(ServiceBase):
     repository = IndicadorRepository()
@@ -10,3 +11,11 @@ class IndicadorService(ServiceBase):
     def create(self, nome, objetivo):
         novo_indicador = Indicador(nome=nome, objetivo=objetivo)
         return super().create(novo_indicador)
+
+
+class IndicadorSchemaService(ServiceBase):
+    schema = IndicadorSchema()
+
+    def dumps(self, indicador):
+        indicadorJson = self.schema.dumps(indicador)
+        return indicadorJson
