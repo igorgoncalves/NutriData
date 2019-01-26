@@ -3,4 +3,5 @@ from domain.models.Indicador import Indicador
 
 class IndicadorRepository(RepositoryBase):    
     def __init__(self):
-        super(IndicadorRepository, self).__init__(item=Indicador)
+        """Specificy for the father class which model class this repo works."""
+        super(IndicadorRepository, self).__init__(model_class=Indicador)
