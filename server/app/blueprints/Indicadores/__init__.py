@@ -11,4 +11,4 @@ _service_indicador = IndicadorService()
 def hello():            
     indicadores = _service_indicador.get_all()
     
-    return jsonify(json.dumps(indicadores))
+    return jsonify(json.dumps(indicadores, default=lambda x: x.asdict()))

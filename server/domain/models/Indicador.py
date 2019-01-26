@@ -11,5 +11,5 @@ class Indicador(Document):
         self.objetivo = objetivo
 
     
-    def __repr__(self):
-        return "<Indicador %r>" % self.nome
+    def asdict(self):
+        return { 'id': str(self.id), 'nome': self.nome, 'objetivo': self.objetivo }
