@@ -3,3 +3,4 @@ __pycache__/
 dados.db
 migrations
 .pytest_cache
+node_modules
