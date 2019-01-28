@@ -18,7 +18,7 @@ class Indicador(Document):
 
 
 class IndicadorSchema(Schema):
-    nome     = fields.Str()
+    nome     = fields.String()
     objetivo = fields.Email()
 
 

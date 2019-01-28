@@ -13,6 +13,6 @@ class IndicadorService(ServiceBase):
         novo_indicador = Indicador(nome=nome, objetivo=objetivo)
         return super().create(novo_indicador)
 
-    def dumps(self, indicador):
-        indicadorJson = self.schema.dumps(indicador)
+    def dumps(self, indicador, many=False):
+        indicadorJson = self.schema.dumps(indicador, many=many)
         return indicadorJson
