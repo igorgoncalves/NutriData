@@ -6,13 +6,16 @@ Vue.use(Router)
 const routerOptions = [
   { path: '/', component: 'Home' },
   { path: '/about', component: 'About' },
-  { path: '*', component: 'NotFound' }
+  { path: '/dimension', component: 'Dimension/List' },
+  { path: '/dimension/insert', component: 'Dimension/Insert' },
+  { path: '/dimension/list', component: 'Dimension/List' },
+  { path: '*', component: 'Default/NotFound' }
 ]
 
 const routes = routerOptions.map(route => {
   return {
     ...route,
-    component: () => import(`@/components/${route.component}.vue`)
+    component: () => import(`@/components/Pages/${route.component}.vue`)
   }
 })
 
