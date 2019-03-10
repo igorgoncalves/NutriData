@@ -7,7 +7,7 @@
           </v-flex>
           <v-flex xs5>
             <v-layout row wrap>
-              batatacd
+              batata
             </v-layout>
           </v-flex>
         </v-layout>
