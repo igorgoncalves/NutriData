@@ -42,9 +42,26 @@ module.exports = {
     rules: [
       ...(config.dev.useEslint ? [createLintingRule()] : []),
       {
+        test: /\.svg$/,
+            use: [
+                'vue-sprited-svg-loader',
+                'svg-sprite-loader'
+            ]
+      },
+      {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: vueLoaderConfig
+        // loader: 'vue-loader',
+        // options: vueLoaderConfig
+        use: [
+          {
+              loader: "vue-loader",
+              options: { /* ... */ }
+          },
+          {
+              loader: "vue-svg-inline-loader",
+              options: { /* ... */ }
+          }
+      ]
       },
       {
         test: /\.js$/,
@@ -52,7 +69,7 @@ module.exports = {
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        test: /\.(png|jpe?g|gif)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,

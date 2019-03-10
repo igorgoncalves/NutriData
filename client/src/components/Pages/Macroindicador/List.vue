@@ -34,30 +34,30 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        headers: [
-          {
-            text: 'Nome',
-            align: 'left',
-            sortable: false,
-            value: 'name'
-          },
-          { text: 'Descrição', value: 'descricao' },
-          { text: 'Ações', sortable: false, align: 'right', }
-        ],
-        desserts: [
-          {
-            name: 'Aquisição de Alimentos',
-            descricao: 'Aquisição de Alimentos'
-          },
-          {
-            name: 'Saneamento Básico',
-            descricao: 'Valores da dimensão Saneamento básico'
-          }
-        ]
-      }
+export default {
+  data () {
+    return {
+      headers: [
+        {
+          text: 'Nome',
+          align: 'left',
+          sortable: false,
+          value: 'name'
+        },
+        { text: 'Descrição', value: 'descricao' },
+        { text: 'Ações', sortable: false, align: 'right' }
+      ],
+      desserts: [
+        {
+          name: 'Aquisição de Alimentos',
+          descricao: 'Aquisição de Alimentos'
+        },
+        {
+          name: 'Saneamento Básico',
+          descricao: 'Valores da dimensão Saneamento básico'
+        }
+      ]
     }
   }
+}
 </script>

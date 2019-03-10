@@ -1,6 +1,6 @@
 <template>
     <v-app>
-       <v-navigation-drawer
+       <!-- <v-navigation-drawer
         class="blue lighten-3"
         permanent
         fixed
@@ -19,14 +19,14 @@
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
-      </v-navigation-drawer>
+      </v-navigation-drawer> -->
       <v-toolbar app></v-toolbar>
       <v-content>
         <v-container fluid>
           <router-view></router-view>
         </v-container>
       </v-content>
-      <v-footer app></v-footer>
+      <!-- <v-footer app></v-footer> -->
     </v-app>
 </template>
 
@@ -38,7 +38,8 @@ export default {
       menus: [
         {title: 'Home', icon: ''},
         {title: 'About', icon: ''},
-        {title: 'Dimension', icon: ''},
+        {title: 'Visoes', icon: ''},
+        {title: 'Macroindicador', icon: ''},
         {title: 'Login', icon: ''}
       ]
     }

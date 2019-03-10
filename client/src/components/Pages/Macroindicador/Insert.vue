@@ -27,7 +27,9 @@
         </v-stepper-content>
 
         <v-stepper-content step="2">
-          <tree-fields />
+
+          <tree-fields :idMacroindicador="1" />
+
           <v-btn
             color="primary"
             @click="e1 = 3"

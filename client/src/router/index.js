@@ -6,9 +6,12 @@ Vue.use(Router)
 const routerOptions = [
   { path: '/', component: 'Home' },
   { path: '/about', component: 'About' },
-  { path: '/dimension', component: 'Dimension/List' },
-  { path: '/dimension/insert', component: 'Dimension/Insert' },
-  { path: '/dimension/list', component: 'Dimension/List' },
+  { path: '/visoes', component: 'Visoes/List' },
+  { path: '/visoes/insert', component: 'Visoes/Insert' },
+  { path: '/visoes/list', component: 'Visoes/List' },
+  { path: '/macroindicador', component: 'Macroindicador/List' },
+  { path: '/macroindicador/insert', component: 'Macroindicador/Insert' },
+  { path: '/macroindicador/list', component: 'Macroindicador/List' },
   { path: '*', component: 'Default/NotFound' }
 ]
 
