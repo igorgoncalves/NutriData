@@ -84,7 +84,7 @@ export default {
     ],
     checkbox: false,
     dropzoneOptions: {
-      url: 'https://httpbin.org/post',
+      url: '/api',
       thumbnailWidth: 150,
       maxFilesize: 0.5,
       headers: { 'My-Awesome-Header': 'header value' }
