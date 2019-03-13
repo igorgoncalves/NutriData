@@ -44,7 +44,12 @@
   </v-form>
 
   <h3>Enviar arquivo</h3>
-  <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions" :useCustomSlot=true>
+  <vue-dropzone
+    id="dropzone"
+    ref="myVueDropzone"
+    v-on:vdropzone-complete.passive="updateIndicadores"
+    :options="dropzoneOptions"
+    :useCustomSlot=true>
     <div class="dropzone-custom-content">
       <h3 class="dropzone-custom-title">Arraste a arquivo da planilha para dentro dessa área</h3>
     <div class="subtitle">...ou clique e selecione o arquivo</div>
@@ -84,10 +89,11 @@ export default {
     ],
     checkbox: false,
     dropzoneOptions: {
-      url: '/api/macroindicador',
+      url: 'https://httpbin.org/post',
       thumbnailWidth: 150,
       maxFilesize: 0.5,
-      headers: { 'My-Awesome-Header': 'header value' }
+      maxFiles: 1,
+      autoProcessQueue: false
     }
   }),
 
@@ -102,7 +108,15 @@ export default {
     },
     resetValidation () {
       this.$refs.form.resetValidation()
+    },
+    updateIndicadores (response) {
+      this.$store.dispatch('getIndicadoresById', { idMacroindicador: response['id'] })
+    },
+    send () {
+      this.$refs.myVueDropzone.processQueue()
     }
+  },
+  mounted () {
   }
 }
 </script>
