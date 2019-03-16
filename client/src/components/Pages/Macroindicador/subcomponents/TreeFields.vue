@@ -30,13 +30,15 @@ export default {
       return this.$store.getters.getIndicadores
     }
   },
-  mounted () {
-    this.$store.dispatch('getIndicadoresById', { idMacroindicador: this.idMacroindicador })
+  watch: {
+    idMacroindicador () {
+      this.$store.dispatch('getIndicadoresById', { idMacroindicador: this.idMacroindicador })
 
-    const tree = this.$refs.someTree.tree
-    let model = tree.parse(this.treeData)
-    this.$set(this.$refs.someTree, 'model', model)
-    tree.setModel(model)
+      const tree = this.$refs.someTree.tree
+      let model = tree.parse(this.treeData)
+      this.$set(this.$refs.someTree, 'model', model)
+      tree.setModel(model)
+    }
   },
   methods: {
     onNodeSelected (node) {

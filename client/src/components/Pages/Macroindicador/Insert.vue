@@ -1,11 +1,11 @@
 <template>
-    <v-stepper v-model="e1" class="container fluid insert-stepper" >
+    <v-stepper v-model="el" class="container fluid insert-stepper" >
       <v-stepper-header>
-        <v-stepper-step :complete="e1 > 1" step="1">Inicio</v-stepper-step>
+        <v-stepper-step :complete="el > 1" step="1">Inicio</v-stepper-step>
 
         <v-divider></v-divider>
 
-        <v-stepper-step :complete="e1 > 2" step="2">Hierarquia de Indicadores</v-stepper-step>
+        <v-stepper-step :complete="el > 2" step="2">Hierarquia de Indicadores</v-stepper-step>
 
         <v-divider></v-divider>
 
@@ -14,11 +14,11 @@
 
       <v-stepper-items>
         <v-stepper-content step="1">
-          <initial-form />
+          <initial-form ref="iniForm" />
 
           <v-btn
             color="primary"
-            @click="e1 = 2"
+            @click="el = sendForm()"
           >
             Continue
           </v-btn>
@@ -28,11 +28,11 @@
 
         <v-stepper-content step="2">
 
-          <tree-fields :idMacroindicador="1" />
+          <tree-fields :idMacroindicador="idMacroindicador" />
 
           <v-btn
             color="primary"
-            @click="e1 = 3"
+            @click="el = 3"
           >
             Continue
           </v-btn>
@@ -44,7 +44,7 @@
             color="grey lighten-1"
             height="200px"
           ></v-card>
-          <v-btn color="primary" @click="e1 = 1">
+          <v-btn color="primary" @click="el = 1">
             Continue
           </v-btn>
           <v-btn flat>Cancel</v-btn>
@@ -65,7 +65,14 @@ export default {
   },
   data () {
     return {
-      e1: 0
+      el: 0,
+      idMacroindicador: ''
+    }
+  },
+  methods: {
+    sendForm () {
+      this.$refs.iniForm.send()
+      return 2
     }
   }
 }
