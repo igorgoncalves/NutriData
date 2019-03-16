@@ -1,6 +1,6 @@
 from domain.service._base import ServiceBase
 from domain.repository.IndicadorRepository import IndicadorRepository
-from domain.models.Indicador import Indicador, IndicadorSchema
+from domain.models.Indicador import Indicador, IndicadorSchema, ValoresIndicadoresSchema
 
 
 class IndicadorService(ServiceBase):
@@ -16,3 +16,17 @@ class IndicadorService(ServiceBase):
     def dumps(self, indicador, many=False):
         indicadorJson = self.schema.dumps(indicador, many=many)
         return indicadorJson
+
+    def serializerIndicador(self, indicador):
+        # indicador = self.schema(indicador['indicador'], indicador['fonte'], indicador['unidade'])
+        # for valor in valores:
+        #     indicador.valores.append(ValoresIndicadoresSchema(valor['cidade'], valor['valor']))
+        # for subindicador in subindicadores:
+        #     indicador.subindicadores.append(self.schema(indicador['indicador'], indicador['fonte'], indicador['unidade']))
+        indicador_result = self.schema.dump(indicador)
+        return indicador
+    
+    def loadPartial(self, indicador):
+        return self.schema.load(indicador, partial=('id', 'indicador'))
+
+    

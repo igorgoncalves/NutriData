@@ -5,7 +5,8 @@ from marshmallow import Schema, fields
 class Indicador(Document):
 
     nome          = StringField(required=True, max_length=200)
-    objetivo      = StringField(required=True)   
+    fonte      = StringField(required=True)   #alterar
+    anoValor = StringField(required=True)   #alterar
 
     def __init__(self, nome, objetivo, *args, **kwargs):
         super(Document, self).__init__(*args, **kwargs)
@@ -16,9 +17,18 @@ class Indicador(Document):
         return '<User(name={self.nome!r})>'.format(self=self)
 
 
+class ValoresIndicadoresSchema(Schema):
+    cidade = fields.String()
+    valor = fields.Decimal()
+
 
 class IndicadorSchema(Schema):
-    nome     = fields.String()
-    objetivo = fields.Email()
+    indicador     = fields.String()
+    fonte = fields.String()
+    unidade = fields.String()
+    valores = fields.Nested('ValoresIndicadoresSchema', many = True)
+    # subindicadores = fields.Nested('self', exclude=('subIndicadores',), default=None)
+
+
 
 
