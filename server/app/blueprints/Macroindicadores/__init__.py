@@ -116,10 +116,12 @@ class TodoSimple(Resource):
         resultado = []
 
         for sheet in entrada: #folha
+            print('a')
             indicadoresValores = sheet[0:3]
             valores = sheet[3:]
             cidades = [cidade[0] for cidade in valores ]
-            for i in range (1, len(indicadoresValores[0])-1): # 3 primeira linhas 
+            for i in range (1, len(indicadoresValores[0])-1): # 3 primeira linhas
+                print('b')
                 valor = [{'cidade': cidades[coluna], 'valores':valores[coluna][i]} for coluna in range (0, len(cidades)) if valores[coluna][i] != None]
                 indicadoresPorPagina.append(
                     {'indicador': indicadoresValores[0][i], 
@@ -130,9 +132,6 @@ class TodoSimple(Resource):
                     })
                 indicadorDump = indicadorService.serializerIndicador(indicadoresPorPagina)
                 resultado.append(indicadorDump)
-
-        print(resultado[0])
-
 
         return resultado, 201
 
