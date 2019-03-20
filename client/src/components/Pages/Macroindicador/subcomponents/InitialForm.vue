@@ -19,28 +19,6 @@
       label="Descricao"
       required
     ></v-text-field>
-
-    <!-- <v-btn
-      :disabled="!valid"
-      color="success"
-      @click="validate"
-    >
-      Validate
-    </v-btn> -->
-<!--
-    <v-btn
-      color="error"
-      @click="reset"
-    >
-      Limpar
-    </v-btn> -->
-
-    <!-- <v-btn
-      color="warning"
-      @click="resetValidation"
-    >
-      Reset Validation
-    </v-btn> -->
   </v-form>
 
   <h3>Enviar arquivo</h3>
@@ -73,21 +51,7 @@ export default {
     name: '',
     nameRules: [
       v => !!v || 'Preencha o nome',
-      v => (v && v.length <= 10) || 'Name must be less than 10 characters'
     ],
-    email: '',
-    emailRules: [
-      v => !!v || 'Preencha a descrição',
-      v => /.+@.+/.test(v) || 'E-mail must be valid'
-    ],
-    select: null,
-    items: [
-      'Item 1',
-      'Item 2',
-      'Item 3',
-      'Item 4'
-    ],
-    checkbox: false,
     dropzoneOptions: {
       url: 'https://httpbin.org/post',
       thumbnailWidth: 150,
@@ -110,13 +74,11 @@ export default {
       this.$refs.form.resetValidation()
     },
     updateIndicadores (response) {
-      this.$store.dispatch('getIndicadoresById', { idMacroindicador: response['id'] })
+      this.$store.dispatch('updateIndicadoresByMacroindicador', { idMacroindicador: response['id'] })
     },
     send () {
       this.$refs.myVueDropzone.processQueue()
     }
-  },
-  mounted () {
   }
 }
 </script>

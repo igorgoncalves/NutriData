@@ -29,7 +29,7 @@ export const actions = {
     context.commit('initIndicadores', [{ text: 'batata' }])
   },
 
-  getIndicadoresById (context, { idMacroindicador }) {
+  updateIndicadoresByMacroindicador (context, { idMacroindicador }) {
     axios.get(`/api/macroindicador/${idMacroindicador}/indicadores`)
       .then((response) => {
         context.commit('updateIndicadores', response)
