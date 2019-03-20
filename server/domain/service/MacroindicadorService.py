@@ -6,15 +6,12 @@ from domain.models.Macroindicador import Macroindicador, MacroindicadorSchema
 class MacroindicadorService(ServiceBase):
     repository = MacroindicadorRepository()
     schema = MacroindicadorSchema()
-    def __init__(self):    
+    def __init__(self):
         super(MacroindicadorService, self).__init__(repository=self.repository)
-    
+
     def create(self, nome, objetivo):
         novo_macroindicador = Macroindicador(nome=nome, descricao=descricao)
         return super().create(novo_indicador)
-    
-    def get_all(self):
-        return super().get_all()
 
     def dumps(self, macroindicador, many=False):
         macroindicadorJson = self.schema.dumps(macroindicador, many=many)
