@@ -5,9 +5,8 @@ class RepositoryBase(object):
     def __init__(self, model_class):
         self.model_class  = model_class # specific which model class your son repo work's
 
-
     def get_all(self):
-        """Lists all objects for the model_class in database."""        
+        """Lists all objects for the model_class in database."""
         return list(self.model_class.objects)
 
     def get_by_id(self, id):
