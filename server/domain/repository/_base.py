@@ -2,8 +2,9 @@ from domain.infraestructure.DbMongo import *
 
 class RepositoryBase(object):
     """This class define a base method for all classes in repository layer"""
-    def __init__(self, model_class):        
-        self.model_class = model_class # specific which model class your son repo work's
+    def __init__(self, model_class):
+        self.model_class  = model_class # specific which model class your son repo work's
+
 
     def get_all(self):
         """Lists all objects for the model_class in database."""        
