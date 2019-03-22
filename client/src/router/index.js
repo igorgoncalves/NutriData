@@ -1,28 +1,62 @@
+/**
+ * Vue Router
+ *
+ * @library
+ *
+ * https://router.vuejs.org/en/
+ */
+
+// Lib imports
 import Vue from 'vue'
+import VueAnalytics from 'vue-analytics'
 import Router from 'vue-router'
+import Meta from 'vue-meta'
+
+// Routes
+import paths from './paths'
+
+function route (path, view, name) {
+  return {
+    name: name || view,
+    path,
+    component: (resovle) => import(
+      `@/views/${view}.vue`
+    ).then(resovle)
+  }
+}
 
 Vue.use(Router)
 
-const routerOptions = [
-  { path: '/', component: 'Home' },
-  { path: '/about', component: 'About' },
-  { path: '/visoes', component: 'Visoes/List' },
-  { path: '/visoes/insert', component: 'Visoes/Insert' },
-  { path: '/visoes/list', component: 'Visoes/List' },
-  { path: '/macroindicador', component: 'Macroindicador/List' },
-  { path: '/macroindicador/insert', component: 'Macroindicador/Insert' },
-  { path: '/macroindicador/list', component: 'Macroindicador/List' },
-  { path: '*', component: 'Default/NotFound' }
-]
-
-const routes = routerOptions.map(route => {
-  return {
-    ...route,
-    component: () => import(`@/components/Pages/${route.component}.vue`)
+// Create a new router
+const router = new Router({
+  mode: 'history',
+  routes: paths.map(path => route(path.path, path.view, path.name)).concat([
+    { path: '*', name: 'Home', view: 'Home' }
+  ]),
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    }
+    if (to.hash) {
+      return { selector: to.hash }
+    }
+    return { x: 0, y: 0 }
   }
 })
 
-export default new Router({
-  routes,
-  mode: 'history'
-})
+Vue.use(Meta)
+
+// // Bootstrap Analytics
+// // Set in .env
+// // https://github.com/MatteoGabriele/vue-analytics
+// if (process.env.GOOGLE_ANALYTICS) {
+//   Vue.use(VueAnalytics, {
+//     id: process.env.GOOGLE_ANALYTICS,
+//     router,
+//     autoTracking: {
+//       page: process.env.NODE_ENV !== 'development'
+//     }
+//   })
+// }
+
+export default router
