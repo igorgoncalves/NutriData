@@ -1,24 +1,20 @@
 from mongoengine import *
-from marshmallow import Schema, fields
+from marshmallow_mongoengine import ModelSchema
+from .Amostra import Amostra
 
+class Indicador(EmbeddedDocument):
 
-class Indicador(Document):
-
-    nome          = StringField(required=True, max_length=200)
-    objetivo      = StringField(required=True)   
-
-    def __init__(self, nome, objetivo, *args, **kwargs):
-        super(Document, self).__init__(*args, **kwargs)
-        self.nome = nome
-        self.objetivo = objetivo
+    nome               = StringField(required=True, max_length=200)
+    amostras           = ListField(EmbeddedDocumentField("Amostra"))
+    indicadores_filhos = ListField(ReferenceField("Indicador"))
 
     def __repr__(self):
-        return '<User(name={self.nome!r})>'.format(self=self)
+        return '<Indicador(nome={self.nome!r})>'.format(self=self)
+
+class IndicadorSchema(ModelSchema):
+     class Meta:
+        model = Indicador
 
 
-
-class IndicadorSchema(Schema):
-    nome     = fields.String()
-    objetivo = fields.Email()
 
 

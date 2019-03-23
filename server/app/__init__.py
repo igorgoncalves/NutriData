@@ -2,12 +2,15 @@
 from flask import Flask
 from flask_script import Manager
 from flask_debugtoolbar import DebugToolbarExtension
+from flask_restful import  Api
 
 app = Flask(__name__,
             static_folder = "../../dist/static",
             template_folder = "../../dist")
 
 app.config.from_object('config.DevelopmentConfig')
+
+api = Api(app)
 
 # components
 toolbar = DebugToolbarExtension(app)
