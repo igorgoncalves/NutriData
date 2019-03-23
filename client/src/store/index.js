@@ -1,17 +1,31 @@
+/**
+ * Vuex
+ *
+ * @library
+ *
+ * https://vuex.vuejs.org/en/
+ */
+
+// Lib imports
 import Vue from 'vue'
 import Vuex from 'vuex'
-import indicadores from './modules/indicadores'
-import upload from './modules/upload'
+
+// Store functionality
+import actions from './actions'
+import getters from './getters'
+import modules from './modules'
+import mutations from './mutations'
+import state from './state'
 
 Vue.use(Vuex)
 
-// const debug = process.env.NODE_ENV !== 'production'
-const debug = true
-
-export default new Vuex.Store({
-  modules: {
-    indicadores,
-    upload
-  },
-  strict: debug
+// Create a new store
+const store = new Vuex.Store({
+  actions,
+  getters,
+  modules,
+  mutations,
+  state
 })
+
+export default store
