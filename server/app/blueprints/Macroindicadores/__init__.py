@@ -6,10 +6,14 @@ import json
 import io
 from io import BytesIO
 from openpyxl import load_workbook
+from app.adapters import xslxAdapter
+from domain.service.LocalidadeService import LocalidadeService
+
 
 todos = {}
 macroindicadorService = MacroindicadorService()
 indicadorService = IndicadorService()
+localidadeService = LocalidadeService()
 
 def jsonCabecalhoLeitura(indicadores):
         listaIndicadoresJson = []
@@ -22,48 +26,12 @@ def jsonCabecalhoLeitura(indicadores):
 
 class MacroindicadorApi(Resource):
     def get(self):
-        list_all = macroindicadorService.get_all()
-        return list_all
+        list_all = localidadeService.get_all()
+        return json.dumps(list_all, indent=2), 201
 
     def post(self):
         f = request.files['file']
-        # name = (f.filename.split('.'))[0]
-        wb = load_workbook(filename=BytesIO(f.read()))
+        retorno = xslxAdapter.LerPlanilhaXlsx(f)
+        obj = localidadeService.serializerMacroindicador(retorno)
 
-        #leitura do arquivo xlsx
-        anos = wb.sheetnames
-        entrada = []
-        valores = {}
-        for ws in wb:
-            sheet = []
-            for row in ws.values:
-                sheet.append(row)
-            entrada.append(sheet)
-
-
-        cabecalho = []
-        indicadoresPorPagina = []
-        valoresPorPagina = []
-
-        resultado = []
-
-        for sheet in entrada: #folha
-            print('a')
-            indicadoresValores = sheet[0:3]
-            valores = sheet[3:]
-            cidades = [cidade[0] for cidade in valores ]
-            for i in range (1, len(indicadoresValores[0])-1): # 3 primeira linhas
-                valor = [{'cidade': cidades[coluna], 'valores':valores[coluna][i]} for coluna in range (0, len(cidades)) if valores[coluna][i] != None]
-                indicadoresPorPagina.append(
-                    {'indicador': indicadoresValores[0][i],
-                    'unidade':indicadoresValores[1][i],
-                    'fonte':indicadoresValores[2][i],
-                    'valores':valor,
-                    'subindicadores':[]
-                    })
-                indicadorDump = indicadorService.serializerIndicador(indicadoresPorPagina)
-                resultado.append(indicadorDump)
-
-        print(resultado[0])
-
-        return resultado, 201
+        return obj, 201

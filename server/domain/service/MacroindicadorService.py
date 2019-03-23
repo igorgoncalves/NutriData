@@ -7,7 +7,7 @@ class MacroindicadorService(ServiceBase):
     repository = MacroindicadorRepository()
     schema = MacroindicadorSchema()
     def __init__(self):
-        super(MacroindicadorService, self).__init__(repository=self.repository)
+        super(MacroindicadorService, self).__init__(repository=self.repository, schema=self.schema)
 
     def create(self, nome, objetivo):
         novo_macroindicador = Macroindicador(nome=nome, descricao=descricao)
@@ -23,3 +23,6 @@ class MacroindicadorService(ServiceBase):
             macroindicadorObj.indicadores.append(indicador)
         macroindicador_result = self.schema.dump(macroindicadorObj)
         return macroindicadorObj
+
+    def get_all(self):
+        return self.repository.get_all()

@@ -2,7 +2,7 @@ from domain.repository._base import RepositoryBase
 
 class ServiceBase(object):
 
-    def __init__(self, repository=RepositoryBase, schema):
+    def __init__(self, repository, schema):
         self.repository = repository
         self.schema = schema
 

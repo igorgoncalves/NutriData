@@ -11,7 +11,8 @@ class Localidade(Document):
     def __repr__(self):
         return '''<Localidade(
                     codigo={self.codigo!r},
-                    nome={self.nome!r})>'''.format(self=self)
+                    nome={self.nome!r}),
+                    macroindicadores={self.macroindicadores!r}>'''.format(self=self)
 
 class LocalidadeSchema(ModelSchema):
     class Meta:

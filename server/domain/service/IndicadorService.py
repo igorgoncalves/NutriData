@@ -9,8 +9,8 @@ class IndicadorService(ServiceBase):
     def __init__(self):    
         super(IndicadorService, self).__init__(repository=self.repository, schema=self.schema)
     
-    def create(self, nome, objetivo):
-        novo_indicador = Indicador(nome=nome, objetivo=objetivo)
+    def create(self, nome, amostras):
+        novo_indicador = Indicador(nome=nome, amostras=amostras)
         return super().create(novo_indicador)
 
     def dumps(self, indicador, many=False):
