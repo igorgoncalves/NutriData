@@ -17,7 +17,7 @@
           <initial-form ref="iniForm" />
 
           <v-btn
-            color="primary"
+            color="amber darken-4"
             @click="el = sendForm()"
           >
             Continue
@@ -31,7 +31,7 @@
           <tree-fields :idMacroindicador="idMacroindicador" />
 
           <v-btn
-            color="primary"
+            color="amber darken-4"
             @click="el = 3"
           >
             Continue
@@ -44,7 +44,7 @@
             color="grey lighten-1"
             height="200px"
           ></v-card>
-          <v-btn color="primary" @click="el = 1">
+          <v-btn color="amber darken-4" @click="el = 1">
             Continue
           </v-btn>
           <v-btn flat>Cancel</v-btn>

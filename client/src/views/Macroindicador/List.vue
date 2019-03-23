@@ -57,11 +57,10 @@
               <td class="text-xs-left">{{ props.item.description }}</td>
               <td class="justify-center px-0">
                 <v-tooltip top>
-                  <template v-slot:activator="{ on }">
+                  <template>
                     <v-icon
                       slot="activator"
                       @click="showIndicaores(props.item)"
-                      v-on="on"
                     >
                       mdi-view-module
                     </v-icon>
@@ -69,7 +68,7 @@
                   <span>Gerenciar Visões</span>
                 </v-tooltip>
                 <v-tooltip top>
-                  <template v-slot:activator="{ on }">
+                  <template>
                     <v-icon
                       slot="activator"
                       @click="showIndicaores(props.item)"
@@ -80,7 +79,7 @@
                   <span>Gerenciar indicadores</span>
                 </v-tooltip>
                 <v-tooltip top>
-                  <template v-slot:activator="{ on }">
+                  <template>
                     <v-icon
                       slot="activator"
                       @click="editItem(props.item)"
@@ -91,7 +90,7 @@
                   <span>Alterar</span>
                 </v-tooltip>
                 <v-tooltip top>
-                  <template v-slot:activator="{ on }">
+                  <template>
                     <v-icon
                       slot="activator"
                       @click="editItem(props.item)"

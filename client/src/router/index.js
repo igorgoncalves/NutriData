@@ -31,7 +31,7 @@ Vue.use(Router)
 const router = new Router({
   mode: 'history',
   routes: paths.map(path => route(path.path, path.view, path.name)).concat([
-    { path: '*', name: 'Home', view: 'Home' }
+    { path: '*', view: 'Home' }
   ]),
   scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {
