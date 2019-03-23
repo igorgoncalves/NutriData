@@ -1,18 +1,16 @@
 import json
 from flask import Blueprint, render_template, jsonify
-from domain.service.IndicadorService import IndicadorService
+from domain.service.LocalidadeService import LocalidadeService
 from flask_restful import Resource, Api
 
 indicadores = Blueprint('indicadores', __name__)
 
-_service_indicador = IndicadorService()
+_service_indicador = LocalidadeService()
 
 @indicadores.route("/indicadores")
 def hello():           
-    indicadores = _service_indicador.get_all()
+    indicadores = _service_indicador.get_all(nome="Sergipe")
 
-    dump = _service_indicador.dumps(indicadores, many=True)
-    indicadoresJson =  { 'data' : dump[0], 
-                         'erros': dump[1] }
+    dump, err = _service_indicador.serialize(indicadores, many=True)
 
-    return jsonify(indicadoresJson)
+    return dump

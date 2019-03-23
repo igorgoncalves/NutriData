@@ -4,8 +4,9 @@ from .Amostra import Amostra
 
 class Indicador(EmbeddedDocument):
 
-    nome     = StringField(required=True, max_length=200)
-    amostras = ListField(EmbeddedDocumentField(Amostra))
+    nome               = StringField(required=True, max_length=200)
+    amostras           = ListField(EmbeddedDocumentField("Amostra"))
+    indicadores_filhos = ListField(ReferenceField("Indicador"))
 
     def __repr__(self):
         return '<Indicador(nome={self.nome!r})>'.format(self=self)
