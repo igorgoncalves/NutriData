@@ -9,29 +9,43 @@ from openpyxl import load_workbook
 from app.adapters import xslxAdapter
 from domain.service.LocalidadeService import LocalidadeService
 
+localidade = Blueprint('localidade', __name__)
 
-todos = {}
-macroindicadorService = MacroindicadorService()
+_service_indicador = LocalidadeService()
+
+_service_macroindicador = MacroindicadorService()
 indicadorService = IndicadorService()
-localidadeService = LocalidadeService()
 
-def jsonCabecalhoLeitura(indicadores):
-        listaIndicadoresJson = []
-        for i in indicadores:
-            dic = {}
-            dic["posicao"] = indicadores.index(i)
-            dic["indicador"] = i
-            listaIndicadoresJson.append(dic)
-        return json.dumps(listaIndicadoresJson, indent=2)
+
 
 class MacroindicadorApi(Resource):
     def get(self):
         list_all = localidadeService.get_all()
         return json.dumps(list_all, indent=2), 201
 
-    def post(self):
-        f = request.files['file']
-        retorno = xslxAdapter.LerPlanilhaXlsx(f)
-        obj = localidadeService.serializerMacroindicador(retorno)
+    def post(self, localidadeCodigo):
+        # f = request.files['file']
+        # retorno = xslxAdapter.LerPlanilhaXlsx(f)
+        # obj = localidadeService.serializerMacroindicador(retorno)
+        local = _service_indicador.get_all(codigo=localidadeCodigo)
+        if len(local) == 0:
+            abort(404)
+        local = local[0]
 
-        return obj, 201
+        json_data = request.get_json(force=True)
+        json_data['id'] = str(local['id'])+"midc"+json_data['nome']
+        resposta, validated =  _service_macroindicador.validate(json_data)
+        if validated:
+            obj = _service_macroindicador.create(resposta['id'], resposta['nome'], resposta['descricao'], [])
+            try: 
+                local['macroindicadores'].append(obj)
+            except Exception:
+                local['macroindicadores'] = []
+                local['macroindicadores'].append(obj)
+            print(local['macroindicadores'])
+            resposta, validatedL =  _service_indicador.validate(local)
+            if validatedL:
+                objLocal = _service_indicador.update(local)
+                return objLocal, 201
+
+        return resposta, 400
