@@ -23,7 +23,7 @@ class ServiceBase(object):
         return self.create(item)
 
     def delete(self, item):
-        self.repository.delete(item)
+        return self.repository.delete(item)
 
     def delete_by_id(self, id):
         self.repository.delete_by_id(id)

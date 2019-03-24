@@ -20,23 +20,35 @@ _service_indicador = LocalidadeService()
 
 #A partir do codigo do local
 class LocalidadeDetails(Resource):
+    
     def get(self, codigo):
         list_all = _service_indicador.get_all(codigo=codigo)
-        if len(list_all) > 0:
-            dump = _service_indicador.serialize(list_all[0], False)
-            return dump.data, 201
-        return json.dumps({'error': "Localidade não encontrada"}), 404
+        if len(list_all) == 0:
+            abort(404)
+        dump = _service_indicador.serialize(list_all[0], False)
+        return dump.data, 201
 
-    def delete(self, todo_id):
-        abort_if_todo_doesnt_exist(todo_id)
-        del TODOS[todo_id]
-        return '', 204
+    def delete(self, codigo):
+        locais = _service_indicador.get_all(codigo=codigo)
+        if len(locais) == 0:
+            abort(404)
+        local = locais[0]
+        obj = _service_indicador.delete(local)
+        return {"object": "deleted"}, 204
 
-    def put(self, todo_id):
-        args = parser.parse_args()
-        task = {'task': args['task']}
-        TODOS[todo_id] = task
-        return task, 201
+    def put(self, codigo):
+        locais = _service_indicador.get_all(codigo=codigo)
+        if len(locais) == 0:
+            abort(404)
+        local = locais[0]
+        json_data = request.get_json(force=True)
+        for k in json_data:
+            local[k] = json_data[k]
+        resposta, validated =  _service_indicador.validate(local)
+        if validated:
+            obj = _service_indicador.update(local)
+            return obj, 201
+        return resposta, 401
 
 
 class LocalidadeApi(Resource):
@@ -49,6 +61,6 @@ class LocalidadeApi(Resource):
         json_data = request.get_json(force=True)
         resposta, validated =  _service_indicador.validate(json_data)
         if validated:
-            obj = _service_indicador.create(resposta['codigo'], resposta['nome'])
+            obj = _service_indicador.create(resposta['codigo'], resposta['nome'], [])
             return obj, 201
         return resposta, 401

@@ -17,6 +17,9 @@ class LocalidadeService(ServiceBase):
         new_localidade = Localidade(codigo=codigo, nome=nome, macroindicadores=macroindicadores)
         return super().create(new_localidade)
 
+    def update(self, item):
+        return super().create(item)
+
     def serializerMacroindicador(self, macroindicador):
         macroindicadorSerialized = self.schema.dump(macroindicador)
         return macroindicadorSerialized
@@ -36,3 +39,6 @@ class LocalidadeService(ServiceBase):
 
     def serialize(self, list, many=False):
         return self.schema.dump(list, many)
+
+    def delete(self, item):
+        return super().delete(item)
