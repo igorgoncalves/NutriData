@@ -19,9 +19,13 @@ indicadorService = IndicadorService()
 
 
 class MacroindicadorApi(Resource):
-    def get(self):
-        list_all = localidadeService.get_all()
-        return json.dumps(list_all, indent=2), 201
+    def get(self, localidadeCodigo):
+        local = _service_indicador.get_all(codigo=localidadeCodigo)
+        if len(local) == 0:
+            abort(404)
+        local = local[0]
+        dump = _service_indicador.serialize(local, False)
+        return dump.data['macroindicadores'], 201
 
     def post(self, localidadeCodigo):
         # f = request.files['file']
