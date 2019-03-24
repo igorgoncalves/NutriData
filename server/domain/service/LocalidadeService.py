@@ -24,6 +24,7 @@ class LocalidadeService(ServiceBase):
     def get_all(self, **kwargs):
         return super().get_all(**kwargs)
 
+    #validate entrada
     def validate(self, localidade_dict):
         try:
             result = self.schema.load(localidade_dict)

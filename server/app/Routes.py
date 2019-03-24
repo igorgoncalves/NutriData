@@ -6,7 +6,7 @@ from app.blueprints.Localidade import LocalidadeApi, LocalidadeDetails
 from flask_restful import  Api
 
 
-# Routes
+# Rotas
 app.register_blueprint(home, url_prefix='/')
 app.register_blueprint(indicadores, url_prefix='/api')
 api.add_resource(MacroindicadorApi, '/api/macroindicador')

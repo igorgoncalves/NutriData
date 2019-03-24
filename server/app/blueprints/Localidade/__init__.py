@@ -18,7 +18,7 @@ _service_indicador = LocalidadeService()
 #     return dump
 
 
-
+#A partir do codigo do local
 class LocalidadeDetails(Resource):
     def get(self, codigo):
         list_all = _service_indicador.get_all(codigo=codigo)

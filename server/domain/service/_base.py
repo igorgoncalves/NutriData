@@ -19,8 +19,8 @@ class ServiceBase(object):
         return self.repository.create(item)
 
     def createJson(self, json):
-        item = self.deserialize(json)
-        self.create(item)
+        item = self.deserialize(json)       
+        return self.create(item)
 
     def delete(self, item):
         self.repository.delete(item)
