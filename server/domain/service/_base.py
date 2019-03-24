@@ -16,9 +16,9 @@ class ServiceBase(object):
         return self.repository.get_by_id(id)
 
     def create(self, item):
-        self.repository.create(item)
+        return self.repository.create(item)
 
-    def create(self, json):
+    def createJson(self, json):
         item = self.deserialize(json)
         self.create(item)
 
