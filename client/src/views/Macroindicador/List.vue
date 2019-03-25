@@ -111,6 +111,16 @@
 
 <script>
 export default {
+  props:['codigoLocalidade'],
+   computed: {
+    ...mapGetters('macroindicadores', ['getMacroindicadores'])
+  },
+  methods: {
+    ...mapActions('macroindicadores', ['fetchMacroindicadores']),
+  },
+  mounted () {
+    this.fetchMacroindicadores(this.codigoLocalidade)
+  },
   data () {
     return {
       search: '',

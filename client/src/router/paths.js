@@ -45,13 +45,18 @@ export default [
     view: 'Upgrade'
   },
   {
-    path: '/Macroindicador',
-    name: 'Macroindicador',
+    path: 'Localidade/:id/Macroindicadores',
+    name: 'Macroindicadores',
     view: 'Macroindicador/List'
   },
   {
-    path: '/Macroindicador/Novo',
+    path: 'Localidade/:id/Macroindicador/Novo',
     name: 'Macroindicador/Novo',
     view: 'Macroindicador/Insert'
-  }
+  },
+  {
+    path: '/Localidades',
+    name: 'Localidades',
+    view: 'Localidade/List'
+  },
 ]

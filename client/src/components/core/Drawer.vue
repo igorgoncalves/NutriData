@@ -89,13 +89,13 @@ export default {
       {
         to: '/macroindicador',
         icon: 'mdi-view-dashboard',
-        text: 'Macroindicador'
+        text: 'Macroindicadores'
       },
-      // {
-      //   to: '/user-profile',
-      //   icon: 'mdi-account',
-      //   text: 'User Profile'
-      // },
+      {
+        to: '/localidades',
+        icon: 'mdi-map',
+        text: 'Localidades'
+      },
       // {
       //   to: '/table-list',
       //   icon: 'mdi-clipboard-outline',

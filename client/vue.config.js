@@ -4,7 +4,7 @@ module.exports = {
 	outputDir: path.resolve(__dirname, "../dist"),
 	assetsDir: 'static',
   devServer: {
-    // proxy: 'http://localhost:5000'
+    proxy: 'http://localhost:5000'
   },
   chainWebpack: config => {
 		config.module
