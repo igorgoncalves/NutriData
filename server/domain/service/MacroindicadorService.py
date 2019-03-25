@@ -29,6 +29,9 @@ class MacroindicadorService(ServiceBase):
     def get_all(self):
         return self.repository.get_all()
 
+    def serialize(self, list, many=False):
+        return self.schema.dump(list, many)
+
         #validate entrada
     def validate(self, macroindicador_dict):
         try:
