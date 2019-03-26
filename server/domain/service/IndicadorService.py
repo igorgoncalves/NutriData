@@ -29,4 +29,14 @@ class IndicadorService(ServiceBase):
     def loadPartial(self, indicador):
         return self.schema.load(indicador, partial=('id', 'indicador'))
 
+            #validate entrada
+    def validate(self, indicador_dict):
+        try:
+            result = self.schema.load(macroindicador_dict)
+            return indicador_dict, True
+        except ValidationError as err:
+            error = err.messages 
+            valid_data = err.valid_data 
+            return json.dumps(error, indent=2), False
+
     
