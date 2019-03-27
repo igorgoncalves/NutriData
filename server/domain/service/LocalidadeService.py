@@ -17,28 +17,12 @@ class LocalidadeService(ServiceBase):
         new_localidade = Localidade(codigo=codigo, nome=nome, macroindicadores=macroindicadores)
         return super().create(new_localidade)
 
-    def update(self, item):
-        return super().create(item)
-
-    def serializerMacroindicador(self, macroindicador):
-        macroindicadorSerialized = self.schema.dump(macroindicador)
-        return macroindicadorSerialized
-
-    def get_all(self, **kwargs):
-        return super().get_all(**kwargs)
-
     #validate entrada
-    def validate(self, localidade_dict):
+    def validate(self, item):
         try:
-            result = self.schema.load(localidade_dict)
-            return localidade_dict, True
+            result = self.schema.load item)
+            return item, True
         except ValidationError as err:
-            error = err.messages 
-            valid_data = err.valid_data 
+            error = err.messages
+            valid_data = err.valid_data
             return json.dumps(error, indent=2), False
-
-    def serialize(self, list, many=False):
-        return self.schema.dump(list, many)
-
-    def delete(self, item):
-        return super().delete(item)

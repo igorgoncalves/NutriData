@@ -1,13 +1,13 @@
 import io
 from io import BytesIO
 from openpyxl import load_workbook
-from domain.repository.LocalidadeRepository import LocalidadeRepository
+from domain.service.LocalidadeService import LocalidadeService
 from domain.models.Localidade import Localidade, LocalidadeSchema
 from domain.models.Macroindicador import Macroindicador
 from domain.models.Indicador import Indicador
 from domain.models.Amostra import Amostra
 
-repository_localidade =  LocalidadeRepository()
+service_localidade =  LocalidadeService()
 
 # Essa classe é responsável por ler uma planilha e transformar em um dicionario (e seu inverso)
 
@@ -27,7 +27,16 @@ def LerPlanilhaXlsx(arquivo):
             sheet.append(row)
             leitura.append(sheet)
 
-    return leitura
+    for folha in range (0, len(anos)):
+        dic = OrganizerSheet(leitura[folha], anos[folha], macroindicador)
+
+    for localidade in dic:
+        new_localidade = Localidade(codigo="1" , nome = localidade,
+            macroindicadores=[Macroindicador(nome=macroindicador, descricao="",
+            indicadores=dic[localidade])])
+        service_localidade.create(new_localidade)
+    
+    serviceository_localidade.get_all()[-1]
 
 
 

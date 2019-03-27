@@ -12,9 +12,9 @@ app.register_blueprint(home, url_prefix='/')
 app.register_blueprint(indicadores, url_prefix='/api')
 api.add_resource(LocalidadeApi, '/api/localidade')
 api.add_resource(LocalidadeDetails, '/api/localidade/<codigo>')
-api.add_resource(MacroindicadorApi, '/api/macroindicador/<localidadeCodigo>')
-api.add_resource(MacroindicadorApiDetail, '/api/macroindicador/<localidadeCodigo>/<mid>')
-api.add_resource(IndicadorApi, '/api/macroindicador/<localidadeCodigo>/<mid>/indicadores')
-api.add_resource(IndicadorApiDetail, '/api/macroindicador/<localidadeCodigo>/<mid>/indicador/<ind>')
+api.add_resource(MacroindicadorApi, '/api/macroindicador/<localidade_codigo>')
+api.add_resource(MacroindicadorApiDetail, '/api/macroindicador/<localidade_codigo>/<mid>')
+api.add_resource(IndicadorApi, '/api/macroindicador/<localidade_codigo>/<mid>/indicadores')
+api.add_resource(IndicadorApiDetail, '/api/macroindicador/<localidade_codigo>/<mid>/indicador/<ind>')
 
 

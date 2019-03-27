@@ -9,14 +9,6 @@ indicadores = Blueprint('indicadores', __name__)
 
 _service_indicador = LocalidadeService()
 
-# @indicadores.route("/indicadores")
-# def hello():           
-#     indicadores = _service_indicador.get_all(nome="Sergipe")
-
-#     dump, err = _service_indicador.serialize(indicadores, many=True)
-
-#     return dump
-
 
 _service_macroindicador = MacroindicadorService()
 _service_indicador = IndicadorService()

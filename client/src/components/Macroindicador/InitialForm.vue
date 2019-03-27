@@ -48,6 +48,7 @@
     id="dropzone"
     ref="myVueDropzone"
     v-on:vdropzone-complete.passive="updateIndicadores"
+    v-on:vdropzone-sending="addParams"
     :options="dropzoneOptions"
     :useCustomSlot=true>
     <div class="dropzone-custom-content">
@@ -88,7 +89,7 @@ export default {
     ],
     checkbox: false,
     dropzoneOptions: {
-      url: 'https://httpbin.org/post',
+      url: '/macroindicadores',
       thumbnailWidth: 150,
       maxFilesize: 0.5,
       maxFiles: 1,
@@ -113,7 +114,11 @@ export default {
       this.getIndicadoresById(2)
     },
     send () {
+
       this.$refs.myVueDropzone.processQueue()
+    },
+    addParams (file, xhr, formData) {
+
     }
   }
 }

@@ -24,7 +24,7 @@
               <v-btn
                 primary
                 dark
-                to="/macroindicador/novo"
+                @click="createNew()"
               >+ Adicionar</v-btn>
             </v-layout>
             <v-spacer></v-spacer>
@@ -45,7 +45,7 @@
           </v-card-title>
           <v-data-table
             :headers="headers"
-            :items="desserts"
+            :items="getMacroindicadores"
             :search="search"
             class="elevation-1"
           >
@@ -53,14 +53,14 @@
               slot="items"
               slot-scope="props">
               <td />
-              <td>{{ props.item.name }}</td>
-              <td class="text-xs-left">{{ props.item.description }}</td>
+              <td>{{ props.item.nome }}</td>
+              <td class="text-xs-left">{{ props.item.descricao }}</td>
               <td class="justify-center px-0">
                 <v-tooltip top>
                   <template>
                     <v-icon
                       slot="activator"
-                      @click="showIndicaores(props.item)"
+                      @click="createView(props.item)"
                     >
                       mdi-view-module
                     </v-icon>
@@ -110,7 +110,26 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
+   computed: {
+    ...mapGetters('macroindicadores', ['getMacroindicadores'])
+  },
+  methods: {
+    ...mapActions('macroindicadores', ['fetchMacroindicadores']),
+    createNew () {
+      this.$router.push({ path: `/localidade/${this.$route.params.codigoLocalidade}/macroindicadores/novo` })
+    },
+    createView (idMacroindicador) {
+      console.log(idMacroindicador);
+
+      this.$router.push({ path: `/macroindicador/${idMacroindicador}/visao` })
+    }
+  },
+  mounted () {
+    this.fetchMacroindicadores(this.$route.params.codigoLocalidade)
+  },
   data () {
     return {
       search: '',
@@ -118,20 +137,10 @@ export default {
         { text: '#', sortable: false },
         {
           text: 'Nome',
-          value: 'name'
+          value: 'nome'
         },
-        { text: 'Descrição', value: 'description' },
+        { text: 'Descrição', value: 'descricao' },
         { text: 'Ações', sortable: false }
-      ],
-      desserts: [
-        {
-          name: 'Aquisição de Alimentos',
-          description: 'Aquisição de Alimentos'
-        },
-        {
-          name: 'Saneamento Básico',
-          description: 'Valores da dimensão Saneamento básico'
-        }
       ]
     }
   }

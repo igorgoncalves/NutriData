@@ -45,13 +45,28 @@ export default [
     view: 'Upgrade'
   },
   {
-    path: '/Macroindicador',
-    name: 'Macroindicador',
+    path: '/Localidade/:codigoLocalidade/macroindicadores',
+    name: 'Localidade/Macroindicadores',
     view: 'Macroindicador/List'
   },
   {
-    path: '/Macroindicador/Novo',
-    name: 'Macroindicador/Novo',
+    path: '/Localidade/:codigoLocalidade/macroindicadores/novo',
+    name: 'Localidade/Macroindicadores',
     view: 'Macroindicador/Insert'
-  }
+  },
+  {
+    path: '/Localidades',
+    name: 'Localidades',
+    view: 'Localidade/List'
+  },
+  {
+    path: '/Visao',
+    name: 'Visao',
+    view: 'Visoes/Insert'
+  },
+  {
+    path: '/macroindicador/:idMacroindicador/visao',
+    name: 'Visao',
+    view: 'Visao/Insert'
+  },
 ]

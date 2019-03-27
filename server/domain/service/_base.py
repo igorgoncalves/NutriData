@@ -28,7 +28,7 @@ class ServiceBase(object):
     def delete_by_id(self, id):
         self.repository.delete_by_id(id)
 
-    def deserialize(self, json):
+    def deserailize(self, json):
         item, err = self.schema.load(json)
         return item
 
