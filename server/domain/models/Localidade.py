@@ -1,6 +1,5 @@
 from mongoengine import *
 from marshmallow_mongoengine import ModelSchema, fields
-from .Macroindicador import Macroindicador
 
 class Localidade(Document):
 

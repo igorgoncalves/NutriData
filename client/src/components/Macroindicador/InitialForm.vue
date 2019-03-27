@@ -14,8 +14,8 @@
     ></v-text-field>
 
     <v-text-field
-      v-model="email"
-      :rules="emailRules"
+      v-model="description"
+      :rules="descriptionRules"
       label="Descricao"
       required
     ></v-text-field>
@@ -76,8 +76,8 @@ export default {
     nameRules: [
       v => !!v || 'Por favor, é necessŕio que preeencha o campo nome'
     ],
-    email: '',
-    emailRules: [
+    description: '',
+    descriptionRules: [
       v => !!v || 'Por favor, é necessŕio que preeencha o campo descrição'
     ],
     select: null,
@@ -89,7 +89,7 @@ export default {
     ],
     checkbox: false,
     dropzoneOptions: {
-      url: '/macroindicadores',
+      url: '/api/macroindicadores',
       thumbnailWidth: 150,
       maxFilesize: 0.5,
       maxFiles: 1,
@@ -111,14 +111,16 @@ export default {
       this.$refs.form.resetValidation()
     },
     updateIndicadores (response) {
+      console.log(response)
       this.getIndicadoresById(2)
     },
     send () {
-
       this.$refs.myVueDropzone.processQueue()
     },
     addParams (file, xhr, formData) {
-
+      formData.append('nome', this.name)
+      formData.append('descricao', this.description)
+      formData.append('codigoLocalidade', this.$route.params.codigoLocalidade)
     }
   }
 }

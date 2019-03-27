@@ -20,7 +20,7 @@ class LocalidadeService(ServiceBase):
     #validate entrada
     def validate(self, item):
         try:
-            result = self.schema.load item)
+            result = self.schema.load(item)
             return item, True
         except ValidationError as err:
             error = err.messages
