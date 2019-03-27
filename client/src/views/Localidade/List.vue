@@ -81,8 +81,7 @@ export default {
   methods: {
     ...mapActions('localidades', ['fetchLocalidades']),
     showMacroindicadores (codigoLocalidade) {
-      this.$router.push({ name: 'Macroindicadores', params: { codigo: codigoLocalidade }})
-
+      this.$router.push({ path: `localidade/${codigoLocalidade}/macroindicadores` })
     }
   },
   mounted () {

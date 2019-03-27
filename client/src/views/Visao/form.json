@@ -1,0 +1,7 @@
+[
+    {
+        "label": "Tipo de gráfico",
+        "options": [ "Pizza", "Barra", "Linha" ],
+        "value": ""
+    }
+]
