@@ -5,7 +5,11 @@ module.exports = {
 	assetsDir: 'static',
   devServer: {
     proxy: 'http://localhost:5000'
-  },
+	},
+	transpileDependencies: [
+    'vue-echarts',
+    'resize-detector'
+  ],
   chainWebpack: config => {
 		config.module
 			.rule("vue")

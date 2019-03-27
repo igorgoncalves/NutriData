@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <core-filter v-if="false" />
+    <!-- <core-filter v-if="false" /> -->
 
-    <core-toolbar />
+    <!-- <core-toolbar /> -->
 
     <core-drawer v-if="$route.name !== 'Home'" />
 
