@@ -21,23 +21,13 @@ def LerPlanilhaXlsx(arquivo):
     anos = wb.sheetnames
     leitura = []
     valores = {}
+    print(anos)
     for ws in wb:
         sheet = []
         for row in ws.values:
             sheet.append(row)
-            leitura.append(sheet)
-
-    for folha in range (0, len(anos)):
-        dic = OrganizerSheet(leitura[folha], anos[folha], macroindicador)
-
-    for localidade in dic:
-        new_localidade = Localidade(codigo="1" , nome = localidade,
-            macroindicadores=[Macroindicador(nome=macroindicador, descricao="",
-            indicadores=dic[localidade])])
-        service_localidade.create(new_localidade)
-    
-    serviceository_localidade.get_all()[-1]
-
+        leitura.append(sheet)
+    return leitura
 
 
 

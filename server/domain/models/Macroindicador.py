@@ -8,6 +8,8 @@ class Macroindicador(Document):
     id          = StringField(required=True, max_length=200)
     nome        = StringField(required=True, max_length=200)
     descricao   = StringField(required=True)
+    fonte       = StringField(required=True, max_length=200)
+    unidade    = StringField(required=True, max_length=200)
     localidade  = ListField(ReferenceField(Localidade))
     visao       = ReferenceField(Visao)
     indicadores = ListField(EmbeddedDocumentField(Indicador))

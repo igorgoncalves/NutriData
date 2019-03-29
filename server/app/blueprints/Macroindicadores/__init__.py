@@ -12,7 +12,7 @@ _service_macroindicador = MacroindicadorService()
 
 
 class MacroindicadorApi(Resource):
-    def get(self, localidade_codigo):
+    def get(self):
         local = _service_localidade.get_all(codigo=localidade_codigo)
         if len(local) == 0:
             abort(404)
@@ -20,30 +20,33 @@ class MacroindicadorApi(Resource):
         data, err = _service_macroindicador.serialize(local, True)
         return  Response(data, mimetype="application/json", status=200)
 
-    def post(self, localidade_codigo):
-        local = _service_indicador.get_all(codigo=localidade_codigo)
-        if len(local) == 0:
-            abort(404)
-        local = local
+    def post(self):
+        r = request.files['file']
+        print(xslxAdapter.LerPlanilhaXlsx(r))
+   
+        # local = _service_indicador.get_all(codigo=localidade_codigo)
+        # if len(local) == 0:
+        #     abort(404)
+        # local = local
 
-        json_data = request.get_json(force=True)
-        json_data['id'] = str(local['id'])+"midc"+json_data['nome']
-        resposta, validated =  _service_macroindicador.validate(json_data)
-        if validated:
-            obj = _service_macroindicador.create(resposta['id'], resposta['nome'], resposta['descricao'], [])
-            try:
-                local['macroindicadores'].append(obj)
-            except Exception:
-                local['macroindicadores'] = []
-                local['macroindicadores'].append(obj)
-            print(local['macroindicadores'])
-            resposta, validatedL =  _service_indicador.validate(local)
-            if validatedL:
-                objLocal = _service_indicador.update(local)
-                return objLocal, 201
+        # json_data = request.get_json(force=True)
+        # json_data['id'] = str(local['id'])+"midc"+json_data['nome']
+        # resposta, validated =  _service_macroindicador.validate(json_data)
+        # if validated:
+        #     obj = _service_macroindicador.create(resposta['id'], resposta['nome'], resposta['descricao'], [])
+        #     try:
+        #         local['macroindicadores'].append(obj)
+        #     except Exception:
+        #         local['macroindicadores'] = []
+        #         local['macroindicadores'].append(obj)
+        #     print(local['macroindicadores'])
+        #     resposta, validatedL =  _service_indicador.validate(local)
+        #     if validatedL:
+        #         objLocal = _service_indicador.update(local)
+        #         return objLocal, 201
 
         # return resposta, 400
-        return {'o':'o'}
+        return  Response({}, mimetype="application/json", status=200)
 
 class MacroindicadorApiDetail(Resource):
     
