@@ -17,10 +17,13 @@ class LocalidadeService(ServiceBase):
         new_localidade = Localidade(codigo=codigo, nome=nome, macroindicadores=macroindicadores)
         return super().create(new_localidade)
 
+    def create(self, item):
+        return super().create(item)
+
     #validate entrada
     def validate(self, item):
         try:
-            result = self.schema.load item)
+            result = self.schema.load(item)
             return item, True
         except ValidationError as err:
             error = err.messages
