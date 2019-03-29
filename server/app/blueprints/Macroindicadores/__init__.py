@@ -3,6 +3,7 @@ from flask_restful import reqparse, abort, Api, Resource
 from domain.service.MacroindicadorService import MacroindicadorService
 from domain.service.LocalidadeService import LocalidadeService
 from app.adapters import xslxAdapter
+import json
 
 localidade = Blueprint('localidade', __name__)
 
@@ -13,40 +14,14 @@ _service_macroindicador = MacroindicadorService()
 
 class MacroindicadorApi(Resource):
     def get(self):
-        local = _service_localidade.get_all(codigo=localidade_codigo)
-        if len(local) == 0:
-            abort(404)
-        local = local[0].macroindicadores
-        data, err = _service_macroindicador.serialize(local, True)
         return  Response(data, mimetype="application/json", status=200)
 
     def post(self):
         r = request.files['file']
-        print(xslxAdapter.LerPlanilhaXlsx(r))
-   
-        # local = _service_indicador.get_all(codigo=localidade_codigo)
-        # if len(local) == 0:
-        #     abort(404)
-        # local = local
+        resposta = xslxAdapter.LerPlanilhaXlsx(r)
+        dump, error = _service_macroindicador.validate(resposta)
 
-        # json_data = request.get_json(force=True)
-        # json_data['id'] = str(local['id'])+"midc"+json_data['nome']
-        # resposta, validated =  _service_macroindicador.validate(json_data)
-        # if validated:
-            obj = _service_macroindicador.create(resposta['id'], resposta['nome'], resposta['descricao'], [])
-        #     try:
-        #         local['macroindicadores'].append(obj)
-        #     except Exception:
-        #         local['macroindicadores'] = []
-        #         local['macroindicadores'].append(obj)
-        #     print(local['macroindicadores'])
-        #     resposta, validatedL =  _service_indicador.validate(local)
-        #     if validatedL:
-        #         objLocal = _service_indicador.update(local)
-        #         return objLocal, 201
-
-        # return resposta, 400
-        return  Response({}, mimetype="application/json", status=200)
+        return  Response(dump, mimetype="application/json", status=200)
 
 class MacroindicadorApiDetail(Resource):
     

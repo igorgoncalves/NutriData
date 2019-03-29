@@ -21,39 +21,64 @@ def LerPlanilhaXlsx(arquivo):
     anos = wb.sheetnames
     leitura = []
     valores = {}
-    print(anos)
     for ws in wb:
         sheet = []
         for row in ws.values:
             sheet.append(row)
         leitura.append(sheet)
-    return leitura
+    
+    objeto_transformado = OrganizerSheet(leitura, "Macroindicador", "Descricao", anos)
+    return objeto_transformado
 
 
+def OrganizerSheet(planilha2, nome_macroindicador, descricao_macroindicador, anos):
+    nome_macroindicador = nome_macroindicador
+    descricao_macroindicador= descricao_macroindicador
+    output = []
 
-def OrganizerSheet(sheet, ano, macroindicador):
-    cabecalho = sheet[0:2]
-    corpo = sheet[3:]
+    fonte, indicadores, unidade = planilha2[0][0][1:],planilha2[0][1][1:], planilha2[0][2][1:]
+    valores = []
+    for pagina in planilha2:
+        valores.append(pagina[3:])
+        
+    macroindicador = {}
+    localidades_com_valores = []
+    macroindicador['nome'] = nome_macroindicador
+    macroindicador['descricao_macroindicador'] = descricao_macroindicador
+    macroindicador['fonte'] = fonte[0]
+    macroindicador['unidade'] = unidade[0]
+    indicadores_list = []
+    amostras_ano = len(valores)
 
-    result = {}
+    for header in indicadores:
+        indicador = {}
+        coluna = indicadores.index(header)+1
+        indicador['nome'] = header
+        indicador['indicadores_filho'] = []
+        amostras = []     
+        for ano in range (0, amostras_ano):
+            for territorio in valores[0]:
+                    amostra_obj = {}
+                    local_id = valores[0].index(territorio)
+                    valor_obtido = territorio[1:]
+                    valor_amostral = valor_obtido[coluna-1]
+                    amostra_obj['local_id'] = local_id
+                    amostra_obj['ano'] = anos[ano]
+                    amostra_obj['valor'] = valor_amostral
+                    if valor_amostral != '-' and valor_amostral != None:
+                        amostras.append(amostra_obj)
+                        localidades_com_valores.append(local_id)
+        indicador['amostras'] = amostras
+    
+            
+        indicadores_list.append(indicador)
+    aux = set(localidades_com_valores)
+    localidades_com_valores = list(aux)
+    macroindicador['locais_id'] = localidades_com_valores
+    macroindicador['indicadores'] = indicadores_list
+        
 
-    for val in corpo:
-        localidade, valores = val[0], val[1:]
-        ind = []
-        for it in range (0, len(valores)):
-            nomeInd = cabecalho[0][it+1]
-            ano = ano
-            unidade = cabecalho[1][it+1]
-            #fonte = cabecalho[2][it+1]
-            valor = valores[it]
-            amostra = Amostra(ano = ano, valor = valor)
-            indicador = Indicador(nome = nomeInd, amostras = [amostra])
-            if localidade in result:
-                result[localidade].append(indicador)
-            else:
-                result[localidade] = []
-
-    return result
+    return macroindicador
         
 
 def SheetToDict():
@@ -69,63 +94,49 @@ def SheetToDict():
                 ('SERGIPE', 27.36, 15.811, 11.549, 29.841, 2.052, 15.268, 12.521, 29.46, 26.004, 3.456, 0.513, 0.48, 0.033, 31.713, 14.891, 13.004, 3.817, 22.817, 17.873, 0.514, 4.429, 28.272, 5.06, 10.482, 7.561, 1.009, 2.475, 1.686, 1.369, 1.264, 0.064, 0.041, 5.973, 3.312, 1.347, 1.315, 21.213, 17.166, 4.047, 26.129, 21.773, 1.515, 2.841, 18.381, 16.054, 1.897, 0.429, 5.062, 2.594, 2.468, 6.428, 4.84, 1.588, 34.206, 4.491, 27.998, 1.702, 0.016, 1.834, 1.718, 0.116, 0.07),
                 ]
                 ]
-    outExample = [
-        {'localidade': 'sergipe',
-        'macroindicador' : [
+    out = [
             {'nome': 'arquivo',
             'descricao': 'descricao',
+            'fonte':'fonte',
+            'unidade':'unidade',
             'indicadores': [
                 {
-                    'nome' : 'nome',
-                    'unidade':'unidade',
-                    'fonte' : 'fonte',
+                    'nome' : 'indicador1',
+                    'indicadores_filho':'indicadores_filho',
                     'amostras' : [
                         {
-                            'ano': 'sheets-name',
-                            'valor':' valor'
-                        }
-                    ]
-                }
-            ]}
-        ]}
-    ]
+                            'ano': 'sheets-name1',
+                            'valor':' valor',
+                            'local_posicao': '1',
+                        },
+                        {
+                            'ano': 'sheets-name2',
+                            'valor':' valor',
+                            'local_posicao': '1',
 
-    obj = []
-    for an in range (0, len(anos)):
-        sheet = planilha2[an]
-        indicadores, unit, url, corpo = sheet[0], sheet[1], sheet[2], sheet[3:]
-        macroindicadorList = []
-        for localidade in corpo:
-            local = localidade[0]
-            macroindicador = "nome-do-arquivo"
-            descricao = "vem do form"
-            indc = []
-            for i in range (1, len(localidade)):
-                nome = indicadores[i]
-                unidade = unit[i]
-                fonte = url[i]
-                ano = anos[an]
-                valor = localidade[i]
-                indicador = {
-                    'nome' : nome,
-                    'unidade': unidade,
-                    'fonte' : fonte,
-                    'amostras' : [
-                        {
-                            'ano': ano,
-                            'valor': valor
                         }
                     ]
-                }
-                indc.append(indicador)
-            md = {'nome': 'arquivo',
-                'descricao': 'descricao',
-                'indicadores': indc}
-            macroindicadorList.append(md)
-                
-        obj.append(macroindicadorList)
-    print(json.dumps(obj, indent=2))
-    return obj     
+                },
+                {
+                    'nome' : 'indicador2',
+                    'indicadores_filho':'indicadores_filho',
+                    'amostras' : [
+                        {
+                            'ano': 'sheets-name1',
+                            'valor':' valor',
+                            'local_posicao': '1',
+                        },
+                        {
+                            'ano': 'sheets-name2',
+                            'valor':' valor',
+                            'local_posicao': '1',
+
+                        }
+                    ]
+                },
+            ]}
+    ]
+    return out     
     
 
                     
