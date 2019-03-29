@@ -40,18 +40,13 @@ export default [
     view: 'Notifications'
   },
   {
-    path: '/upgrade',
-    name: 'Upgrade to PRO',
-    view: 'Upgrade'
-  },
-  {
-    path: '/Localidade/:codigoLocalidade/macroindicadores',
-    name: 'Localidade/Macroindicadores',
+    path: '/macroindicadores',
+    name: 'Macroindicadores',
     view: 'Macroindicador/List'
   },
   {
-    path: '/Localidade/:codigoLocalidade/macroindicadores/novo',
-    name: 'Localidade/Macroindicadores',
+    path: '/macroindicadores/novo',
+    name: 'Macroindicadores',
     view: 'Macroindicador/Insert'
   },
   {

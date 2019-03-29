@@ -19,4 +19,6 @@ manager = Manager(app)
 # routes
 from app.Routes import *
 
+from app.commands import *
+
 

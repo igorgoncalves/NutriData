@@ -33,7 +33,7 @@ class MacroindicadorApi(Resource):
         # json_data['id'] = str(local['id'])+"midc"+json_data['nome']
         # resposta, validated =  _service_macroindicador.validate(json_data)
         # if validated:
-        #     obj = _service_macroindicador.create(resposta['id'], resposta['nome'], resposta['descricao'], [])
+            obj = _service_macroindicador.create(resposta['id'], resposta['nome'], resposta['descricao'], [])
         #     try:
         #         local['macroindicadores'].append(obj)
         #     except Exception:

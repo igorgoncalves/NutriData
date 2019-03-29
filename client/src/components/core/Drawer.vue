@@ -87,7 +87,7 @@ export default {
     logo: './static/img/vuetifylogo.png',
     links: [
       {
-        to: '/macroindicador',
+        to: '/macroindicadores',
         icon: 'mdi-view-dashboard',
         text: 'Macroindicadores'
       },

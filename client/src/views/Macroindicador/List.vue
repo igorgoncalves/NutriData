@@ -119,11 +119,10 @@ export default {
   methods: {
     ...mapActions('macroindicadores', ['fetchMacroindicadores']),
     createNew () {
-      this.$router.push({ path: `/localidade/${this.$route.params.codigoLocalidade}/macroindicadores/novo` })
+      this.$router.push({ path: `/macroindicadores/novo` })
     },
     createView (idMacroindicador) {
       console.log(idMacroindicador);
-
       this.$router.push({ path: `/macroindicador/${idMacroindicador}/visao` })
     }
   },

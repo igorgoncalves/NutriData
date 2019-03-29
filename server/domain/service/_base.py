@@ -2,7 +2,7 @@ from domain.repository._base import RepositoryBase
 
 class ServiceBase(object):
 
-    def __init__(self, repository=RepositoryBase, schema=None):
+    def __init__(self, repository:RepositoryBase, schema=None):
         self.repository = repository
         self.schema = schema
 
@@ -19,7 +19,7 @@ class ServiceBase(object):
         return self.repository.create(item)
 
     def createJson(self, json):
-        item = self.deserialize(json)       
+        item = self.deserialize(json)
         return self.create(item)
 
     def delete(self, item):
@@ -28,7 +28,7 @@ class ServiceBase(object):
     def delete_by_id(self, id):
         self.repository.delete_by_id(id)
 
-    def deserailize(self, json):
+    def deserialize(self, json):
         item, err = self.schema.load(json)
         return item
 
