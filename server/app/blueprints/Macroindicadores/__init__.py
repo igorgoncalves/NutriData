@@ -12,12 +12,9 @@ _service_macroindicador = MacroindicadorService()
 
 
 class MacroindicadorApi(Resource):
-    def get(self, localidade_codigo):
-        local = _service_localidade.get_all(codigo=localidade_codigo)
-        if len(local) == 0:
-            abort(404)
-        local = local[0].macroindicadores
-        data, err = _service_macroindicador.serialize(local, True)
+    def get(self):
+        macroindicadores = _service_macroindicador.get_all()
+        data, err = _service_macroindicador.serialize(macroindicadores, True)
         return  Response(data, mimetype="application/json", status=200)
 
     def post(self, localidade_codigo):

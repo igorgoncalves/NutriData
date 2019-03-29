@@ -17,6 +17,9 @@ class LocalidadeService(ServiceBase):
         new_localidade = Localidade(codigo=codigo, nome=nome, macroindicadores=macroindicadores)
         return super().create(new_localidade)
 
+    def create(self, item):
+        return super().create(item)
+
     #validate entrada
     def validate(self, item):
         try:
