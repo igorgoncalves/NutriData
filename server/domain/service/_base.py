@@ -34,6 +34,5 @@ class ServiceBase(object):
         return item
 
     def serialize(self, item, many=False):
-        print(item)
         json = self.schema.dumps(item, many)
         return json

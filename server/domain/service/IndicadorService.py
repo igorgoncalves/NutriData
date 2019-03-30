@@ -13,8 +13,12 @@ class IndicadorService(ServiceBase):
     def create(indicador):
         amostras = []
         for amst in indicador['amostras']:
-            # codigo_localidade
-            amostras.append(Amostra(ano=amst['ano'], valor=amst['valor'], codigo=amst['local_id']))
+            codigo_localidade = LocalidadeService().get_all(posicao=amst['local_id'])
+            if len(codigo_localidade) > 0:
+                codigo_localidade = int(codigo_localidade[0].codigo)
+            else:
+                codigo_localidade = None
+            amostras.append(Amostra(ano=amst['ano'], valor=amst['valor'], codigo_localidade=codigo_localidade))
         novo_indicador = Indicador(nome=indicador['nome'] , amostras=amostras)
         return novo_indicador
 

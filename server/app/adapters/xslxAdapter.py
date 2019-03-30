@@ -59,7 +59,7 @@ def OrganizerSheet(planilha2, nome_macroindicador, descricao_macroindicador, ano
         for ano in range (0, amostras_ano):
             for territorio in valores[0]:
                     amostra_obj = {}
-                    local_id = valores[0].index(territorio)
+                    local_id = valores[0].index(territorio)+3
                     valor_obtido = territorio[1:]
                     valor_amostral = valor_obtido[coluna-1]
                     amostra_obj['local_id'] = local_id
@@ -67,7 +67,7 @@ def OrganizerSheet(planilha2, nome_macroindicador, descricao_macroindicador, ano
                     amostra_obj['valor'] = valor_amostral
                     if valor_amostral != '-' and valor_amostral != None:
                         amostras.append(amostra_obj)
-                        localidades_com_valores.append(local_id)
+                        localidades_com_valores.append(local_id+3)
         indicador['amostras'] = amostras
     
             

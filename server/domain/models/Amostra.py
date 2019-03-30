@@ -4,7 +4,7 @@ from marshmallow_mongoengine import ModelSchema
 class Amostra(EmbeddedDocument):
     ano    = StringField(required=True, max_length=8)
     valor  = FloatField(required=True)
-    codigo = IntField(required=True)
+    codigo_localidade = IntField(required=True)
 
     def __repr__(self):
         return '<Amostra(ano={self.ano!r}, valor={self.valor!r})>'.format(self=self)
