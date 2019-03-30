@@ -13,8 +13,8 @@ class LocalidadeService(ServiceBase):
     def __init__(self):
         super(LocalidadeService, self).__init__(repository=self.repository, schema=self.schema)
 
-    def create(self, codigo, nome, macroindicadores=[]):
-        new_localidade = Localidade(codigo=codigo, nome=nome, macroindicadores=macroindicadores)
+    def create(self, codigo, nome, posicao):
+        new_localidade = Localidade(codigo=codigo, nome=nome, posicao=posicao)
         return super().create(new_localidade)
 
     def create(self, item):
