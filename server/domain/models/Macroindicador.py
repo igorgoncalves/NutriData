@@ -5,7 +5,7 @@ from .Localidade import Localidade
 from .Visao import Visao
 
 class Macroindicador(Document):
-    id          = StringField(required=True, max_length=200)
+    # id          = StringField(required=True, max_length=200)
     nome        = StringField(required=True, max_length=200)
     descricao   = StringField(required=True)
     localidade  = ListField(ReferenceField(Localidade))
@@ -20,5 +20,4 @@ class Macroindicador(Document):
 class MacroindicadorSchema(ModelSchema):
     class Meta:
         model = Macroindicador
-    value = fields.String()
 

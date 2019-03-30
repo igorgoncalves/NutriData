@@ -71,7 +71,7 @@
                   <template>
                     <v-icon
                       slot="activator"
-                      @click="showIndicaores(props.item)"
+                      @click="showIndicaores(props.item.id)"
                     >
                       mdi-subdirectory-arrow-right
                     </v-icon>
@@ -121,9 +121,9 @@ export default {
     createNew () {
       this.$router.push({ path: `/macroindicadores/novo` })
     },
-    createView (idMacroindicador) {
-      console.log(idMacroindicador);
-      this.$router.push({ path: `/macroindicador/${idMacroindicador}/visao` })
+    createView (macroindicador) {
+
+      this.$router.push({ path: `/macroindicador/${macroindicador.id}/visao` })
     }
   },
   mounted () {

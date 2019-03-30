@@ -57,7 +57,7 @@ export default [
   {
     path: '/Visao',
     name: 'Visao',
-    view: 'Visoes/Insert'
+    view: 'Visao/Insert'
   },
   {
     path: '/macroindicador/:idMacroindicador/visao',

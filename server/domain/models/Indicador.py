@@ -5,6 +5,7 @@ from .Amostra import Amostra
 class Indicador(EmbeddedDocument):
 
     nome               = StringField(required=True, max_length=200)
+    codigo_localidade  = IntField(required=True)
     amostras           = ListField(EmbeddedDocumentField("Amostra"))
     indicadores_filhos = ListField(ReferenceField("Indicador"))
 

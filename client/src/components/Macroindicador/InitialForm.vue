@@ -121,7 +121,7 @@ export default {
       formData.append('nome', this.name)
       formData.append('descricao', this.description)
       formData.append('codigoLocalidade', this.$route.params.codigoLocalidade)
-    }
+    },
   }
 }
 </script>

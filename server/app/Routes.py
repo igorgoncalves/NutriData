@@ -1,9 +1,10 @@
 from app import app, api
 from app.blueprints.home import home
 from app.blueprints.Indicadores import indicadores
-from app.blueprints.Macroindicadores import *
-from app.blueprints.Localidade import *
-from app.blueprints.Indicadores import *
+from app.blueprints.Macroindicadores import MacroindicadorApi, MacroindicadorApiDetail
+from app.blueprints.Localidade import LocalidadeApi, LocalidadeDetails
+from app.blueprints.Indicadores import IndicadorApi, IndicadorApiDetail
+from app.blueprints.Visaoes import VisaoPreview
 from flask_restful import  Api
 
 
@@ -16,5 +17,8 @@ api.add_resource(MacroindicadorApi, '/api/macroindicador')
 api.add_resource(MacroindicadorApiDetail, '/api/macroindicador/<localidade_codigo>/<mid>')
 api.add_resource(IndicadorApi, '/api/macroindicador/<localidade_codigo>/<mid>/indicadores')
 api.add_resource(IndicadorApiDetail, '/api/macroindicador/<localidade_codigo>/<mid>/indicador/<ind>')
+
+api.add_resource(VisaoPreview, '/api/visao/<id_macroindicador>/<codigo_localidade>/preview')
+
 
 

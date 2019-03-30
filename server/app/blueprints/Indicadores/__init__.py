@@ -7,17 +7,14 @@ from flask_restful import Resource, Api
 
 indicadores = Blueprint('indicadores', __name__)
 
-_service_indicador = LocalidadeService()
-
-
 _service_macroindicador = MacroindicadorService()
 _service_indicador = IndicadorService()
 
 
 
 class IndicadorApi(Resource):
-    def get(self, localidadeCodigo):
-        local = _service_indicador.get_all(codigo=localidadeCodigo)
+    def get(self, localidade_codigo, mid):
+        local = _service_indicador.get_all(codigo=localidade_codigo)
         if len(local) == 0:
             abort(404)
         local = local[0]
@@ -49,9 +46,9 @@ class IndicadorApi(Resource):
         return resposta, 400
 
 class IndicadorApiDetail(Resource):
-    
+
     def get(self, localidadeCodigo, mid):
-        local = _service_indicador.get_all(codigo=localidadeCodigo)
+        macroindicador = _service_macroindicador.get_by_id(id=mid)
         if len(local) == 0:
             abort(404)
         local = local[0]
@@ -67,10 +64,8 @@ class IndicadorApiDetail(Resource):
 
     #Obejct Macroindicador has no attribute delete
     def delete(self, localidadeCodigo, mid):
-        local = _service_indicador.get_all(codigo=localidadeCodigo)
-        if len(local) == 0:
-            abort(404)
-        local = local[0]
+        local = _service_macroindicador.get_by_id(id=mid)
+
         listaMid = local['macroindicadores']
         for midObj in listaMid:
             idObj = midObj.id

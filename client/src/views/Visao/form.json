@@ -3,5 +3,15 @@
         "label": "Tipo de gráfico",
         "options": [ "Pizza", "Barra", "Linha" ],
         "value": ""
+    },
+    {
+        "label": "Lista de Indicadores",
+        "lista": [
+            { "nome": "Batata", "id": "safsafsafsdafsda" },
+            { "nome": "Batata", "id": "safsafsafsdafsda" },
+            { "nome": "Batata", "id": "safsafsafsdafsda" },
+            { "nome": "Batata", "id": "safsafsafsdafsda" },
+            { "nome": "Batata", "id": "safsafsafsdafsda" }
+        ]
     }
 ]
