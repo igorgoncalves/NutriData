@@ -52,6 +52,6 @@ class LocalidadeApi(Resource):
         json_data = request.get_json(force=True)
         resposta, validated =  _service_localidade.validate(json_data)
         if validated:
-            obj = _service_localidade.create(resposta['codigo'], resposta['nome'], resposta['macroindicadores'])
+            obj = _service_localidade.create(resposta['codigo'], resposta['nome'])
             return obj, 201
         return resposta, 401

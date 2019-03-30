@@ -3,7 +3,7 @@ from marshmallow_mongoengine import ModelSchema
 from .Amostra import Amostra
 
 class Indicador(EmbeddedDocument):
-    id                 = StringField(required=True, max_length=200)
+    # id                 = StringField(required=True, max_length=200)
     nome               = StringField(required=True, max_length=200)
     amostras           = ListField(EmbeddedDocumentField("Amostra"))
     indicadores_filhos = ListField(ReferenceField("Indicador"))

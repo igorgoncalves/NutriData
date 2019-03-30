@@ -2,7 +2,7 @@ from mongoengine import *
 from marshmallow_mongoengine import ModelSchema
 
 class Amostra(EmbeddedDocument):
-    ano    = StringField(required=True, max_length=4)
+    ano    = StringField(required=True, max_length=8)
     valor  = DecimalField(required=True)
     codigo = IntField(required=True)
 

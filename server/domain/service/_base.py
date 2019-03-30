@@ -16,7 +16,8 @@ class ServiceBase(object):
         return self.repository.get_by_id(id)
 
     def create(self, item):
-        return self.repository.create(item)
+        self.repository.create(item)
+        return item
 
     def createJson(self, json):
         item = self.deserialize(json)
@@ -33,5 +34,6 @@ class ServiceBase(object):
         return item
 
     def serialize(self, item, many=False):
+        print(item)
         json = self.schema.dumps(item, many)
         return json

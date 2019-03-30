@@ -1,7 +1,7 @@
 from domain.service._base import ServiceBase
 from domain.repository.IndicadorRepository import IndicadorRepository
 from domain.models.Indicador import Indicador, IndicadorSchema
-
+from domain.models.Amostra import Amostra
 
 class IndicadorService(ServiceBase):
     repository = IndicadorRepository()
@@ -9,9 +9,12 @@ class IndicadorService(ServiceBase):
     def __init__(self):    
         super(IndicadorService, self).__init__(repository=self.repository, schema=self.schema)
 
-    def create(self, nome, amostras):
-        novo_indicador = Indicador(nome=nome, amostras=amostras)
-        return super().create(novo_indicador)
+    def create(indicador):
+        amostras = []
+        for amst in indicador['amostras']:
+            amostras.append(Amostra(ano=amst['ano'], valor=amst['valor'], codigo=amst['local_id']))
+        novo_indicador = Indicador(nome=indicador['nome'] , amostras=amostras)
+        return novo_indicador
 
     def loadPartial(self, indicador):
         return self.schema.load(indicador, partial=('id', 'indicador'))
