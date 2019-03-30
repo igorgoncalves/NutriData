@@ -1,7 +1,7 @@
 export default {
     xAxis: {
         type: 'category',
-        data: ['Matcha Latte', 'Milk Tea', 'Cheese Cocoa', 'Walnut Brownie']
+        data: []
     },
     yAxis: {},
     series: [

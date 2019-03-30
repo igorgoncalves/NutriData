@@ -22,5 +22,4 @@ class Macroindicador(Document):
 class MacroindicadorSchema(ModelSchema):
     class Meta:
         model = Macroindicador
-    value = fields.String()
 

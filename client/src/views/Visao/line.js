@@ -31,7 +31,6 @@ export default {
         {
             name:'batata',
             type:'line',
-            // stack: '总量',
             data:[120, 132, 101, 134, 90, 230, 210]
         },
         {
