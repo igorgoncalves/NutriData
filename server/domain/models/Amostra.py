@@ -3,7 +3,7 @@ from marshmallow_mongoengine import ModelSchema
 
 class Amostra(EmbeddedDocument):
     ano    = StringField(required=True, max_length=8)
-    valor  = DecimalField(required=True)
+    valor  = FloatField(required=True)
     codigo = IntField(required=True)
 
     def __repr__(self):

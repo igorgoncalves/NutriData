@@ -1,6 +1,7 @@
 from domain.service._base import ServiceBase
 from domain.repository.IndicadorRepository import IndicadorRepository
 from domain.models.Indicador import Indicador, IndicadorSchema
+from domain.service.LocalidadeService import LocalidadeService
 from domain.models.Amostra import Amostra
 
 class IndicadorService(ServiceBase):
@@ -12,6 +13,7 @@ class IndicadorService(ServiceBase):
     def create(indicador):
         amostras = []
         for amst in indicador['amostras']:
+            # codigo_localidade
             amostras.append(Amostra(ano=amst['ano'], valor=amst['valor'], codigo=amst['local_id']))
         novo_indicador = Indicador(nome=indicador['nome'] , amostras=amostras)
         return novo_indicador

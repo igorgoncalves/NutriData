@@ -32,38 +32,21 @@ class MacroindicadorApi(Resource):
         return  Response(json.dumps(dict_dump), mimetype="application/json", status=200)
 
 class MacroindicadorApiDetail(Resource):
-
-    pass
     
-    # def get(self, localidade_codigo, mid):
-    #     local = _service_localidade.get_all(codigo=localidade_codigo)
-    #     if len(local) == 0:
-    #         abort(404)
-    #     local = local[0]
-    #     listaMid = local['macroindicadores']
-    #     for midObj in listaMid:
-    #         idObj = midObj.id
-    #         idC = mid
-    #         if idObj == idC:
-    #             dump = _service_macroindicador.serialize(midObj, False)
-    #             return dump.data, 201
-    #     abort(404)
+    def get(self, id):
+        local = _service_macroindicador.get_all(id=id)
+        if len(local) == 0:
+            abort(404)
+        dump = _service_macroindicador.serialize(local[0], False)
+        Response(dump, mimetype="application/json", status=200)
 
 
-    # #Obejct Macroindicador has no attribute delete
-    # def delete(self, localidade_codigo, mid):
-    #     local = _service_localidade.get_all(codigo=localidade_codigo)
-    #     if len(local) == 0:
-    #         abort(404)
-    #     local = local[0]
-    #     listaMid = local['macroindicadores']
-    #     for midObj in listaMid:
-    #         idObj = midObj.id
-    #         idC = mid
-    #         if idObj == idC:
-    #             dump = _service_macroindicador.delete(midObj)
-    #             return {"object": "deleted"}, 201
-    #     abort(404)
+    def delete(self, id):
+        local = _service_macroindicador.get_all(id=id)
+        if len(local) == 0:
+            abort(404)
+        dump = _service_macroindicador.delete(local[0])
+        return Response(json.dumps({'obejct deleted':id}), mimetype="application/json", status=200)
 
     # def put(self, localidade_codigo, mid):
     #     locais = _service_indicador.get_all(codigo=codigo)
