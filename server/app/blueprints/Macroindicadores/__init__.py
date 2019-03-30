@@ -19,9 +19,10 @@ class MacroindicadorApi(Resource):
     def post(self):
         r = request.files['file']
         resposta = xslxAdapter.LerPlanilhaXlsx(r)
-        dump, error = _service_macroindicador.validate(resposta)
+        dict_dump, error = _service_macroindicador.validate(resposta)
 
-        return  Response(dump, mimetype="application/json", status=200)
+
+        return  Response(json.dumps(dict_dump), mimetype="application/json", status=200)
 
 class MacroindicadorApiDetail(Resource):
     

@@ -26,7 +26,7 @@ class MacroindicadorService(ServiceBase):
     def validate(self, macroindicador_dict):
         try:
             result = self.schema.load(macroindicador_dict)
-            return json.dumps(macroindicador_dict), True
+            return macroindicador_dict, True
         except ValidationError as err:
             error = err.messages 
             valid_data = err.valid_data 
