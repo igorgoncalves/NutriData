@@ -199,9 +199,6 @@ export default {
       visao.indicadores = this.getIndicadores.filter(el => {
         return el.value && el.value != false
       })
-
-      console.log('dento' + idMacroindicador)
-
       this.createVisao(visao, idMacroindicador)
     }
   }

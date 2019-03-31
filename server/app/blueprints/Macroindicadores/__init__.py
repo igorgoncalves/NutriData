@@ -2,21 +2,22 @@ from flask import Blueprint, request,  Response
 from flask_restful import reqparse, abort, Api, Resource
 from domain.service.MacroindicadorService import MacroindicadorService
 from domain.service.LocalidadeService import LocalidadeService
+from domain.service.IndicadorService import IndicadorService
 from app.adapters import xslxAdapter
 import json
 
 localidade = Blueprint('localidade', __name__)
 
 _service_localidade = LocalidadeService()
-
 _service_macroindicador = MacroindicadorService()
+_service_indicador = IndicadorService()
 
 
 class MacroindicadorApi(Resource):
     def get(self):
         list_all = _service_macroindicador.get_all()
         data, err = _service_macroindicador.serialize(list_all, True)
-        
+
         return  Response(data, mimetype="application/json", status=200)
 
     def post(self):
@@ -27,8 +28,8 @@ class MacroindicadorApi(Resource):
         dict_dump['descricao'] = request.form['descricao']
         dict_dump['nome'] = request.form['nome']
         macroindicador_obj = _service_macroindicador.create(dict_dump)
-        # data, err = _service_macroindicador.serialize(macroindicador_obj, False)
-        return  Response(json.dumps(dict_dump), mimetype="application/json", status=200)
+        data, err = _service_macroindicador.serialize(macroindicador_obj, False)
+        return  Response(data, mimetype="application/json", status=200)
 
 class MacroindicadorApiDetail(Resource):
     
@@ -60,3 +61,9 @@ class MacroindicadorApiDetail(Resource):
     #         obj = _service_indicador.update(local)
     #         return obj, 201
     #     return resposta, 401
+
+class IndicadoresMacroApi(Resource):
+    def get(self, mid):
+        macroindicador = _service_macroindicador.get_by_id(mid)
+        dump, err = _service_indicador.serialize(macroindicador.indicadores, True)
+        return Response(dump, mimetype="application/json", status=200)
