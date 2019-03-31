@@ -6,6 +6,7 @@ class Localidade(Document):
     codigo  = IntField(required=True)
     nome    = StringField(required=True, max_length=200)
     posicao = IntField(required=True)
+
     def __repr__(self):
         return '''<Localidade(
                     codigo={self.codigo!r},

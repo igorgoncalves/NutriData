@@ -63,13 +63,14 @@
         <v-list
             subheader
             two-line
+            lista-indicadores
           >
             <v-subheader>Indicadores</v-subheader>
-            <v-list-tile v-for="(indicador, key) in filteredMacroindicador.indicadores"  :key="key">
+            <v-list-tile v-for="(indicador, key) in getIndicadores"  :key="key">
               <v-list-tile-action>
-                <v-checkbox v-model="filteredMacroindicador.indicadores[key].value" ></v-checkbox>
+                <v-checkbox v-model="getIndicadores[key].value" ></v-checkbox>
               </v-list-tile-action>
-              <v-list-tile-content @click="filteredMacroindicador.indicadores[key].value = !filteredMacroindicador.indicadores[key]">
+              <v-list-tile-content @click="getIndicadores[key].value = !getIndicadores[key]">
                 <v-list-tile-title>{{ indicador.nome }}</v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
@@ -94,19 +95,24 @@ import 'echarts/lib/component/legend'
 import 'echarts/lib/component/legend/ScrollableLegendModel.js'
 import 'echarts/lib/component/legend/ScrollableLegendView.js'
 import 'echarts/lib/component/legend/scrollableLegendAction.js'
-import pie from './pie'
-import bar from './bar'
-import line from './line'
-import form from './form'
+
+import pie from './ChartsDefault/pie'
+import bar from './ChartsDefault/bar'
+import line from './ChartsDefault/line'
+import form from './ChartsDefault/form'
 
 export default {
+  props:['idMacroindicador'],
   components: {
     'v-chart': ECharts
   },
   computed: {
     ...mapGetters('macroindicadores', ['getMacroindicadorById']),
+    ...mapGetters('indicadores', ['getIndicadores']),
     filteredMacroindicador() {
-      return this.getMacroindicadorById(this.$route.params.idMacroindicador)
+      console.log("asasa")
+      console.log(this.idMacroindicador)
+      return this.getMacroindicadorById(this.idMacroindicador)
     }
   },
   data() {
@@ -121,6 +127,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions('indicadores', ['getIndicadoresById']),
+    ...mapActions('visao', ['createVisao']),
+
     changeChart() {
       switch (this.form[0].value) {
         case "Pizza":
@@ -146,7 +155,7 @@ export default {
       return valor
     },
     updateChart(){
-      let indicadores = this.filteredMacroindicador.indicadores.filter(el => {
+      let indicadores = this.getIndicadores.filter(el => {
         return el.value && el.value != false
       })
 
@@ -182,6 +191,18 @@ export default {
       }
       this.$refs.chart.clear()
       this.$refs.chart.mergeOptions(this.chart)
+    },
+    send (idMacroindicador) {
+      var visao = {}
+      visao.tipo_do_grafico = this.type
+      visao.idMacroindicador = idMacroindicador
+      visao.indicadores = this.getIndicadores.filter(el => {
+        return el.value && el.value != false
+      })
+
+      console.log('dento' + idMacroindicador)
+
+      this.createVisao(visao, idMacroindicador)
     }
   }
 }
@@ -191,5 +212,10 @@ export default {
 <style>
 .echarts {
   width: 100% !important;
+}
+
+.lista-indicadores{
+    overflow-y: scroll;
+    height: 100vh;
 }
 </style>

@@ -27,7 +27,7 @@ class test(Command):
         service_indicador = IndicadorService()
         indicadores = service_visao.get_all()[0].indicadores
         amostras = [x for x in indicadores if x.codigo_localidade == 23]
-        
+
 
         jsonv = service_indicador.serialize(amostras,many=True)
 

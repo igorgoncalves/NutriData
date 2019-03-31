@@ -15,9 +15,8 @@ _service_macroindicador = MacroindicadorService()
 class MacroindicadorApi(Resource):
     def get(self):
         list_all = _service_macroindicador.get_all()
-        if len(list_all) == 0:
-            abort(404)
         data, err = _service_macroindicador.serialize(list_all, True)
+        
         return  Response(data, mimetype="application/json", status=200)
 
     def post(self):

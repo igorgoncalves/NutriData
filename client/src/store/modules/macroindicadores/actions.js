@@ -6,8 +6,8 @@ export default {
     context.commit('initMacroindicadores')
   },
 
-  fetchMacroindicadores (context, codigoLocalidade) {
-    Vue.prototype.$http.get(`/api/macroindicador`)
+  fetchMacroindicadores (context) {
+    Vue.prototype.$http.get(`/api/macroindicadores`)
       .then((response) => {
         context.commit('updateMacroindicadores', response.data)
       }).catch((error) => {

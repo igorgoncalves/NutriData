@@ -127,7 +127,7 @@ export default {
     }
   },
   mounted () {
-    this.fetchMacroindicadores(this.$route.params.codigoLocalidade)
+    this.fetchMacroindicadores()
   },
   data () {
     return {
