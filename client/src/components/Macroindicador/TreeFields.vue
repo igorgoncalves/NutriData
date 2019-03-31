@@ -24,8 +24,7 @@ export default {
   },
   data: () => ({
     treeOptions: {
-      dnd: true,
-
+      dnd: true
     }
   }),
   computed: {
@@ -36,7 +35,7 @@ export default {
       this.getIndicadoresById({ idMacroindicador: this.idMacroindicador })
 
       const tree = this.$refs.someTree.tree
-      let model = tree.parse(this.treeData)
+      let model = tree.parse(this.getIndicadores)
       this.$set(this.$refs.someTree, 'model', model)
       tree.setModel(model)
     }
@@ -48,12 +47,13 @@ export default {
     }
   },
   mounted () {
-    this.$store.subscribe((mutation, state) => {      
+    const tree = this.$refs.someTree.tree
+    this.$store.subscribe((mutation, state) => {
       switch(mutation.type) {
         case 'indicadores/updateIndicadores':
-          const tree = this.$refs.someTree.tree
-          let model = tree.parse(this.getIndicadores)
-          this.$set(this.$refs.someTree, 'model', model)
+          console.log(this.getIndicadores)
+          let model = tree.parse(this.getIndicadores.map(el => ({ "text": el.nome }) ))
+          this.$set(tree, 'model', model)
           tree.setModel(model)
           break;
       }

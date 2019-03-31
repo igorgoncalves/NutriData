@@ -99,6 +99,7 @@ export default {
 
   methods: {
     ...mapActions('indicadores', ['getIndicadoresById']),
+    ...mapActions('macroindicadores', ['fetchMacroindicadores']),
     validate () {
       if (this.$refs.form.validate()) {
         this.snackbar = true
@@ -111,7 +112,9 @@ export default {
       this.$refs.form.resetValidation()
     },
     updateIndicadores (response) {
-      this.getIndicadoresById(2)
+      let idMacroindicador = JSON.parse(response.xhr.response).id
+      this.$emit('update:id-macroindicador', idMacroindicador)
+      this.getIndicadoresById(idMacroindicador)
     },
     send () {
       this.$refs.myVueDropzone.processQueue()

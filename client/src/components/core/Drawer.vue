@@ -84,7 +84,7 @@ import {
 
 export default {
   data: () => ({
-    logo: './static/img/vuetifylogo.png',
+    logo: '/static/img/vuetifylogo.png',
     links: [
       {
         to: '/macroindicadores',

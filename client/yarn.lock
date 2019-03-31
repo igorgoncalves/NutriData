@@ -8059,7 +8059,7 @@ vue-chartist@^2.1.2:
   dependencies:
     chartist "^0.11.0"
 
-vue-echarts@^4.0.1:
+vue-echarts@4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/vue-echarts/-/vue-echarts-4.0.1.tgz#3d3a14f53119701bba09545a68b17cf0689cad29"
   integrity sha512-JgvIcr/btz4bAkafVm0aLyfkAdhGf2T8VIdESd2264Mlr5w0dZ0IOG3BJCvtznIlBJMiwQXAztc27Y3KGKdF5Q==

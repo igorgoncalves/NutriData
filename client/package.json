@@ -16,7 +16,7 @@
     "sass-loader": "^7.1.0",
     "vue": "^2.5.17",
     "vue-chartist": "^2.1.2",
-    "vue-echarts": "^4.0.1",
+    "vue-echarts": "4.0.1",
     "vue-meta": "^1.5.2",
     "vue2-dropzone": "^3.5.2",
     "vuetify": "^1.2.5"

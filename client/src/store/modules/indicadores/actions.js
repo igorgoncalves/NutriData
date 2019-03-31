@@ -7,23 +7,24 @@ export default {
     context.commit('initIndicadores', [{ text: 'batata' }])
   },
 
-  getIndicadoresById (context, { idMacroindicador }) {
-    console.log(`batata ${idMacroindicador}`)
-    // if (idLocalidade === '2') {
-    context.commit('updateIndicadores', treeTemp)
-    //   console.log(treeTemp)
-    // }
-    // Vue.$http.get(`/api/macroindicador/${idMacroindicador}/indicadores`)
-    //   .then((response) => {
-    //     context.commit('updateIndicadores', response)
-    //   }).catch((error) => {
-    //     console.error(error)
-    //   })
+  getIndicadoresById (context, idMacroindicador) {
+    console.log(idMacroindicador)
+    if (typeof idMacroindicador === 'object') {
+      idMacroindicador = idMacroindicador.values()[0]
+    }
+
+    Vue.prototype.$http.get(`/api/macroindicador/${idMacroindicador}/indicadores`)
+      .then((response) => {
+        console.log(response.data)
+        context.commit('updateIndicadores', response.data)
+      }).catch((error) => {
+        console.error(error)
+      })
   },
 
   getIndicadoresByLocalidade (context, { idLocalidade }) {
     if (idLocalidade === '2') {
-      context.commit('updateIndicadores', treeTemp)      
+      context.commit('updateIndicadores', treeTemp)
     }
     // axios.get(`/api/localidade/${idLocalidade}/macroindicadores`)
     //   .then((response) => {
