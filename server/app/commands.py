@@ -7,7 +7,10 @@ from domain.service.VisaoService import VisaoService
 from domain.models.Amostra import Amostra, AmostraSchema
 from domain.models.Indicador import Indicador
 import json
+<<<<<<< HEAD
 
+=======
+>>>>>>> 449257c8dead9e02fc9e97174f4a64b377e9f2cf
 
 class Initdb(Command):
     def run(self):

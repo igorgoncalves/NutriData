@@ -26,6 +26,7 @@ def LerPlanilhaXlsx(arquivo):
         for row in ws.values:
             sheet.append(row)
         leitura.append(sheet)
+
     
     objeto_transformado = OrganizerSheet(leitura, "Macroindicador", "Descricao", anos)
     return objeto_transformado
@@ -57,17 +58,18 @@ def OrganizerSheet(planilha2, nome_macroindicador, descricao_macroindicador, ano
         indicador['indicadores_filho'] = []
         amostras = []     
         for ano in range (0, amostras_ano):
-            for territorio in valores[0]:
+            for territorio in valores[ano]:
                     amostra_obj = {}
-                    local_id = valores[0].index(territorio)+3
+                    local_id = valores[ano].index(territorio)+3
                     valor_obtido = territorio[1:]
                     valor_amostral = valor_obtido[coluna-1]
                     amostra_obj['local_id'] = local_id
                     amostra_obj['ano'] = anos[ano]
                     amostra_obj['valor'] = valor_amostral
-                    if valor_amostral != '-' and valor_amostral != None:
+                    if valor_amostral != '-' and valor_amostral != None and valor_amostral != 0 and valor_amostral != "...":
                         amostras.append(amostra_obj)
                         localidades_com_valores.append(local_id+3)
+        print(amostras)
         indicador['amostras'] = amostras
     
             
