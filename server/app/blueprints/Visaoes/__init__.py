@@ -3,6 +3,7 @@ from flask_restful import reqparse, abort, Api, Resource
 from domain.service.VisaoService import VisaoService
 from domain.service.MacroindicadorService import MacroindicadorService
 from app import api
+import json
 
 visao = Blueprint('visao', __name__)
 
@@ -44,12 +45,29 @@ class VisaoApi(Resource):
 
 class VisaoPreview(Resource):
     def get(self, id_macroindicador, codigo_localidade):
-        print(id_macroindicador)
-        macroindicador = _service_macroindicador.get_by_id(id=id_macroindicador)
-        indicadores = [x for x in macroindicador.indicadores if x.codigo_localidade == codigo_localidade]
-        macroindicador.indicadores = indicadores
-        data, err = _service_macroindicador.serialize(macroindicador)
-        return data, 200
+        macroindicadorObj = _service_macroindicador.get_by_id(id=id_macroindicador)
+        indicadores_list = macroindicadorObj['indicadores']
+        macroindicador = {}
+        macroindicador['nome'] = macroindicadorObj['nome']
+        macroindicador['indicadores'] = []
+        for i in indicadores_list:
+            indicador = {}
+            amostras = i['amostras']
+            aux = []
+            for ams in amostras:
+                cd_ams = int(ams.codigo_localidade)
+                if cd_ams== int(codigo_localidade):
+                    aux.append({
+                'valor':ams.valor,
+                'ano': ams.ano,
+                'codigo_localidade' : ams.codigo_localidade
+            })
+            indicador['nome_indicador'] = i['nome']
+            indicador['amostras'] = aux
+            macroindicador['indicadores'].append(indicador)
+        print(macroindicador)
+        # data, err = _service_macroindicador.serialize(macroindicador)
+        return macroindicador, 200
 
 
     #Obejct Macroindicador has no attribute delete

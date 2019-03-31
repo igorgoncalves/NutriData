@@ -26,6 +26,8 @@ def LerPlanilhaXlsx(arquivo):
         for row in ws.values:
             sheet.append(row)
         leitura.append(sheet)
+
+    print(anos)
     
     objeto_transformado = OrganizerSheet(leitura, "Macroindicador", "Descricao", anos)
     return objeto_transformado
