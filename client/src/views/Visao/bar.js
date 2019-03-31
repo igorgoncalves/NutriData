@@ -1,24 +1,28 @@
 export default {
-    xAxis: {
-        type: 'category',
-        data: []
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: []
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    data: [],
+    axisTick: {
+      alignWithLabel: true
     },
-    yAxis: {},
-    series: [
-        {
-            type: 'bar',
-            name: '2015',
-            data: [89.3, 92.1, 94.4, 85.4]
-        },
-        {
-            type: 'bar',
-            name: '2016',
-            data: [95.8, 89.4, 91.2, 76.9]
-        },
-        {
-            type: 'bar',
-            name: '2017',
-            data: [97.7, 83.1, 92.5, 78.1]
-        }
-    ]
+    boundaryGap: [0, 0.01]
+
+  },
+  yAxis: {},
+  series: []
 }

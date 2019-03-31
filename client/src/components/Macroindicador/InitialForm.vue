@@ -111,7 +111,6 @@ export default {
       this.$refs.form.resetValidation()
     },
     updateIndicadores (response) {
-      console.log(response)
       this.getIndicadoresById(2)
     },
     send () {

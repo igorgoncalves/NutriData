@@ -15,7 +15,7 @@ export default {
     }
   },
   mounted () {
-    console.log("batata")
+
     document.querySelectorAll('path').forEach(element =>
       element.addEventListener('click', () => (this.localidade = element.getAttribute('class'))))
   },
@@ -24,7 +24,7 @@ export default {
       return this.localidade < 10 && !this.showNordeste
     },
     showNordeste () {
-      console.log(this.localidade)
+    
       return (this.localidade === '2' || this.localidade > 10) && !this.showSergipe
     },
     showSergipe () {

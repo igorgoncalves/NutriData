@@ -6,6 +6,7 @@ from domain.service.IndicadorService import IndicadorService
 from domain.service.VisaoService import VisaoService
 from domain.models.Amostra import Amostra, AmostraSchema
 from domain.models.Indicador import Indicador
+import json
 
 
 class Initdb(Command):
@@ -27,7 +28,7 @@ class test(Command):
         service_indicador = IndicadorService()
         indicadores = service_visao.get_all()[0].indicadores
         amostras = [x for x in indicadores if x.codigo_localidade == 23]
-        
+
 
         jsonv = service_indicador.serialize(amostras,many=True)
 

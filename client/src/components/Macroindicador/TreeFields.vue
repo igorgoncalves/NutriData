@@ -48,8 +48,7 @@ export default {
     }
   },
   mounted () {
-    this.$store.subscribe((mutation, state) => {
-      console.log("né que foi?")
+    this.$store.subscribe((mutation, state) => {      
       switch(mutation.type) {
         case 'indicadores/updateIndicadores':
           const tree = this.$refs.someTree.tree

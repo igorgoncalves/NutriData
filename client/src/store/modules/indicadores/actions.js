@@ -23,8 +23,7 @@ export default {
 
   getIndicadoresByLocalidade (context, { idLocalidade }) {
     if (idLocalidade === '2') {
-      context.commit('updateIndicadores', treeTemp)
-      console.log(treeTemp)
+      context.commit('updateIndicadores', treeTemp)      
     }
     // axios.get(`/api/localidade/${idLocalidade}/macroindicadores`)
     //   .then((response) => {
