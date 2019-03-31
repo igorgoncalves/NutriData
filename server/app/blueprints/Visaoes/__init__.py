@@ -2,6 +2,7 @@ from flask import Blueprint, request,  Response
 from flask_restful import reqparse, abort, Api, Resource
 from domain.service.VisaoService import VisaoService
 from domain.service.MacroindicadorService import MacroindicadorService
+
 from app import api
 import json
 
@@ -10,38 +11,22 @@ visao = Blueprint('visao', __name__)
 _service_visao = VisaoService()
 _service_macroindicador = MacroindicadorService()
 
-
-
 class VisaoApi(Resource):
-    # @api.representation('application/json')
-    def get(self, id):
-        visoes = _service_visao.get_all(id=id)
-        data, err = _service_visao.serialize(macroindicadores, True)
+    def get(self, id_macroindicador):
+        visoes = _service_visao.get_all(id=id_macroindicador)
+        data, err = _service_visao.serialize(visoes, True)
         return  data, 200
 
-    def post(self, localidade_codigo):
-        local = _service_indicador.get_all(codigo=localidade_codigo)
-        if len(local) == 0:
-            abort(404)
-        local = local
+    def post(self, id_macroindicador):
+        print(id_macroindicador)
+        dataDict = json.loads(request.data)
 
-        json_data = request.get_json(force=True)
-        json_data['id'] = str(local['id'])+"midc"+json_data['nome']
-        resposta, validated =  _service_macroindicador.validate(json_data)
-        if validated:
-            obj = _service_macroindicador.create(resposta['id'], resposta['nome'], resposta['descricao'], [])
-            try:
-                local['macroindicadores'].append(obj)
-            except Exception:
-                local['macroindicadores'] = []
-                local['macroindicadores'].append(obj)
-            print(local['macroindicadores'])
-            resposta, validatedL =  _service_indicador.validate(local)
-            if validatedL:
-                objLocal = _service_indicador.update(local)
-                return objLocal, 201
+        tipo = dataDict['tipo_do_grafico']
+        indicadores = dataDict['indicadores']
 
-        return resposta, 400
+        resposta = _service_visao.create(id_macroindicador=id_macroindicador, tipo_de_grafico=tipo, indicadores=indicadores)
+        data, err = _service_visao.serialize(resposta)
+        return Response(data, mimetype="application/json", status=200)
 
 class VisaoPreview(Resource):
     def get(self, id_macroindicador, codigo_localidade):

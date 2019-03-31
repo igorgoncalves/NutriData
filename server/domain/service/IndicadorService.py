@@ -35,4 +35,3 @@ class IndicadorService(ServiceBase):
             valid_data = err.valid_data 
             return json.dumps(error, indent=2), False
 
-    
