@@ -33,13 +33,10 @@ class MacroindicadorApi(Resource):
 
 class MacroindicadorApiDetail(Resource):
     
-    def get(self, id):
-        local = _service_macroindicador.get_all(id=id)
-        if len(local) == 0:
-            abort(404)
-        dump = _service_macroindicador.serialize(local[0], False)
-        Response(dump, mimetype="application/json", status=200)
-
+    def get(self, id_macroindicador):
+        local = _service_macroindicador.get_by_id(id_macroindicador)
+        dump, err = _service_macroindicador.serialize(local, False)
+        return Response(dump, mimetype="application/json", status=200)
 
     def delete(self, id):
         local = _service_macroindicador.get_all(id=id)

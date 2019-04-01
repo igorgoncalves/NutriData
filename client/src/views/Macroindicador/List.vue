@@ -22,8 +22,7 @@
               align-end
             >
               <v-btn
-                primary
-                dark
+                class="success"
                 @click="createNew()"
               >+ Adicionar</v-btn>
             </v-layout>

@@ -87,7 +87,6 @@ export default {
     },
     salvarVisao () {
       this.$refs.createview.send(this.idMacroindicador)
-      
     }
   }
 }

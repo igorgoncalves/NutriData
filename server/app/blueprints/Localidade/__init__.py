@@ -3,11 +3,14 @@ from flask import Flask, jsonify, request, Response
 from flask_restful import reqparse, abort, Api, Resource
 from flask import Blueprint, render_template, jsonify
 from domain.service.LocalidadeService import LocalidadeService
+from domain.service.MacroindicadorService import MacroindicadorService
 
 
 localidade = Blueprint('localidade', __name__)
 
 _service_localidade = LocalidadeService()
+
+_service_macroindicador = MacroindicadorService()
 
 #A partir do codigo do local
 class LocalidadeDetails(Resource):
@@ -55,3 +58,11 @@ class LocalidadeApi(Resource):
             obj = _service_localidade.create(resposta['codigo'], resposta['nome'])
             return obj, 201
         return resposta, 401
+
+class MacroindicadoresLocalidadesApi(Resource):
+    def get(self, codigo_localidade):
+
+        macroindicadores = _service_macroindicador.get_by_localidade(codigo_localidade)
+        data, err = _service_macroindicador.serialize(macroindicadores, True)
+
+        return Response(data, mimetype="application/json", status=200)
