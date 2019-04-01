@@ -7,7 +7,9 @@ class MacroindicadorRepository(RepositoryBase):
         super(MacroindicadorRepository, self).__init__(model_class=Macroindicador)
 
     def get_by_localidade(self, id_localidade):
-        # return Macroindicador.objects(localidade__contains= id_localidade)
         return Macroindicador.objects.filter(localidade__contains=(id_localidade))
+
+    def get_by_id(self, id):
+        return Macroindicador.objects.with_id(object_id=id).select_related()
 
 

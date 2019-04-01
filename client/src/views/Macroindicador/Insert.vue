@@ -1,4 +1,5 @@
 <template>
+<div>
     <v-stepper v-model="el" class="container fluid insert-stepper" >
       <v-stepper-header>
         <v-stepper-step :complete="el > 1" step="1">Importar os dados</v-stepper-step>
@@ -55,6 +56,27 @@
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
+    <v-dialog
+      v-model="dialog"
+      hide-overlay
+      persistent
+      width="300"
+    >
+      <v-card
+        color="primary"
+        dark
+      >
+        <v-card-text>
+          Please stand by
+          <v-progress-linear
+            indeterminate
+            color="white"
+            class="mb-0"
+          ></v-progress-linear>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
+  </div>
 </template>
 
 <script>
@@ -71,7 +93,8 @@ export default {
   data () {
     return {
       el: 0,
-      idMacroindicador: ''
+      idMacroindicador: '',
+      dialog: false
     }
   },
   watch: {
@@ -87,7 +110,18 @@ export default {
     },
     salvarVisao () {
       this.$refs.createview.send(this.idMacroindicador)
+      this.dialog = true
     }
+  },
+  mounted () {
+    this.$store.subscribe((mutation, state) => {
+      switch(mutation.type) {
+        case 'visao/updateVisao':
+          this.$router.push({ path: `/macroindicadores` })
+          this.dialog = false
+          break;
+      }
+    })
   }
 }
 

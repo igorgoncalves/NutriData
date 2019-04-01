@@ -1,8 +1,36 @@
 <template>
   <div>
-    <img svg-inline v-show="showBrasil" class="icon" src="./brasil.svg" alt="example" />
-    <img svg-inline v-show="showNordeste" class="icon" src="./nordeste.svg" alt="example" />
-    <img svg-inline v-show="showSergipe" class="icon" src="./sergipe.svg" alt="example" />
+     <v-flex xs12>
+    <v-btn
+      class="succes"
+      dark
+      icon
+      @click="localidade = '0'"
+    >
+      Brasil
+    </v-btn>
+    <v-btn
+      class="succes"
+      dark
+      icon
+      @click="localidade = '2'"
+    >
+      Nordeste
+    </v-btn>
+    <v-btn
+      class="succes"
+      dark
+      icon
+      @click="localidade = '28'"
+    >
+      Sergipe
+    </v-btn>
+  </v-flex>
+  <transition-group name="fade" tag="div">
+    <img svg-inline v-show="showBrasil" key="Brasil" class="icon" src="./brasil.svg" alt="example" />
+    <img svg-inline v-show="showNordeste" key="Nordeste" class="icon" src="./nordeste.svg" alt="example" />
+    <img svg-inline v-show="showSergipe" key="Sergipe" class="icon" src="./sergipe.svg" alt="example" />
+  </transition-group>
   </div>
 </template>
 
@@ -15,7 +43,6 @@ export default {
     }
   },
   mounted () {
-
     document.querySelectorAll('path').forEach(element =>
       element.addEventListener('click', () => (this.localidade = element.getAttribute('class'))))
   },
@@ -36,20 +63,29 @@ export default {
       this.$emit('input', this.localidade)
     }
   }
+
 }
 
 </script>
 
 <style scoped>
-  /* svg {
-    width: 60%;
-    height: 60%;
-  } */
+  .succes {
+    width: 80px !important;
+    margin: 15px;
+    background:#16a085 !important;
+  }
   path {
     fill: #16a085;
-    
+
   }
-  path:hover {
+  path:hover, path:active {
     fill: #ff6f00;
+  }
+
+  .fade-enter-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
   }
 </style>

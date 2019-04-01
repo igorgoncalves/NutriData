@@ -114,7 +114,7 @@ export default {
     updateIndicadores (response) {
       let idMacroindicador = JSON.parse(response.xhr.response).id
       this.$emit('update:id-macroindicador', idMacroindicador)
-      this.getIndicadoresById(idMacroindicador)
+      // this.getIndicadoresById(idMacroindicador)
     },
     send () {
       this.$refs.myVueDropzone.processQueue()

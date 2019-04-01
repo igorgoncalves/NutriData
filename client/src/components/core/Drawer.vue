@@ -22,11 +22,11 @@
           <v-list-tile-avatar
             color="white"
           >
-            <v-img
+            <!-- <v-img
               :src="logo"
               height="34"
               contain
-            />
+            /> -->
           </v-list-tile-avatar>
           <v-list-tile-title class="title">
             NutriData

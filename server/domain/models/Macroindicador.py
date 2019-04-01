@@ -1,8 +1,8 @@
 from mongoengine import *
-from marshmallow_mongoengine import ModelSchema, fields
+import marshmallow_mongoengine as ma
 from .Indicador import Indicador
 from .Localidade import Localidade
-from .Visao import Visao
+from .Visao import Visao, VisaoSchema
 
 class Macroindicador(Document):
     # id          = StringField(required=True, max_length=200)
@@ -19,7 +19,12 @@ class Macroindicador(Document):
 
 
 
-class MacroindicadorSchema(ModelSchema):
+class MacroindicadorSchema(ma.ModelSchema):
     class Meta:
         model = Macroindicador
-
+    # visao = ma.fields.Method(serialize="_visao_serializer", deserialize="_visao_deserializer")
+    # def _visao_serializer(self, obj):
+    #     print(obj)
+    #     return Visao.dumps(.objects.with_id(object_id=id))
+    # def _visao_serializer(self, obj):
+    #     return Visao.load(obj)

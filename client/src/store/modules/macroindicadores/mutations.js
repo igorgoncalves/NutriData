@@ -6,5 +6,8 @@ export default {
   },
   updateMacroindicadores (state, payload) {
     state.macroindicadores = payload
+  },
+  updateMacroindicador (state, payload) {
+    state.macroindicador = payload
   }
 }

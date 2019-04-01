@@ -3,6 +3,7 @@ from flask_restful import reqparse, abort, Api, Resource
 from domain.service.MacroindicadorService import MacroindicadorService
 from domain.service.LocalidadeService import LocalidadeService
 from domain.service.IndicadorService import IndicadorService
+from domain.service.VisaoService import VisaoService
 from app.adapters import xslxAdapter
 import json
 
@@ -11,6 +12,7 @@ localidade = Blueprint('localidade', __name__)
 _service_localidade = LocalidadeService()
 _service_macroindicador = MacroindicadorService()
 _service_indicador = IndicadorService()
+_service_visao = VisaoService()
 
 
 class MacroindicadorApi(Resource):
@@ -35,8 +37,12 @@ class MacroindicadorApiDetail(Resource):
     
     def get(self, id_macroindicador):
         local = _service_macroindicador.get_by_id(id_macroindicador)
+        print(local.visao.tipo_do_grafico)
         dump, err = _service_macroindicador.serialize(local, False)
-        return Response(dump, mimetype="application/json", status=200)
+        aux = json.loads(dump)
+        visao = _service_visao.get_by_id(aux['visao'])
+        aux['visao'] = json.loads(_service_visao.serialize(visao).data)        
+        return Response(json.dumps(aux), mimetype="application/json", status=200)
 
     def delete(self, id):
         local = _service_macroindicador.get_all(id=id)

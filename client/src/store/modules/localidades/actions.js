@@ -8,7 +8,7 @@ export default {
 
   fetchLocalidades (context) {
     Vue.prototype.$http.get(`/api/localidade`)
-      .then((response) => {        
+      .then((response) => {
         context.commit('updateLocalidades', response.data)
       }).catch((error) => {
         console.error(error)

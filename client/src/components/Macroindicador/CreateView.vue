@@ -109,9 +109,7 @@ export default {
   computed: {
     ...mapGetters('macroindicadores', ['getMacroindicadorById']),
     ...mapGetters('indicadores', ['getIndicadores']),
-    filteredMacroindicador() {
-      console.log("asasa")
-      console.log(this.idMacroindicador)
+    filteredMacroindicador() {      
       return this.getMacroindicadorById(this.idMacroindicador)
     }
   },
