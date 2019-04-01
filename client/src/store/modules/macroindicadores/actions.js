@@ -21,5 +21,14 @@ export default {
       }).catch((error) => {
         console.error(error)
       })
+  },
+  fetchMacroindicadoresById (context, idMacroindicador) {
+    Vue.prototype.$http.get(`/api/macroindicadores/${idMacroindicador}`)
+      .then((response) => {
+        context.commit('updateMacroindicador', response.data)
+      }).catch((error) => {
+        console.error(error)
+      })
   }
+
 }

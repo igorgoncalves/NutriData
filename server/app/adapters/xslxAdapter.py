@@ -69,11 +69,10 @@ def OrganizerSheet(planilha2, nome_macroindicador, descricao_macroindicador, ano
                     amostra_obj['valor'] = valor_amostral
                     if valor_amostral != '-' and valor_amostral != None and valor_amostral != 0 and valor_amostral != "...":
                         amostras.append(amostra_obj)
-                        localidades_com_valores.append(local_id+3)
+                        localidades_com_valores.append(local_id)
                         if not local_id in localidades:
                             localidades.append(local_id)
         indicador['amostras'] = amostras
-
 
         indicadores_list.append(indicador)
     aux = set(localidades_com_valores)

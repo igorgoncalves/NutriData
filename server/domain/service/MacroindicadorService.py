@@ -23,14 +23,14 @@ class MacroindicadorService(ServiceBase):
         for indicador in indicadores_dict:
             indicador_obj = IndicadorService.create(indicador)
             indicadores.append(indicador_obj)
-        for x in macroindicador['posicoes_localidades']:
+        for x in macroindicador['locais_id']:
             print(x)
         novo_macroindicador = Macroindicador(
                                              nome=macroindicador['nome'],
                                              descricao=macroindicador['descricao'],
                                              fonte=macroindicador['fonte'],
                                              unidade=macroindicador['unidade'],
-                                             localidade= [service_localidade.get_all(posicao=x)[0] for x in macroindicador['posicoes_localidades']],
+                                             localidade= [service_localidade.get_all(posicao=x)[0] for x in macroindicador['locais_id']],
                                              indicadores=indicadores)
         return super().create(novo_macroindicador)
 
@@ -47,6 +47,5 @@ class MacroindicadorService(ServiceBase):
         service_localidade = LocalidadeService()
         localidade = service_localidade.get_all(codigo=codigo_localidade)
         if len(localidade) > 0:
-            print(localidade[0].id)
             return self.repository.get_by_localidade(localidade[0].id)
         return []

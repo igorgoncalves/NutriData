@@ -7,15 +7,14 @@ export default {
     context.commit('initIndicadores', [{ text: 'batata' }])
   },
 
-  getIndicadoresById (context, idMacroindicador) {
-    console.log(idMacroindicador)
+  getIndicadoresById (context, { idMacroindicador }) {
     if (typeof idMacroindicador === 'object') {
-      idMacroindicador = idMacroindicador.values()[0]
+      console.log(idMacroindicador)
+      idMacroindicador = idMacroindicador.values()
     }
 
     Vue.prototype.$http.get(`/api/macroindicador/${idMacroindicador}/indicadores`)
       .then((response) => {
-        console.log(response.data)
         context.commit('updateIndicadores', response.data)
       }).catch((error) => {
         console.error(error)

@@ -77,7 +77,7 @@ export default {
       //
     },
     goToAdmin () {
-      this.$router.push({ path: `macroindicadores` })
+      this.$router.push({ path: `/macroindicadores` })
     },
     onResponsiveInverted () {
       if (window.innerWidth < 991) {
