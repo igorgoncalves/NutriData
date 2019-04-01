@@ -2,19 +2,27 @@
   <div>
     <v-container grid-list-md text-xs-center>
       <v-layout row wrap>
-      <v-flex xs5>
-        <h1>Selecione o local</h1>
+      <v-flex
+        md12
+        sm12
+        lg6
+      >
+        <h2>1º - Selecione o local</h2>
         <map-select v-model="localidade" />
       </v-flex>
       <v-flex xs1>
-      <v-divider vertical></v-divider>
+      <v-divider hidden-md-and-down vertical></v-divider>
       </v-flex>
-      <v-flex xs6>
+      <v-flex
+        md12
+        sm12
+        lg5
+      >
         <div>
-          <h2>Indicadores de: {{ nomeLocalidade }}</h2>
+          <h2>2º - Clique em um indicador de: {{ nomeLocalidade }}</h2>
           <v-layout row wrap>
             <transition-group name="fade" tag="div" class="layout row wrap">
-            <v-flex xs4 v-for="indicador in macroindicadores" :key="indicador.nome + componentKey" >
+            <v-flex lg4 md6 v-for="indicador in macroindicadores" :key="indicador.nome + componentKey" >
                 <v-card color="success" class="card-indicador" min-height="100px" @click="showVisao(indicador.id)">
                   <v-card-text> {{ indicador.nome }} </v-card-text>
                 </v-card>

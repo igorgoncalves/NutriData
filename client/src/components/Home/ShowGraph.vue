@@ -136,7 +136,9 @@ export default {
 
 <style>
 .echarts {
-  width: 100% !important;
+  width: 100vw !important;
+  max-height: 100vw !important;
+
 }
 
 .lista-indicadores{

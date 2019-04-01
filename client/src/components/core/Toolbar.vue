@@ -3,22 +3,13 @@
     id="core-toolbar"
     flat
     prominent
-    style="background: #eee;"
+    style="background: #fff;"
   >
     <div class="v-toolbar-title">
       <v-toolbar-title
         class="tertiary--text font-weight-light"
       >
-        <v-btn
-          v-if="responsive"
-          class="default v-btn--simple"
-          dark
-          icon
-          @click.stop="onClickBtn"
-        >
-          <v-icon>mdi-view-list</v-icon>
-        </v-btn>
-        Nutridata
+        <v-img :src="logo" />
       </v-toolbar-title>
       <v-spacer></v-spacer>
     </div>
@@ -26,7 +17,7 @@
     <div class="v-toolbar-items">
     <v-toolbar-items>
         <v-btn
-          class="success"
+          color="#ffa21a"
           @click="goToAdmin()"
         >Admin</v-btn>
       </v-toolbar-items>
@@ -51,7 +42,8 @@ export default {
     ],
     title: null,
     responsive: false,
-    responsiveInput: false
+    responsiveInput: false,
+    logo: '/static/img/logo.png'
   }),
 
   watch: {
@@ -98,5 +90,9 @@ export default {
   }
   .v-toolbar__content {
     margin-left: 50px !important;
+  }
+  .v-toolbar__title {
+    margin-left: -30px !important;
+    width: 25vh;
   }
 </style>
