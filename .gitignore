@@ -6,3 +6,4 @@ migrations
 node_modules
 dist/
 .vscode
+*.zip
