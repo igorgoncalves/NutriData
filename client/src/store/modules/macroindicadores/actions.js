@@ -13,5 +13,13 @@ export default {
       }).catch((error) => {
         console.error(error)
       })
+  },
+  fetchMacroindicadoresByLocalidade (context, codigoLocalidade) {
+    Vue.prototype.$http.get(`/api/localidade/${codigoLocalidade}/macroindicadores`)
+      .then((response) => {
+        context.commit('updateMacroindicadores', response.data)
+      }).catch((error) => {
+        console.error(error)
+      })
   }
 }

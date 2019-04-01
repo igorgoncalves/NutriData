@@ -24,7 +24,7 @@ export default {
       return this.localidade < 10 && !this.showNordeste
     },
     showNordeste () {
-    
+
       return (this.localidade === '2' || this.localidade > 10) && !this.showSergipe
     },
     showSergipe () {
@@ -45,7 +45,11 @@ export default {
     width: 60%;
     height: 60%;
   } */
+  path {
+    fill: #16a085;
+    
+  }
   path:hover {
-    fill: brown;
+    fill: #ff6f00;
   }
 </style>

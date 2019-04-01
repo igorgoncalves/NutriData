@@ -17,7 +17,6 @@ export default {
   createVisao (context, data, idMacroindicador) {
     Vue.prototype.$http.post(`/api/macroindicador/${data.idMacroindicador}/visao`, data)
       .then((response) => {
-        console.log(response)
         context.commit('updateVisao', response.data)
       }).catch((error) => {
         console.error(error)
