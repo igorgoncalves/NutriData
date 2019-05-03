@@ -31,6 +31,5 @@ class test(Command):
 
         jsonv = service_indicador.serialize(amostras,many=True)
 
-        print(jsonv)
 
 manager.add_command('test', test())

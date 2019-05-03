@@ -45,8 +45,7 @@ class MacroindicadorApi(Resource):
                 local['macroindicadores'].append(obj)
             except Exception:
                 local['macroindicadores'] = []
-                local['macroindicadores'].append(obj)
-            print(local['macroindicadores'])
+                local['macroindicadores'].append(obj)            
             resposta, validatedL =  _service_indicador.validate(local)
             if validatedL:
                 objLocal = _service_indicador.update(local)

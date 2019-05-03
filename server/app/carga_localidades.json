@@ -72,7 +72,7 @@
 { "codigo": 2806206, "nome": "Salgado", "posicao": 45 },
 { "codigo": 2806305, "nome": "Santa Luzia do Itanhy", "posicao": 46 },
 { "codigo": 2806404, "nome": "Santana do São Francisco", "posicao": 47 },
-{ "codigo": 2806503, "nome": "Santa Rosa de Lima", "posicao": -1 },
+{ "codigo": 2806503, "nome": "Santa Rosa de Lima", "posicao": 48 },
 { "codigo": 2806602, "nome": "Santo Amaro das Brotas", "posicao": 49 },
 { "codigo": 2806701, "nome": "São Cristóvão", "posicao": 50 },
 { "codigo": 2806800, "nome": "São Domingos", "posicao": 70 },

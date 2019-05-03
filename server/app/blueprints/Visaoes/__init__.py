@@ -49,8 +49,7 @@ class VisaoPreview(Resource):
             })
             indicador['nome_indicador'] = i['nome']
             indicador['amostras'] = aux
-            macroindicador['indicadores'].append(indicador)
-        print(macroindicador)
+            macroindicador['indicadores'].append(indicador)        
         # data, err = _service_macroindicador.serialize(macroindicador)
         return macroindicador, 200
 

@@ -21,16 +21,15 @@ class MacroindicadorService(ServiceBase):
         indicadores_dict = macroindicador['indicadores']
         indicadores = []
         for indicador in indicadores_dict:
-            indicador_obj = IndicadorService.create(indicador)
+            indicador_obj = IndicadorService.create(indicador)            
             indicadores.append(indicador_obj)
-        for x in macroindicador['locais_id']:
-            print(x)
+
         novo_macroindicador = Macroindicador(
                                              nome=macroindicador['nome'],
                                              descricao=macroindicador['descricao'],
                                              fonte=macroindicador['fonte'],
                                              unidade=macroindicador['unidade'],
-                                             localidade= [service_localidade.get_all(posicao=x)[0] for x in macroindicador['locais_id']],
+                                             localidade= [service_localidade.get_all(posicao = x)[0] for x in macroindicador['locais_id']],
                                              indicadores=indicadores)
         return super().create(novo_macroindicador)
 
