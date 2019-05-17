@@ -46,7 +46,7 @@ export default [
   },
   {
     path: '/macroindicadores/novo',
-    name: 'Macroindicadores',
+    name: 'Macroindicadores/Novo',
     view: 'Macroindicador/Insert'
   },
   {
@@ -61,7 +61,7 @@ export default [
   },
   {
     path: '/macroindicador/:idMacroindicador/visao',
-    name: 'Visao',
+    name: 'MacroindicadorVisao',
     view: 'Visao/Insert'
   }
 ]

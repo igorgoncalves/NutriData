@@ -12,9 +12,19 @@
         <v-flex
         md12
         sm12
-        lg12>
-          <h2> {{ filteredMacroindicador.nome }} </h2>
-          <span>{{ filteredMacroindicador.descricao }}</span>
+        lg12>           
+          <v-flex
+            md12
+            sm12
+            lg12>
+              <v-select
+                  :items="form[0].options"
+                  :label="form[0].label"
+                  v-model="form[0].value"
+                  v-on:change="changeChart()"
+                  outline
+              ></v-select>
+            </v-flex>
         </v-flex>
         <v-flex
           md12
@@ -38,37 +48,16 @@
         md12
         sm12
         lg4>
-        <v-card>
-          <v-flex
-            md12
-            sm12
-            lg12>
-            <v-btn
-                color="success"
-                @click="updateChart()"
-              >Atualizar gráfico</v-btn>
-          </v-flex>
-          <v-flex
-            md12
-            sm12
-            lg12>
-              <v-select
-                  :items="form[0].options"
-                  :label="form[0].label"
-                  v-model="form[0].value"
-                  v-on:change="changeChart()"
-                  outline
-              ></v-select>
-            </v-flex>
+        <v-card>        
         <v-list
             subheader
             two-line
-            lista-indicadores
+            class="lista-indicadores"
           >
             <v-subheader>Indicadores</v-subheader>
             <v-list-tile v-for="(indicador, key) in getIndicadores"  :key="key">
               <v-list-tile-action>
-                <v-checkbox v-model="getIndicadores[key].value" ></v-checkbox>
+                <v-checkbox v-model="getIndicadores[key].value" @change="updateChart" ></v-checkbox>
               </v-list-tile-action>
               <v-list-tile-content @click="getIndicadores[key].value = !getIndicadores[key]">
                 <v-list-tile-title>{{ indicador.nome }}</v-list-tile-title>
@@ -213,4 +202,5 @@ export default {
     overflow-y: scroll;
     height: 100vh;
 }
+
 </style>

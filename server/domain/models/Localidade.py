@@ -13,6 +13,7 @@ class Localidade(Document):
                     nome={self.nome!r})>'''.format(self=self)
 
 class LocalidadeSchema(ModelSchema):
+    
     class Meta:
         model = Localidade
     value = fields.String()

@@ -29,7 +29,7 @@ class MacroindicadorApi(Resource):
 
     def post(self, localidadeCodigo):
         # f = request.files['file']
-        # retorno = xslxAdapter.LerPlanilhaXlsx(f)
+        # retorno = xslxAdapter.ler_planilha_xlsx(f)
         # obj = localidadeService.serializerMacroindicador(retorno)
         local = _service_indicador.get_all(codigo=localidadeCodigo)
         if len(local) == 0:
