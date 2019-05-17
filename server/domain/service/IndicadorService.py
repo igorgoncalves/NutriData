@@ -42,13 +42,13 @@ class IndicadorService(ServiceBase):
                 
                 else:
                     res.errors['valor'] = "Ops! Algo estranho aconteceu"
-                print(amostra['ano'])
+
                 res.errors['indicador'] = indicador['nome']
                 res.errors['posicao'] = amostra['coordenada_planilha']
+
                 self._errors['validacao_amostra'].append(res.errors)
 
-            amostras.append(res.data)
-                            
+            amostras.append(res.data)                            
             
         novo_indicador = Indicador(nome=indicador['nome'] , amostras=amostras)
         return novo_indicador, self._errors

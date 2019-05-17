@@ -152,7 +152,7 @@ class xslxAdapter():
             celula.font = Font(color=colors.RED)
             celula.comment = comentario
         
-        directory = '../dist/static/xl/'
+        directory = 'dist/static/xl/'
         if not os.path.exists(directory):            
             os.makedirs(directory, exist_ok=True)
         else:
@@ -163,7 +163,7 @@ class xslxAdapter():
         name = uuid.uuid4().hex
 
         uri = "static/xl/{0}.xlsx".format(name)
-        self._workbook.save("../dist/" + uri)
+        self._workbook.save("dist/" + uri)
 
         return uri
                     
