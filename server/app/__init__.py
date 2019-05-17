@@ -5,8 +5,8 @@ from flask_debugtoolbar import DebugToolbarExtension
 from flask_restful import  Api
 
 app = Flask(__name__,
-            static_folder = "../../dist/static",
-            template_folder = "../../dist")
+            static_folder = "../dist/static",
+            template_folder = "../dist")
 
 app.config.from_object('config.DevelopmentConfig')
 
