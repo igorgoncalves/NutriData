@@ -8,12 +8,12 @@ app = Flask(__name__,
             static_folder = "../dist/static",
             template_folder = "../dist")
 
-app.config.from_object('config.DevelopmentConfig')
+app.config.from_object('config.ProductionConfig')
 
 api = Api(app)
 
 # components
-toolbar = DebugToolbarExtension(app)
+# toolbar = DebugToolbarExtension(app)
 manager = Manager(app)
 
 # routes

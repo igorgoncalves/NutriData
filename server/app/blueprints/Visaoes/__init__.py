@@ -18,7 +18,7 @@ class VisaoApi(Resource):
         return  data, 200
 
     def post(self, id_macroindicador):
-        print(id_macroindicador)
+        
         dataDict = json.loads(request.data)
 
         tipo = dataDict['tipo_do_grafico']

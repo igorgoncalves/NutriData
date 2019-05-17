@@ -152,7 +152,7 @@ class xslxAdapter():
             celula.font = Font(color=colors.RED)
             celula.comment = comentario
         
-        directory = 'dist/static/xl/'
+        directory =  os.path.abspath('dist/static/xl/')
         if not os.path.exists(directory):            
             os.makedirs(directory, exist_ok=True)
         else:
