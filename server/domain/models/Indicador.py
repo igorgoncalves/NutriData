@@ -1,6 +1,6 @@
-from mongoengine import *
-from marshmallow_mongoengine import ModelSchema
-from .Amostra import Amostra
+from mongoengine import EmbeddedDocument, StringField, ListField, ReferenceField, EmbeddedDocumentField
+from marshmallow_mongoengine import ModelSchema, fields
+from .Amostra import Amostra, AmostraSchema
 
 class Indicador(EmbeddedDocument):
 
@@ -12,7 +12,8 @@ class Indicador(EmbeddedDocument):
         return '<Indicador(nome={self.nome!r})>'.format(self=self)
 
 class IndicadorSchema(ModelSchema):
-     class Meta:
+    amostras = fields.Nested(AmostraSchema, many=True)
+    class Meta:
         model = Indicador
 
 

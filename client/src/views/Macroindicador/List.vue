@@ -61,12 +61,12 @@
                       slot="activator"
                       @click="createView(props.item)"
                     >
-                      mdi-view-module
+                      mdi-chart-bar
                     </v-icon>
                   </template>
-                  <span>Gerenciar Visões</span>
+                  <span>Analisar dados</span>
                 </v-tooltip>
-                <v-tooltip top>
+                <!-- <v-tooltip top>
                   <template>
                     <v-icon
                       slot="activator"
@@ -98,7 +98,7 @@
                     </v-icon>
                   </template>
                   <span>Deletar</span>
-                </v-tooltip>
+                </v-tooltip> -->
               </td>
             </template>
           </v-data-table>

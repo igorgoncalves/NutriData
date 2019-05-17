@@ -32,6 +32,9 @@ export default {
   },
   watch: {
     idMacroindicador () {
+
+      
+
       this.getIndicadoresById({ idMacroindicador: this.idMacroindicador })
 
       const tree = this.$refs.someTree.tree
@@ -50,8 +53,7 @@ export default {
     const tree = this.$refs.someTree.tree
     this.$store.subscribe((mutation, state) => {
       switch(mutation.type) {
-        case 'indicadores/updateIndicadores':
-          console.log(this.getIndicadores)
+        case 'indicadores/updateIndicadores':          
           let model = tree.parse(this.getIndicadores.map(el => ({ "text": el.nome }) ))
           this.$set(tree, 'model', model)
           tree.setModel(model)

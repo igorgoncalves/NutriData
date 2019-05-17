@@ -2,32 +2,61 @@
   <div>
     <v-container grid-list-md text-xs-center>
       <v-layout row wrap>
-      <v-flex xs5>
-        <h1>Selecione o local</h1>
+      <v-flex
+        md12
+        sm12
+        lg6
+      >
+        <v-autocomplete          
+          :items="getLocalidadeNomes"          
+          item-text="name"
+          label="Localidade"
+          v-model="nome"
+        ></v-autocomplete>        
+
+        <h2>1º - Selecione o local</h2>
         <map-select v-model="localidade" />
       </v-flex>
       <v-flex xs1>
-      <v-divider vertical></v-divider>
+      <v-divider hidden-md-and-down vertical></v-divider>
       </v-flex>
-      <v-flex xs6>
+      <v-flex
+        md12
+        sm12
+        lg5
+      >
         <div>
-          <h2>Indicadores de: {{ nomeLocalidade }}</h2>
+          <h2>2º - Clique em um indicador de: {{ nomeLocalidade }}</h2>
           <v-layout row wrap>
             <transition-group name="fade" tag="div" class="layout row wrap">
-            <v-flex xs4 v-for="indicador in macroindicadores" :key="indicador.nome + componentKey" >
-                <v-card color="success" class="card-indicador" min-height="100px" @click="showVisao(indicador.id)">
+            <v-flex lg4 md6 v-for="indicador in macroindicadores" :key="indicador.nome + componentKey + Math.random()" >
+               <v-hover>
+                  <v-card
+                    slot-scope="{ hover }"
+                    :class="`elevation-${hover ? 12 : 2}`"
+                    class="mx-auto card-indicador"
+                    color="success" min-height="100px" @click="showVisao(indicador.id)"
+                  >                
                   <v-card-text> {{ indicador.nome }} </v-card-text>
-                </v-card>
+                  </v-card>
+              </v-hover>
             </v-flex>
             </transition-group>
           </v-layout>
         </div>
       </v-flex>
-      <v-flex xs12>
-        <div>
-          <show-graph id='chart-panel' ref="chart" />
-        </div>
-      </v-flex>
+      
+      <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">      
+      <v-card>
+        <v-btn                     
+          class="close"
+          @click="dialog = false">
+          Voltar            
+          </v-btn>        
+        <show-graph id='chart-panel' ref="chart" />
+      </v-card>
+    </v-dialog>                                
+      
        </v-layout>
   </v-container>
 
@@ -51,12 +80,14 @@ export default {
     return {
       localidade: 0,
       componentKey: 0,
-      showChart: true
+      showChart: true,
+      nome: '',
+      dialog: false
     }
   },
   computed: {
     ...mapGetters('macroindicadores', ['getMacroindicadores']),
-    ...mapGetters('localidades', ['getLocalidadeName']),
+    ...mapGetters('localidades', ['getLocalidadeName', 'getLocalidadeNomes', 'getCodigoLocalidadePorNome']),
     macroindicadores () {
       return this.getMacroindicadores
     },
@@ -65,16 +96,20 @@ export default {
     }
   },
   watch: {
+    nome: function (nomeSelecionado) {
+      this.localidade = this.getCodigoLocalidadePorNome(nomeSelecionado)
+    },
     localidade: function () {
       this.fetchMacroindicadoresByLocalidade(this.localidade)
     }
-  },
+  },  
   methods:{
     ...mapActions('macroindicadores', ['fetchMacroindicadoresByLocalidade']),
-    ...mapActions('localidades', ['fetchLocalidades']),
+    ...mapActions('localidades', ['fetchLocalidades']),    
     showVisao (idMacroindicador) {
       this.$refs.chart.loadChart(idMacroindicador, this.localidade)
-      this.$vuetify.goTo('#chart-panel')
+      this.dialog = true
+      // this.$vuetify.goTo('#chart-panel')
     }
   } ,
   mounted () {
@@ -98,6 +133,10 @@ export default {
   .fade-enter, .fade-leave-to {
     opacity: 0;
   }
-
+  .close {
+    background:#16a085 !important;
+    float: right;
+    margin-right: 40px;
+  }
 
 </style>
