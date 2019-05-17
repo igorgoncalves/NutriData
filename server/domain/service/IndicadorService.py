@@ -34,7 +34,7 @@ class IndicadorService(ServiceBase):
             res = self.schema_amostras.load(amostra)
             
             if not res.errors == {}:
-                if not amostra['valor'].isdigit():
+                if not str(amostra['valor']).isdigit():
                     res.errors['valor'] = "Ops! Os valores não podem conter letras ou simbolos como '.',  '?', \", apenas números"
 
                 if '=' in amostra['valor']:
