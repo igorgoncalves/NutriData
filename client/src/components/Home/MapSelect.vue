@@ -39,12 +39,15 @@ export default {
   props: ['value'],
   data () {
     return {
-      localidade: 0
+      localidade: 0,
+      colors: ['#81C784', '#66BB6A', '#43A047', '#388E3C', '#2E7D32']
     }
   },
   mounted () {
-    document.querySelectorAll('path').forEach(element =>
-      element.addEventListener('click', () => (this.localidade = element.getAttribute('class'))))
+    document.querySelectorAll('path').forEach(element => {      
+      element.addEventListener('click', () => (this.localidade = element.getAttribute('class')))
+
+    })
   },
   computed: {
     showBrasil () {
@@ -79,7 +82,7 @@ export default {
 
   }
   path:hover, path:active {
-    fill: #ff6f00;
+    fill: #ff6f00 !important; 
   }
 
   .fade-enter-active {

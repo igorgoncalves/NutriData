@@ -1,6 +1,5 @@
 <template>
-    <v-container
-    fill-height
+    <v-container    
     fluid
     grid-list-xl
   >
@@ -13,7 +12,8 @@
         md12
         sm12
         lg12>
-          <h2> {{ macroindicador.nome }} </h2>
+          <h2> {{ macroindicador.nome }} [{{ nomeLocalidade }}] </h2>
+          <p> {{ macroindicador.fonte }} </p>
           <span>{{ macroindicador.descricao }}</span>
         </v-flex>
         <v-flex
@@ -25,13 +25,7 @@
             ref="chart"
             autoresize
           />
-        </v-flex>
-        <v-flex
-        md12
-        sm12
-        lg12>
-          <p> {{ macroindicador.fonte }} </p>
-        </v-flex>
+        </v-flex>        
       </v-flex>
     </v-layout>
   </v-container>
@@ -62,8 +56,12 @@ export default {
   },
   computed: {
     ...mapGetters('macroindicadores', ['getMacroindicadorAndVisao']),
+    ...mapGetters('localidades', ['getLocalidadeName']),
     macroindicador() {
       return this.getMacroindicadorAndVisao
+    },
+    nomeLocalidade () {
+      return this.getLocalidadeName(this.idLocalidade)
     }
   },
   data() {
@@ -90,9 +88,11 @@ export default {
       switch (this.macroindicador.visao.tipo_do_grafico) {
         case 'pie':
           retorno = indicadores.map((indicador) => {
+            var amostras = indicador.amostras.filter(am => am.codigo_localidade == idLocalidade)
+            if (amostras.length == 0) return
             return {
               name: indicador.nome,
-              value: indicador.amostras.filter(am => am.codigo_localidade == idLocalidade).map((el) => el)[0].valor
+              value: amostras.map((el) => el)[0].valor
             }
           })
           this.chart.series[0].data = retorno

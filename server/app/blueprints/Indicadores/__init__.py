@@ -40,7 +40,6 @@ class IndicadorApi(Resource):
         json_data['id'] = str(local['id'])+"idc"+json_data['nome']
         resposta, validated =  _service_indicador.validate(json_data)
 
-
         if validated:
             obj = _service_indicador.create(resposta['id'], resposta['nome'], [])
             try: 
@@ -48,7 +47,7 @@ class IndicadorApi(Resource):
             except Exception:
                 local['macroindicadores'] = []
                 local['macroindicadores'].append(obj)
-            print(local['macroindicadores'])
+            
             resposta, validatedL =  _service_indicador.validate(local)
             if validatedL:
                 objLocal = _service_indicador.update(local)

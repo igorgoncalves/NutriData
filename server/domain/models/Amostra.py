@@ -1,5 +1,5 @@
 from mongoengine import *
-from marshmallow_mongoengine import ModelSchema
+from marshmallow_mongoengine import ModelSchema, fields
 
 class Amostra(EmbeddedDocument):
     ano    = StringField(required=True, max_length=8)
