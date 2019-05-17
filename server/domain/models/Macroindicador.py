@@ -1,6 +1,6 @@
 from mongoengine import *
 import marshmallow_mongoengine as ma
-from .Indicador import Indicador
+from .Indicador import Indicador, IndicadorSchema
 from .Localidade import Localidade
 from .Visao import Visao, VisaoSchema
 
@@ -20,6 +20,7 @@ class Macroindicador(Document):
 
 
 class MacroindicadorSchema(ma.ModelSchema):
+    indicadores = ma.fields.Nested(IndicadorSchema, many=True)
     class Meta:
         model = Macroindicador
     # visao = ma.fields.Method(serialize="_visao_serializer", deserialize="_visao_deserializer")

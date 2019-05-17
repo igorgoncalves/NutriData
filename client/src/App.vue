@@ -18,6 +18,6 @@
   vertical-align: unset;
 }
 body, #app {
-    background: white !important;
+    background: #ecf0f1 !important;
   }
 </style>

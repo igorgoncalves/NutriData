@@ -1,5 +1,5 @@
 from domain.repository._base import RepositoryBase
-
+from marshmallow import ValidationError
 class ServiceBase(object):
 
     def __init__(self, repository:RepositoryBase, schema=None):
@@ -15,8 +15,8 @@ class ServiceBase(object):
     def get_by_id(self, id):
         return self.repository.get_by_id(id)
 
-    def create(self, item):
-        self.repository.create(item)
+    def create(self, item):        
+        self.repository.create(item)            
         return item
 
     def createJson(self, json):
@@ -30,9 +30,17 @@ class ServiceBase(object):
         self.repository.delete_by_id(id)
 
     def deserialize(self, json):
-        item, err = self.schema.load(json)
+        item, err = self.schema.load(json)        
         return item
 
     def serialize(self, item, many=False):
         json = self.schema.dumps(item, many)
         return json
+    
+    def validate(self, item_dict):
+        try:
+            self.schema.load(item_dict)
+            return {}, True
+        except ValidationError as err:
+            error = err             
+            return { 'detail': error }, False

@@ -4,6 +4,5 @@ dados.db
 migrations
 .pytest_cache
 node_modules
-dist/
 .vscode
 *.zip

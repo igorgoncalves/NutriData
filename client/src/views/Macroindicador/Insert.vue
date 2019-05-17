@@ -15,64 +15,70 @@
 
       <v-stepper-items>
         <v-stepper-content step="1">
+          <v-layout row justify-end>
+            <v-flex xs2>
+              <v-btn
+                color="amber darken-4"
+                @click="sendForm()"
+              >
+                Continuar
+               </v-btn>
+             </v-flex>
+           </v-layout>          
           <initial-form ref="iniForm"
             :idMacroindicador="idMacroindicador"
             v-on:update:id-macroindicador="idMacroindicador = $event"
           />
-
-          <v-btn
-            color="amber darken-4"
-            @click="el = sendForm()"
-          >
-            Continuar
-          </v-btn>
-
-          <v-btn flat>Cancel</v-btn>
+        
         </v-stepper-content>
 
         <v-stepper-content step="2">
-
+          <v-layout row justify-end>
+            <v-flex xs2>              
+              <v-btn
+                color="amber darken-4"
+                @click="nextStep"
+              >
+                Continuar
+              </v-btn>
+             </v-flex>
+           </v-layout>         
           <tree-fields :idMacroindicador="idMacroindicador"/>
-
-          <v-btn
-            color="amber darken-4"
-            @click="el = 3"
-          >
-            Continuar
-          </v-btn>
           <v-btn flat>Cancel</v-btn>
         </v-stepper-content>
         <v-stepper-content step="3">
+          <v-layout row justify-end>
+            <v-flex xs2>              
+              <v-btn color="amber darken-4" style="margin-left: -70px;" @click="salvarVisao()">
+                Salvar Visão e Finalizar
+              </v-btn>
+             </v-flex>
+           </v-layout>
 
           <create-view
             ref="createview"
             :idMacroindicador="idMacroindicador"
           />
-
-          <v-btn color="amber darken-4" @click="salvarVisao()">
-            Salvar Visão e Finalizar
-          </v-btn>
-          <v-btn flat>Cancel</v-btn>
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
     <v-dialog
-      v-model="dialog"
-      hide-overlay
+      v-model="loading"
+      
       persistent
-      width="300"
+      width="350"
     >
       <v-card
         color="primary"
         dark
       >
         <v-card-text>
-          Please stand by
+          Aguarde alguns instantes
           <v-progress-linear
             indeterminate
             color="white"
             class="mb-0"
-          ></v-progress-linear>
+          />
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -83,6 +89,7 @@
 import InitialForm from '@/components/Macroindicador/InitialForm'
 import TreeFields from '@/components/Macroindicador/TreeFields'
 import CreateView from '@/components/Macroindicador/CreateView'
+import { mapActions, mapMutations } from 'vuex'
 
 export default {
   components: {
@@ -91,34 +98,54 @@ export default {
     'create-view': CreateView
   },
   data () {
-    return {
-      el: 0,
-      idMacroindicador: '',
-      dialog: false
+    return {      
+      idMacroindicador: {},
+      
+    }
+  },
+  computed :{
+    loading: {
+      get: function () {
+        return this.$store.state.app.loading
+      },      
+      set: function (newValue) {        
+      }
+    },
+    el: {       
+      get: function () {
+        return this.$store.state.formsteps.formProgress
+      },      
+      set: function (newValue) {        
+      }
+      
     }
   },
   watch: {
     idMacroindicador () {
+      this.offLoading()
       if (this.idMacroindicador.idMacroindicador)
         this.idMacroindicador = this.idMacroindicador.idMacroindicador
     }
   },
   methods: {
+    ...mapActions('formsteps', ['nextStep']),
+    ...mapMutations('app', ['onLoading', 'offLoading']),
     sendForm () {
-      this.$refs.iniForm.send()
-      return 2
+      this.$refs.iniForm.send()      
     },
     salvarVisao () {
       this.$refs.createview.send(this.idMacroindicador)
-      this.dialog = true
+      this.onLoading()
     }
   },
   mounted () {
+
     this.$store.subscribe((mutation, state) => {
+
       switch(mutation.type) {
         case 'visao/updateVisao':
           this.$router.push({ path: `/macroindicadores` })
-          this.dialog = false
+          this.offLoading()
           break;
       }
     })
