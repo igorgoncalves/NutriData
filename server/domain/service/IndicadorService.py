@@ -34,10 +34,10 @@ class IndicadorService(ServiceBase):
             res = self.schema_amostras.load(amostra)
             
             if not res.errors == {}:
-                if not amostra['valor'].isdigit():
+                if not str(amostra['valor']).isdigit():
                     res.errors['valor'] = "Ops! Os valores não podem conter letras ou simbolos como '.',  '?', \", apenas números"
 
-                if '=' in amostra['valor']:
+                if '=' in str(amostra['valor']):
                     res.errors['valor'] = "Ops! Nada de formulas, apenas números aqui. Você pode usar a ferramenta de 'colar especial' ou remover a coluna"
                 print(amostra['ano'])
                 res.errors['indicador'] = indicador['nome']
