@@ -7,8 +7,57 @@
     <core-drawer v-if="$route.name !== 'Home'" />
 
     <core-view />
+
+     <v-dialog
+      v-model="loading"
+      
+      persistent
+      width="350"
+    >
+      <v-card
+        color="primary"
+        dark
+      >
+        <v-card-text>
+          Aguarde alguns instantes
+          <v-progress-linear
+            indeterminate
+            color="white"
+            class="mb-0"
+          />
+        </v-card-text>
+      </v-card>
+    </v-dialog>
+
+
   </v-app>
 </template>
+
+<script>
+import { mapActions, mapMutations } from 'vuex'
+
+export default {
+  methods: {
+    ...mapMutations('app', ['onLoading', 'offLoading']),
+  },
+  computed: {
+    loading: {
+      get: function () {
+        return this.$store.state.app.loading
+      },      
+      set: function (newValue) {        
+      }
+    },
+  },
+  // mounted () {
+  //   this.$store.subscribe((mutation, state) => {      
+  //     this.offLoading()      
+  //   })
+  // }
+
+}
+</script>
+
 
 <style lang="scss">
 @import '@/styles/index.scss';

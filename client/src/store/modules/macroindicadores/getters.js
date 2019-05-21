@@ -9,5 +9,11 @@ export default {
   },
   getMacroindicadorAndVisao: state => {
     return state.macroindicador || {}
+  },
+  getMacroindicadorByLocalidade: state => idLocalidade => {
+    return state.macroindicadores.filter(function (el) {
+      console.log(el)
+      return true
+    })
   }
 }

@@ -1,9 +1,12 @@
 <template>
     <v-container    
     fluid
-    grid-list-xl
+    grid-list-xl    
   >
-    <v-layout wrap>
+  <v-layout wrap fill-height v-show="!show">
+    <v-progress-linear :indeterminate="true"></v-progress-linear>
+    </v-layout>
+    <v-layout wrap v-show="show">
       <v-flex
         md12
         sm12
@@ -72,16 +75,19 @@ export default {
       indicadores: [],
       chart: {},
       type: "",
-      idLocalidade: 0
+      idLocalidade: 0,
+      show: true
     }
   },
   methods: {
     ...mapActions('macroindicadores', ['fetchMacroindicadoresById']),
     loadChart (idMacroindicador, idLocalidade) {
+      this.show = false
       this.idLocalidade = idLocalidade
       this.fetchMacroindicadoresById(idMacroindicador)
     },
     updateChart (idLocalidade) {
+      
       let indicadores = this.macroindicador.visao.indicadores
       this.chart = eval(`this.${this.macroindicador.visao.tipo_do_grafico}`);
       var retorno = []
@@ -116,9 +122,10 @@ export default {
 
           this.chart.series = retorno
           break;
-      }
+      }      
       this.$refs.chart.clear()
       this.$refs.chart.mergeOptions(this.chart)
+      this.show = true
     }
   },
   mounted () {

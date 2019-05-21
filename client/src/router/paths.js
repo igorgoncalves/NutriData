@@ -9,31 +9,13 @@ export default [
     view: 'Home'
   },
   {
-    path: '/dashboard',
-    // Relative to /src/views
-    view: 'Dashboard'
-  },
-  {
     path: '/user-profile',
     name: 'User Profile',
     view: 'UserProfile'
   },
   {
-    path: '/table-list',
-    name: 'Table List',
-    view: 'TableList'
-  },
-  {
     path: '/typography',
     view: 'Typography'
-  },
-  {
-    path: '/icons',
-    view: 'Icons'
-  },
-  {
-    path: '/maps',
-    view: 'Maps'
   },
   {
     path: '/notifications',
@@ -50,12 +32,12 @@ export default [
     view: 'Macroindicador/Insert'
   },
   {
-    path: '/Localidades',
+    path: '/localidades',
     name: 'Localidades',
     view: 'Localidade/List'
   },
   {
-    path: '/Visao',
+    path: '/visao',
     name: 'Visao',
     view: 'Visao/Insert'
   },

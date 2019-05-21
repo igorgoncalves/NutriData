@@ -62,26 +62,7 @@
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
-    <v-dialog
-      v-model="loading"
-      
-      persistent
-      width="350"
-    >
-      <v-card
-        color="primary"
-        dark
-      >
-        <v-card-text>
-          Aguarde alguns instantes
-          <v-progress-linear
-            indeterminate
-            color="white"
-            class="mb-0"
-          />
-        </v-card-text>
-      </v-card>
-    </v-dialog>
+   
   </div>
 </template>
 
@@ -104,13 +85,7 @@ export default {
     }
   },
   computed :{
-    loading: {
-      get: function () {
-        return this.$store.state.app.loading
-      },      
-      set: function (newValue) {        
-      }
-    },
+    
     el: {       
       get: function () {
         return this.$store.state.formsteps.formProgress
@@ -139,9 +114,7 @@ export default {
     }
   },
   mounted () {
-
     this.$store.subscribe((mutation, state) => {
-
       switch(mutation.type) {
         case 'visao/updateVisao':
           this.$router.push({ path: `/macroindicadores` })

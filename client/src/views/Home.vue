@@ -27,7 +27,7 @@
       >
         <div>
           <h2>2º - Clique em um indicador de: {{ nomeLocalidade }}</h2>
-          <v-layout row wrap>
+          <v-layout row wrap>            
             <transition-group name="fade" tag="div" class="layout row wrap">
             <v-flex lg4 md6 v-for="indicador in macroindicadores" :key="indicador.nome + componentKey + Math.random()" >
                <v-hover>
@@ -40,7 +40,7 @@
                   <v-card-text> {{ indicador.nome }} </v-card-text>
                   </v-card>
               </v-hover>
-            </v-flex>
+            </v-flex>             
             </transition-group>
           </v-layout>
         </div>
@@ -69,7 +69,7 @@ import MapSelect from '@/components/Home/MapSelect'
 import ShowGraph from '@/components/Home/ShowGraph'
 import goTo from 'vuetify/lib/components/Vuetify/goTo'
 
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default {
   components: {
@@ -106,15 +106,25 @@ export default {
   methods:{
     ...mapActions('macroindicadores', ['fetchMacroindicadoresByLocalidade']),
     ...mapActions('localidades', ['fetchLocalidades']),    
+    ...mapMutations('app', ['onLoading', 'offLoading']),
     showVisao (idMacroindicador) {
+      this.onLoading()
       this.$refs.chart.loadChart(idMacroindicador, this.localidade)
       this.dialog = true
-      // this.$vuetify.goTo('#chart-panel')
     }
   } ,
   mounted () {
     this.fetchMacroindicadoresByLocalidade(this.localidade)
     this.fetchLocalidades()
+    this.onLoading()
+    this.$store.subscribe((mutation, state) => {
+      switch(mutation.type) {
+        case 'macroindicadores/updateMacroindicadores':
+        case 'macroindicadores/updateMacroindicador':
+          this.offLoading()
+          break;
+      }
+    })
   }
 }
 
