@@ -10,6 +10,9 @@ class MacroindicadorRepository(RepositoryBase):
         return Macroindicador.objects.filter(localidade__contains=(id_localidade))
 
     def get_by_id(self, id):
-        return Macroindicador.objects.with_id(object_id=id).select_related()
+        partial = Macroindicador.objects.with_id(object_id=id)
+        if (partial):
+            partial = partial.select_related()
+        return partial
 
 
