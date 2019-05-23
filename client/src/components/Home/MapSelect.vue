@@ -56,19 +56,7 @@ export default {
       element.addEventListener('click', () => (this.localidade = element.getAttribute('class')))
       element.addEventListener('mouseover', (event) => {        
         let localidadeSelecionada = event.target.getAttribute('class');
-        this.nomeLocalidade = this.getLocalidadeName(localidadeSelecionada)
-        
-        // let tooltipSpan = document.getElementById('tooltip-span');                
-        // let tooltipElem = document.createElement('span');
-        // tooltipElem.className = 'tooltip';
-        // tooltipElem.id = 'tooltip-span'
-        // tooltipElem.innerHTML = this.nomeLocalidade;
-
-        // let x = event.clientX + document.body.scrollLeft,
-        //     y = event.clientY + document.body.scrollTop;
-        // tooltipElem.style.top  = y + 'px';
-        // tooltipElem.style.left = x + 'px';
-        
+        this.nomeLocalidade = this.getLocalidadeName(localidadeSelecionada)        
         this.tooltipSpan = this.showTooltip(event.target, this.nomeLocalidade)
 
       });
@@ -89,19 +77,7 @@ export default {
       tooltipElem.innerHTML = html;
       document.body.append(tooltipElem);
 
-      let coords = anchorElem.getBoundingClientRect();
-
-      // // position the tooltip over the center of the element
-      // let left = coords.left + (anchorElem.offsetWidth - tooltipElem.offsetWidth) / 2;
-      // if (left < 0) left = 0;
-
-      // let top = coords.top - tooltipElem.offsetHeight - 5;
-      // if (top < 0) {
-      //   top = coords.top + anchorElem.offsetHeight + 5;
-      // }
-
-      // tooltipElem.style.left = left + 'px';
-      // tooltipElem.style.top = top + 'px';
+      let coords = anchorElem.getBoundingClientRect();      
 
       let x = event.clientX + document.body.scrollLeft,
           y = event.clientY + document.body.scrollTop;

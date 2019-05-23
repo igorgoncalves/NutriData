@@ -8,7 +8,7 @@
         lg6
       >
         <h2>1º - Selecione o local</h2>
-        
+
         <v-autocomplete          
           :items="getLocalidadeNomes"          
           item-text="name"
@@ -29,7 +29,7 @@
         <div>
           <h2>2º - Clique em um indicador de: {{ nomeLocalidade }}</h2>
           <v-layout row wrap>            
-            <transition-group name="fade" tag="div" class="layout row wrap">
+            <!-- <transition-group name="fade" tag="div" class="layout row wrap"> -->
             <v-flex lg4 md6 v-for="indicador in macroindicadores" :key="indicador.nome + componentKey + Math.random()" >
                <v-hover>
                   <v-card
@@ -42,7 +42,7 @@
                   </v-card>
               </v-hover>
             </v-flex>             
-            </transition-group>
+            <!-- </transition-group> -->
           </v-layout>
         </div>
       </v-flex>
@@ -101,6 +101,7 @@ export default {
       this.localidade = this.getCodigoLocalidadePorNome(nomeSelecionado)
     },
     localidade: function () {
+      this.onLoading()
       this.fetchMacroindicadoresByLocalidade(this.localidade)
     }
   },  
@@ -108,8 +109,7 @@ export default {
     ...mapActions('macroindicadores', ['fetchMacroindicadoresByLocalidade']),
     ...mapActions('localidades', ['fetchLocalidades']),    
     ...mapMutations('app', ['onLoading', 'offLoading']),
-    showVisao (idMacroindicador) {
-      this.onLoading()
+    showVisao (idMacroindicador) {      
       this.$refs.chart.loadChart(idMacroindicador, this.localidade)
       this.dialog = true
     }
