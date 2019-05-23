@@ -7,14 +7,15 @@
         sm12
         lg6
       >
+        <h2>1º - Selecione o local</h2>
+        
         <v-autocomplete          
           :items="getLocalidadeNomes"          
           item-text="name"
           label="Localidade"
           v-model="nome"
         ></v-autocomplete>        
-
-        <h2>1º - Selecione o local</h2>
+        
         <map-select v-model="localidade" />
       </v-flex>
       <v-flex xs1>

@@ -31,25 +31,88 @@
     <img svg-inline v-show="showNordeste" key="Nordeste" class="icon" src="./nordeste.svg" alt="example" />
     <img svg-inline v-show="showSergipe" key="Sergipe" class="icon" src="./sergipe.svg" alt="example" />
   </transition-group>
+  
+ 
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   props: ['value'],
   data () {
     return {
       localidade: 0,
-      colors: ['#81C784', '#66BB6A', '#43A047', '#388E3C', '#2E7D32']
+      colors: ['#81C784', '#66BB6A', '#43A047', '#388E3C', '#2E7D32'],
+      nomeLocalidade: '',
+      tooltipSpan: false
+      
     }
   },
-  mounted () {
+  mounted () {    
+
     document.querySelectorAll('path').forEach(element => {      
       element.addEventListener('click', () => (this.localidade = element.getAttribute('class')))
+      element.addEventListener('mouseover', (event) => {        
+        let localidadeSelecionada = event.target.getAttribute('class');
+        this.nomeLocalidade = this.getLocalidadeName(localidadeSelecionada)
+        
+        // let tooltipSpan = document.getElementById('tooltip-span');                
+        // let tooltipElem = document.createElement('span');
+        // tooltipElem.className = 'tooltip';
+        // tooltipElem.id = 'tooltip-span'
+        // tooltipElem.innerHTML = this.nomeLocalidade;
+
+        // let x = event.clientX + document.body.scrollLeft,
+        //     y = event.clientY + document.body.scrollTop;
+        // tooltipElem.style.top  = y + 'px';
+        // tooltipElem.style.left = x + 'px';
+        
+        this.tooltipSpan = this.showTooltip(event.target, this.nomeLocalidade)
+
+      });
+      element.addEventListener('mouseout', () => {                
+
+        if (this.tooltipSpan) {
+          this.tooltipSpan.remove();
+          this.tooltipSpan = false;
+        }
+      })
 
     })
   },
+  methods: {
+     showTooltip: function (anchorElem, html) {
+      let tooltipElem = document.createElement('div');
+      tooltipElem.className = 'tooltip';
+      tooltipElem.innerHTML = html;
+      document.body.append(tooltipElem);
+
+      let coords = anchorElem.getBoundingClientRect();
+
+      // // position the tooltip over the center of the element
+      // let left = coords.left + (anchorElem.offsetWidth - tooltipElem.offsetWidth) / 2;
+      // if (left < 0) left = 0;
+
+      // let top = coords.top - tooltipElem.offsetHeight - 5;
+      // if (top < 0) {
+      //   top = coords.top + anchorElem.offsetHeight + 5;
+      // }
+
+      // tooltipElem.style.left = left + 'px';
+      // tooltipElem.style.top = top + 'px';
+
+      let x = event.clientX + document.body.scrollLeft,
+          y = event.clientY + document.body.scrollTop;
+      tooltipElem.style.top  = y + 'px';
+      tooltipElem.style.left = x + 'px';
+
+      return tooltipElem;
+    }
+  },
   computed: {
+    ...mapGetters('localidades', ['getLocalidadeName']),
     showBrasil () {
       return this.localidade < 10 && !this.showNordeste
     },
@@ -59,7 +122,7 @@ export default {
     },
     showSergipe () {
       return this.localidade === '28' || this.localidade > 1000
-    }
+    }    
   },
   watch: {
     localidade: function () {
@@ -71,7 +134,7 @@ export default {
 
 </script>
 
-<style scoped>
+<style>
   .succes {
     width: 80px !important;
     margin: 15px;
@@ -91,4 +154,26 @@ export default {
   .fade-enter, .fade-leave-to {
     opacity: 0;
   }
+
+  .tooltip {
+      position: fixed;
+      z-index: 100;
+
+      padding: 10px 20px;
+
+      border: 1px solid #b3c9ce;
+      border-radius: 4px;
+      text-align: center;
+      font: italic 14px/1.3 sans-serif;
+      color: #333;
+      background: #fff;
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+    }
+ 
+  /* .tooltip {
+      display:block;
+      position:fixed;
+      overflow:hidden;
+  } */
 </style>
+
