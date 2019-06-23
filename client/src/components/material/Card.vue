@@ -96,7 +96,7 @@ export default {
         this.text
     },
     styles () {
-      if (!this.hasOffset) return null
+      if (!this.hasOffset) return null;
 
       return {
         marginBottom: `${this.offset}px`,

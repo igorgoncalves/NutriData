@@ -1,15 +1,13 @@
-from domain.service._base import ServiceBase
-from domain.repository.IndicadorRepository import IndicadorRepository
+from domain.models.Amostra import AmostraSchema
 from domain.models.Indicador import Indicador, IndicadorSchema
-from domain.models.Amostra import Amostra, AmostraSchema
-
+from domain.repository.IndicadorRepository import IndicadorRepository
 from domain.service.LocalidadeService import LocalidadeService
-from domain.service.helpers.NotificationServiceHelper import Notification, NotificationServiceHelper
+from domain.service._base import ServiceBase
+from domain.service.helpers.NotificationServiceHelper import NotificationServiceHelper
 
-from marshmallow import ValidationError, fields, missing
-from mongoengine import ValidationError as MongoValidationError, NotRegistered
 
 class IndicadorService(ServiceBase):
+
     repository = IndicadorRepository()
     schema = IndicadorSchema()
     schema_amostras = AmostraSchema()
@@ -35,10 +33,12 @@ class IndicadorService(ServiceBase):
             
             if not res.errors == {}:
                 if not str(amostra['valor']).isdigit():
-                    res.errors['valor'] = "Ops! Os valores não podem conter letras ou simbolos como '.',  '?', \", apenas números"
+                    res.errors['valor'] = "Ops! Os valores não podem conter letras ou simbolos como '.',  '?'" \
+                                          ", \", apenas números"
 
                 elif '=' in str(amostra['valor']):
-                    res.errors['valor'] = "Ops! Nada de formulas, apenas números aqui. Você pode usar a ferramenta de 'colar especial' ou remover a coluna"
+                    res.errors['valor'] = "Ops! Nada de formulas, apenas números aqui. Você pode usar a ferramenta " \
+                                          "de 'colar especial' ou remover a coluna"
                 
                 else:
                     res.errors['valor'] = "Ops! Algo estranho aconteceu"
@@ -50,10 +50,10 @@ class IndicadorService(ServiceBase):
 
             amostras.append(res.data)                            
             
-        novo_indicador = Indicador(nome=indicador['nome'] , amostras=amostras)
+        novo_indicador = Indicador(nome=indicador['nome'], amostras=amostras)
         return novo_indicador, self._errors
 
-    def loadPartial(self, indicador):
+    def load_partial(self, indicador):
         return self.schema.load(indicador, partial=('id', 'indicador'))
     
 

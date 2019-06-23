@@ -1,10 +1,9 @@
-from domain.service._base import ServiceBase
-from domain.service.MacroindicadorService import MacroindicadorService
-from domain.service.IndicadorService import IndicadorService
-
-from domain.repository.VisaoRepository import VisaoRepository
 from domain.models.Visao import Visao, VisaoSchema
-from domain.models.Indicador import Indicador
+from domain.repository.VisaoRepository import VisaoRepository
+from domain.service.IndicadorService import IndicadorService
+from domain.service.MacroindicadorService import MacroindicadorService
+from domain.service._base import ServiceBase
+
 
 class VisaoService(ServiceBase):
 

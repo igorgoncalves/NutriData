@@ -3,26 +3,26 @@ from domain.service.IndicadorService import IndicadorService
 from domain.service.LocalidadeService import LocalidadeService
 from domain.repository.MacroindicadorRepository import MacroindicadorRepository
 from domain.models.Macroindicador import Macroindicador, MacroindicadorSchema
-from domain.models.Indicador import Indicador
-from domain.models.Amostra import Amostra, AmostraSchema
-
 
 
 import json
 
-from marshmallow import ValidationError, fields, missing
-from mongoengine import ValidationError as MongoValidationError, NotRegistered
+from marshmallow import ValidationError
+
 
 class MacroindicadorService(ServiceBase):
-    repository = MacroindicadorRepository()    
+
+    repository = MacroindicadorRepository()
     schema = MacroindicadorSchema()
+    _service_localidade = LocalidadeService()
     _service_indicador = IndicadorService()
     _errors = []
+
     def __init__(self):
         super(MacroindicadorService, self).__init__(repository=self.repository, schema=self.schema)
 
     def create(self, macroindicador):
-        service_localidade = LocalidadeService()
+
         indicadores_dict = macroindicador['indicadores']
         self._errors = []
         indicadores = []
@@ -32,20 +32,21 @@ class MacroindicadorService(ServiceBase):
             
             self._errors = self._errors + err['validacao_amostra']
         
-        if (len(self._errors)> 0):
-            return ({}, self._errors)
+        if len(self._errors) > 0:
+            return {}, self._errors
 
         novo_macroindicador = Macroindicador(
                                              nome=macroindicador['nome'],
                                              descricao=macroindicador['descricao'],
                                              fonte=macroindicador['fonte'],
                                              unidade=macroindicador['unidade'],
-                                             localidade= [service_localidade.get_all(posicao = x)[0] for x in macroindicador['locais_id']],
+                                             localidade=[self._service_localidade.get_all(posicao=x)[0]
+                                                         for x in macroindicador['locais_id']],
                                              indicadores=indicadores)
         
         return super().create(novo_macroindicador), self._errors
 
-    #validate entrada
+    # validate entrada
     def validate(self, macroindicador_dict):
         
         try:

@@ -53,7 +53,7 @@ export default {
   },
 
   mounted () {
-    this.onResponsiveInverted()
+    this.onResponsiveInverted();
     window.addEventListener('resize', this.onResponsiveInverted)
   },
   beforeDestroy () {
@@ -73,10 +73,10 @@ export default {
     },
     onResponsiveInverted () {
       if (window.innerWidth < 991) {
-        this.responsive = true
+        this.responsive = true;
         this.responsiveInput = false
       } else {
-        this.responsive = false
+        this.responsive = false;
         this.responsiveInput = true
       }
     }

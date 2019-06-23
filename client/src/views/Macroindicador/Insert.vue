@@ -97,28 +97,29 @@ export default {
   },
   watch: {
     idMacroindicador () {
-      this.offLoading()
+      this.offLoading();
       if (this.idMacroindicador.idMacroindicador)
         this.idMacroindicador = this.idMacroindicador.idMacroindicador
     }
   },
   methods: {
-    ...mapActions('formsteps', ['nextStep']),
+    ...mapActions('formsteps', ['nextStep', 'reset']),
     ...mapMutations('app', ['onLoading', 'offLoading']),
     sendForm () {
       this.$refs.iniForm.send()      
     },
     salvarVisao () {
-      this.$refs.createview.send(this.idMacroindicador)
-      this.onLoading()
+      this.$refs.createview.send(this.idMacroindicador);      
+      this.onLoading()      
     }
   },
   mounted () {
+    this.reset()
     this.$store.subscribe((mutation, state) => {
       switch(mutation.type) {
         case 'visao/updateVisao':
-          this.$router.push({ path: `/macroindicadores` })
-          this.offLoading()
+          this.$router.push({ path: `/macroindicadores` });
+          this.offLoading();
           break;
       }
     })

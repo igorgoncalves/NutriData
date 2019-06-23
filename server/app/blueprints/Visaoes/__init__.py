@@ -1,10 +1,9 @@
-from flask import Blueprint, request,  Response
-from flask_restful import reqparse, abort, Api, Resource
-from domain.service.VisaoService import VisaoService
-from domain.service.MacroindicadorService import MacroindicadorService
-
-from app import api
 import json
+
+from domain.service.MacroindicadorService import MacroindicadorService
+from domain.service.VisaoService import VisaoService
+from flask import Blueprint, request, Response
+from flask_restful import Resource
 
 visao = Blueprint('visao', __name__)
 

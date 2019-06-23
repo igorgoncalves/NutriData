@@ -1,6 +1,4 @@
 from flask import Blueprint, render_template
-from domain.service.IndicadorService import IndicadorService
-
 
 home = Blueprint('home', __name__)
 

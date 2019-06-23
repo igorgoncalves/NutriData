@@ -1,5 +1,6 @@
-from domain.repository._base import RepositoryBase
 from domain.models.Visao import Visao
+from domain.repository._base import RepositoryBase
+
 
 class VisaoRepository(RepositoryBase):
     def __init__(self):

@@ -4,8 +4,8 @@ module.exports = {
   outputDir: path.resolve(__dirname, '../server/dist'),
   assetsDir: 'static',
   devServer: {
-    proxy: 'http://localhost:5000',
-    public: '192.168.1.22:5000',
+    proxy: 'http://localhost:4000',
+    public: '192.168.1.22:4000',
     watchOptions: {
       poll: true
     }

@@ -49,22 +49,39 @@
         sm12
         lg4>
         <v-card>        
-        <v-list
-            subheader
-            two-line
-            class="lista-indicadores"
-          >
-            <v-subheader>Indicadores</v-subheader>
-            <v-list-tile v-for="(indicador, key) in getIndicadores"  :key="key">
-              <v-list-tile-action>
-                <v-checkbox v-model="getIndicadores[key].value" @change="updateChart" ></v-checkbox>
-              </v-list-tile-action>
-              <v-list-tile-content @click="getIndicadores[key].value = !getIndicadores[key]">
-                <v-list-tile-title>{{ indicador.nome }}</v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
-          </v-list>
-          </v-card>
+          <v-list
+              subheader
+              two-line
+              class="lista-indicadores"
+            >
+              <v-subheader>Anos</v-subheader>
+              <v-list-tile v-for="(ano, key) in anos"  :key="key">
+                <v-list-tile-action>
+                  <v-checkbox v-model="anos[key].value" @change="updateChart" ></v-checkbox>
+                </v-list-tile-action>
+                <v-list-tile-content @click="anos[key].value = !anos[key]">
+                  <v-list-tile-title>{{ ano }}</v-list-tile-title>
+                </v-list-tile-content>
+              </v-list-tile>
+            </v-list>
+        </v-card>
+        <v-card>        
+          <v-list
+              subheader
+              two-line
+              class="lista-indicadores"
+            >
+              <v-subheader>Indicadores</v-subheader>
+              <v-list-tile v-for="(indicador, key) in getIndicadores"  :key="key">
+                <v-list-tile-action>
+                  <v-checkbox v-model="getIndicadores[key].value" @change="updateChart" ></v-checkbox>
+                </v-list-tile-action>
+                <v-list-tile-content @click="getIndicadores[key].value = !getIndicadores[key]">
+                  <v-list-tile-title>{{ indicador.nome }}</v-list-tile-title>
+                </v-list-tile-content>
+              </v-list-tile>
+            </v-list>
+        </v-card>
       </v-flex>
 
     </v-layout>
@@ -100,7 +117,7 @@ export default {
     ...mapGetters('indicadores', ['getIndicadores']),
     filteredMacroindicador() {      
       return this.getMacroindicadorById(this.idMacroindicador)
-    }
+    }    
   },
   data() {
     return {
@@ -109,6 +126,7 @@ export default {
       line: line,
       form,
       indicadores: [],
+      anos: [],
       chart: {},
       type: ""
     }
@@ -138,26 +156,29 @@ export default {
       this.updateChart()
     },
     checkIndicador(valor) {
-      this.updateChart()
+      this.updateChart();
       return valor
     },
     updateChart(){
       let indicadores = this.getIndicadores.filter(el => {
         return el.value && el.value != false
-      })
+      });
 
-      var retorno = []
-      switch (this.type) {
+      var retorno = [];
+      
+
+      switch (this.type) {        
         case 'pie':
           retorno = indicadores.map((indicador) => {
+            console.log(indicador.amostras.filter(am => am.codigo_localidade == 0).map((el) => el));
             return {
               name: indicador.nome,
               value: indicador.amostras.filter(am => am.codigo_localidade == 0).map((el) => el)[0].valor
             }
-          })
-          this.chart.series[0].data = retorno
-          this.chart.series[0].name = this.filteredMacroindicador.unidade
-          this.chart.legend.data = indicadores.map(el => el.nome)
+          });
+          this.chart.series[0].data = retorno;
+          this.chart.series[0].name = this.filteredMacroindicador.unidade;
+          this.chart.legend.data = indicadores.map(el => el.nome);
           break;
         case 'line':
         case 'bar':
@@ -167,28 +188,32 @@ export default {
               name: indicador.nome,
               data: indicador.amostras.filter(am => am.codigo_localidade == 0).map(am => am.valor)
             }
-          })
+          });
           this.chart.xAxis = {
             type: 'category',
             boundaryGap: false,
-            data: indicadores[0].amostras.filter(am => am.codigo_localidade == 0).map((am) => am.ano)
-          }
-          this.chart.series = retorno
+            data: this.anos
+          };
+          this.chart.series = retorno;
           break;
       }
-      this.$refs.chart.clear()
+      this.$refs.chart.clear();
       this.$refs.chart.mergeOptions(this.chart)
     },
     send (idMacroindicador) {
-      var visao = {}
-      visao.tipo_do_grafico = this.type
-      visao.idMacroindicador = idMacroindicador
+      var visao = {};
+      visao.tipo_do_grafico = this.type;
+      visao.idMacroindicador = idMacroindicador;
       visao.indicadores = this.getIndicadores.filter(el => {
         return el.value && el.value != false
-      })
+      });
       this.createVisao(visao, idMacroindicador)
     }
+  },
+  mounted () {
+    this.anos = this.getIndicadores[0].amostras.filter(am => am.codigo_localidade == 0).map((am) => am.ano)      
   }
+  
 }
 
 </script>
