@@ -3,5 +3,8 @@
 export default {
   nextStep (context) {
     context.commit('nextStep')
+  },
+  reset (context) {
+    context.commit('reset')
   }
 }

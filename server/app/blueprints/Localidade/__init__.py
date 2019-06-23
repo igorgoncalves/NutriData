@@ -1,10 +1,8 @@
-import json
-from flask import Flask, jsonify, request, Response
-from flask_restful import reqparse, abort, Api, Resource
-from flask import Blueprint, render_template, jsonify
-from domain.service.LocalidadeService import LocalidadeService
 from domain.service.MacroindicadorService import MacroindicadorService
-
+from domain.service.LocalidadeService import LocalidadeService
+from flask import Blueprint
+from flask import request, Response
+from flask_restful import abort, Resource
 
 localidade = Blueprint('localidade', __name__)
 
@@ -12,7 +10,9 @@ _service_localidade = LocalidadeService()
 
 _service_macroindicador = MacroindicadorService()
 
-#A partir do codigo do local
+# A partir do codigo do local
+
+
 class LocalidadeDetails(Resource):
     
     def get(self, codigo):

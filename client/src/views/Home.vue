@@ -101,7 +101,7 @@ export default {
       this.localidade = this.getCodigoLocalidadePorNome(nomeSelecionado)
     },
     localidade: function () {
-      this.onLoading()
+      this.onLoading();
       this.fetchMacroindicadoresByLocalidade(this.localidade)
     }
   },  
@@ -109,20 +109,21 @@ export default {
     ...mapActions('macroindicadores', ['fetchMacroindicadoresByLocalidade']),
     ...mapActions('localidades', ['fetchLocalidades']),    
     ...mapMutations('app', ['onLoading', 'offLoading']),
-    showVisao (idMacroindicador) {      
-      this.$refs.chart.loadChart(idMacroindicador, this.localidade)
+    ...mapMutations('chart', ['load']),
+    showVisao (idMacroindicador) {            
+      this.load({ idMacroindicador: idMacroindicador, idLocalidade: this.localidade });
       this.dialog = true
     }
   } ,
   mounted () {
-    this.fetchMacroindicadoresByLocalidade(this.localidade)
-    this.fetchLocalidades()
-    this.onLoading()
+    this.fetchMacroindicadoresByLocalidade(this.localidade);
+    this.fetchLocalidades();
+    this.onLoading();
     this.$store.subscribe((mutation, state) => {
       switch(mutation.type) {
         case 'macroindicadores/updateMacroindicadores':
         case 'macroindicadores/updateMacroindicador':
-          this.offLoading()
+          this.offLoading();
           break;
       }
     })

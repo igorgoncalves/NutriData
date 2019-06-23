@@ -1,13 +1,8 @@
-from flask import Blueprint, render_template, jsonify, request, make_response
-from flask_restful import reqparse, abort, Api, Resource
 from domain.service.IndicadorService import IndicadorService
-from domain.service.MacroindicadorService import MacroindicadorService
 from domain.service.LocalidadeService import LocalidadeService
-import json
-import io
-from io import BytesIO
-from openpyxl import load_workbook
-from app.adapters import xslxAdapter
+from domain.service.MacroindicadorService import MacroindicadorService
+from flask import Blueprint, request
+from flask_restful import abort, Resource
 
 localidade = Blueprint('localidade', __name__)
 
@@ -17,28 +12,28 @@ _service_macroindicador = MacroindicadorService()
 indicadorService = IndicadorService()
 
 
-
 class MacroindicadorApi(Resource):
-    def get(self, localidadeCodigo):
-        local = _service_indicador.get_all(codigo=localidadeCodigo)
+    def get(self, localidade_codigo):
+        local = _service_indicador.get_all(codigo=localidade_codigo)
         if len(local) == 0:
             abort(404)
         local = local[0]
         dump = _service_indicador.serialize(local, False)
         return dump.data['macroindicadores'], 201
 
-    def post(self, localidadeCodigo):
+    def post(self, localidade_codigo):
         # f = request.files['file']
         # retorno = xslxAdapter.ler_planilha_xlsx(f)
         # obj = localidadeService.serializerMacroindicador(retorno)
-        local = _service_indicador.get_all(codigo=localidadeCodigo)
+        local = _service_indicador.get_all(codigo=localidade_codigo)
         if len(local) == 0:
             abort(404)
         local = local[0]
 
         json_data = request.get_json(force=True)
         json_data['id'] = str(local['id'])+"midc"+json_data['nome']
-        resposta, validated =  _service_macroindicador.validate(json_data)
+        resposta, validated = _service_macroindicador.validate(json_data)
+
         if validated:
             obj = _service_macroindicador.create(resposta['id'], resposta['nome'], resposta['descricao'], [])
             try: 
@@ -55,8 +50,8 @@ class MacroindicadorApi(Resource):
 
 class MacroindicadorApiDetail(Resource):
     
-    def get(self, localidadeCodigo, mid):
-        local = _service_indicador.get_all(codigo=localidadeCodigo)
+    def get(self, localidade_codigo, mid):
+        local = _service_indicador.get_all(codigo=localidade_codigo)
         if len(local) == 0:
             abort(404)
         local = local[0]
@@ -71,8 +66,8 @@ class MacroindicadorApiDetail(Resource):
 
 
     #Obejct Macroindicador has no attribute delete
-    def delete(self, localidadeCodigo, mid):
-        local = _service_indicador.get_all(codigo=localidadeCodigo)
+    def delete(self, localidade_codigo, mid):
+        local = _service_indicador.get_all(codigo=localidade_codigo)
         if len(local) == 0:
             abort(404)
         local = local[0]
@@ -85,7 +80,7 @@ class MacroindicadorApiDetail(Resource):
                 return {"object": "deleted"}, 201
         abort(404)
 
-    # def put(self, localidadeCodigo, mid):
+    # def put(self, localidade_codigo, mid):
     #     locais = _service_indicador.get_all(codigo=codigo)
     #     if len(locais) == 0:
     #         abort(404)

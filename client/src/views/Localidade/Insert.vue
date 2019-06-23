@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     sendForm () {
-      this.$refs.iniForm.send()
+      this.$refs.iniForm.send();
       return 2
     }
   }

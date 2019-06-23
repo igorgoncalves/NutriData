@@ -1,5 +1,6 @@
+from marshmallow_mongoengine import ModelSchema
 from mongoengine import *
-from marshmallow_mongoengine import ModelSchema, fields
+
 
 class Localidade(Document):
 
@@ -13,7 +14,7 @@ class Localidade(Document):
                     nome={self.nome!r})>'''.format(self=self)
 
 class LocalidadeSchema(ModelSchema):
-    
+
     class Meta:
         model = Localidade
-    value = fields.String()
+    

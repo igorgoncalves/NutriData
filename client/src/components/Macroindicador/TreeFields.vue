@@ -14,7 +14,7 @@ import LiquorTree from 'liquor-tree'
 import { mapGetters, mapActions } from 'vuex'
 import Vue from 'vue';
 
-let self = this
+let self = this;
 
 export default {
   name: 'TreeFields',
@@ -35,11 +35,11 @@ export default {
 
       
 
-      this.getIndicadoresById({ idMacroindicador: this.idMacroindicador })
+      this.getIndicadoresById({ idMacroindicador: this.idMacroindicador });
 
-      const tree = this.$refs.someTree.tree
-      let model = tree.parse(this.getIndicadores)
-      this.$set(this.$refs.someTree, 'model', model)
+      const tree = this.$refs.someTree.tree;
+      let model = tree.parse(this.getIndicadores);
+      this.$set(this.$refs.someTree, 'model', model);
       tree.setModel(model)
     }
   },
@@ -50,13 +50,13 @@ export default {
     }
   },
   mounted () {
-    const tree = this.$refs.someTree.tree
+    const tree = this.$refs.someTree.tree;
     this.$store.subscribe((mutation, state) => {
       switch(mutation.type) {
         case 'indicadores/updateIndicadores':          
-          let model = tree.parse(this.getIndicadores.map(el => ({ "text": el.nome }) ))
-          this.$set(tree, 'model', model)
-          tree.setModel(model)
+          let model = tree.parse(this.getIndicadores.map(el => ({ "text": el.nome }) ));
+          this.$set(tree, 'model', model);
+          tree.setModel(model);
           break;
       }
     })

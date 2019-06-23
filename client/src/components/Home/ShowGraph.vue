@@ -82,28 +82,27 @@ export default {
   methods: {
     ...mapActions('macroindicadores', ['fetchMacroindicadoresById']),
     loadChart (idMacroindicador, idLocalidade) {
-      this.show = false
-      this.idLocalidade = idLocalidade
+      this.show = false;
+      this.idLocalidade = idLocalidade;
       this.fetchMacroindicadoresById(idMacroindicador)
     },
-    updateChart (idLocalidade) {
-      
-      let indicadores = this.macroindicador.visao.indicadores
+    updateChart (idLocalidade) {      
+      let indicadores = this.macroindicador.visao.indicadores;
       this.chart = eval(`this.${this.macroindicador.visao.tipo_do_grafico}`);
-      var retorno = []
+      var retorno = [];
       switch (this.macroindicador.visao.tipo_do_grafico) {
         case 'pie':
           retorno = indicadores.map((indicador) => {
-            var amostras = indicador.amostras.filter(am => am.codigo_localidade == idLocalidade)
-            if (amostras.length == 0) return
+            var amostras = indicador.amostras.filter(am => am.codigo_localidade == idLocalidade);
+            if (amostras.length == 0) return;
             return {
               name: indicador.nome,
               value: amostras.map((el) => el)[0].valor
             }
-          })
-          this.chart.series[0].data = retorno
-          this.chart.series[0].name = this.macroindicador.unidade
-          this.chart.legend.data = indicadores.map(el => el.nome)
+          });
+          this.chart.series[0].data = retorno;
+          this.chart.series[0].name = this.macroindicador.unidade;
+          this.chart.legend.data = indicadores.map(el => el.nome);
           break;
         case 'line':
         case 'bar':
@@ -113,28 +112,34 @@ export default {
               name: indicador.nome,
               data: indicador.amostras.filter(am => am.codigo_localidade == idLocalidade).map(am => am.valor)
             }
-          })
+          });
           this.chart.xAxis = {
             type: 'category',
             boundaryGap: false,
             data: indicadores[0].amostras.filter(am => am.codigo_localidade == idLocalidade).map((am) => am.ano)
-          }
+          };
 
-          this.chart.series = retorno
+          this.chart.series = retorno;
           break;
       }      
-      this.$refs.chart.clear()
-      this.$refs.chart.mergeOptions(this.chart)
-      this.show = true
+      if(this.$refs.chart) {
+        this.$refs.chart.clear();
+        this.$refs.chart.mergeOptions(this.chart);
+        this.show = true
+      }
     }
   },
   mounted () {
     this.$store.subscribe((mutation, state) => {
       switch(mutation.type) {
         case 'macroindicadores/updateMacroindicador':
-          this.updateChart(this.idLocalidade)
+          this.updateChart(this.idLocalidade);
           break;
-      }
+        case 'chart/load':
+          console.log(state)
+          this.loadChart(state.chart.idMacroindicador, state.chart.idLocalidade)
+          break;
+      }      
     })
   }
 }

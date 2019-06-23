@@ -4,16 +4,16 @@
 
     <core-toolbar v-if="$route.name === 'Home'" />
 
-    <core-drawer v-if="$route.name !== 'Home'" />
+    <core-drawer v-if="$route.name !== 'Home' && $route.name !== 'Login'"  />
 
     <core-view />
 
      <v-dialog
-      v-model="loading"
-      
+      v-model="loading"      
       persistent
       width="350"
     >
+
       <v-card
         color="primary"
         dark
@@ -48,14 +48,9 @@ export default {
       set: function (newValue) {        
       }
     },
-  },
-  // mounted () {
-  //   this.$store.subscribe((mutation, state) => {      
-  //     this.offLoading()      
-  //   })
-  // }
-
+  }
 }
+
 </script>
 
 

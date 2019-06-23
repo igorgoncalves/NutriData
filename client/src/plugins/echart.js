@@ -12,4 +12,4 @@ import 'echarts/lib/chart/pie'
 //import 'echarts-gl'
 
 // register component to use
-Vue.component('v-chart', ECharts)
+Vue.component('v-chart', ECharts);

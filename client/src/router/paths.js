@@ -9,6 +9,11 @@ export default [
     view: 'Home'
   },
   {
+    path: '/login',
+    name: 'Login',
+    view: 'Login'
+  },
+  {
     path: '/user-profile',
     name: 'User Profile',
     view: 'UserProfile'

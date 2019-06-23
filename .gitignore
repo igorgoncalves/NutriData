@@ -6,3 +6,7 @@ migrations
 node_modules
 .vscode/
 *.zip
+.idea/
+
+data/
+planilhas/

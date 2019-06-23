@@ -1,8 +1,8 @@
-# from domain.repository.LocalidadeRepository import LocalidadeRepository
-# from domain.models.Localidade import Localidade, LocalidadeSchema
-# from domain.models.Macroindicador import Macroindicador
+# fromserver.domain.repository.LocalidadeRepository import LocalidadeRepository
+# fromserver.domain.models.Localidade import Localidade, LocalidadeSchema
+# fromserver.domain.models.Macroindicador import Macroindicador
 
-# # from domain.infraestructure import DbMongo
+# # fromserver.domain.infraestructure import DbMongo
 
 # repository_localidade =  LocalidadeRepository()
 

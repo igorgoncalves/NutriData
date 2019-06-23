@@ -1,5 +1,6 @@
-from domain.repository._base import RepositoryBase
 from domain.models.Localidade import Localidade
+from domain.repository._base import RepositoryBase
+
 
 class LocalidadeRepository(RepositoryBase):
     def __init__(self):

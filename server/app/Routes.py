@@ -1,12 +1,9 @@
 from app import app, api
-from app.blueprints.home import home
-from app.blueprints.Indicadores import indicadores
-from app.blueprints.Macroindicadores import MacroindicadorApi, MacroindicadorApiDetail, IndicadoresMacroApi
-from app.blueprints.Localidade import LocalidadeApi, LocalidadeDetails, MacroindicadoresLocalidadesApi
 from app.blueprints.Indicadores import IndicadorApi, IndicadorApiDetail
+from app.blueprints.Localidade import LocalidadeApi, LocalidadeDetails, MacroindicadoresLocalidadesApi
+from app.blueprints.Macroindicadores import MacroindicadorApi, MacroindicadorApiDetail, IndicadoresMacroApi
 from app.blueprints.Visaoes import VisaoApi, VisaoPreview
-from flask_restful import  Api
-
+from app.blueprints.home import home
 
 # Rotas
 app.register_blueprint(home, url_prefix='/')

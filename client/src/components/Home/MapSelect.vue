@@ -53,10 +53,10 @@ export default {
   mounted () {    
 
     document.querySelectorAll('path').forEach(element => {      
-      element.addEventListener('click', () => (this.localidade = element.getAttribute('class')))
+      element.addEventListener('click', () => (this.localidade = element.getAttribute('class')));
       element.addEventListener('mouseover', (event) => {        
         let localidadeSelecionada = event.target.getAttribute('class');
-        this.nomeLocalidade = this.getLocalidadeName(localidadeSelecionada)        
+        this.nomeLocalidade = this.getLocalidadeName(localidadeSelecionada);
         this.tooltipSpan = this.showTooltip(event.target, this.nomeLocalidade)
 
       });

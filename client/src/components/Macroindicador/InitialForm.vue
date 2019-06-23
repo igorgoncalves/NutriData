@@ -128,7 +128,7 @@ export default {
       }
     },
     reset () {
-      this.$refs.form.reset()
+      this.$refs.form.reset();
       this.$refs.myVueDropzone.removeAllFiles()
     },
     resetValidation () {
@@ -136,25 +136,25 @@ export default {
     },
     updateIndicadores (response) {      
       
-      response = JSON.parse(response.xhr.response)
-      let data = JSON.parse(response.data)
+      response = JSON.parse(response.xhr.response);
+      let data = JSON.parse(response.data);
       
       if (response.detail !== "") {        
-        this.$refs.myVueDropzone.removeAllFiles()
-        this.dialogLink = "/" + response.detail        
-        this.dialogOps = true
-        this.offLoading()
+        this.$refs.myVueDropzone.removeAllFiles();
+        this.dialogLink = "/" + response.detail;
+        this.dialogOps = true;
+        this.offLoading();
         return 
       }      
             
-      this.$emit('update:id-macroindicador', data.id)
+      this.$emit('update:id-macroindicador', data.id);
       this.nextStep()
     },
     send () {
       if (this.$refs.form.validate() &&
           this.$refs.myVueDropzone.getQueuedFiles().length > 0){                
         
-        this.onLoading()
+        this.onLoading();
         this.$refs.myVueDropzone.processQueue()
         
       } else {
@@ -162,8 +162,8 @@ export default {
       }
     },
     addParams (file, xhr, formData) {
-      formData.append('nome', this.name)
-      formData.append('descricao', this.description)
+      formData.append('nome', this.name);
+      formData.append('descricao', this.description);
       formData.append('codigoLocalidade', this.$route.params.codigoLocalidade)
     },
   },

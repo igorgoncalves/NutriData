@@ -1,12 +1,17 @@
-import io, re, uuid, os, shutil
+import os
+import shutil
+import uuid
 from io import BytesIO
+
 from openpyxl import load_workbook
 from openpyxl.comments import Comment
-from openpyxl.styles import Font, PatternFill, colors
+from openpyxl.styles import Font, colors
+
 
 # Essa classe é responsável por ler uma planilha e transformar em um dicionario (e seu inverso)
 
-class xslxAdapter():
+class XslxAdapter:
+
     NUMERO_DE_LINHAS_FIXAS = 3
     NUMERO_DE_COLUNAS_FIXAS = 1
     _workbook = {}

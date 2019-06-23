@@ -1,11 +1,11 @@
 <template>
   <v-content>
     <div id="core-view">
-      <v-fade-transition mode="out-in">
+      <div v-if="alert.message" :class="`alert ${alert.type}`">{{alert.message}}</div>
+      <v-fade-transition mode="out-in">        
         <router-view />
       </v-fade-transition>
-    </div>
-    <core-footer v-if="$route.name !== 'Maps'" />
+    </div>    
   </v-content>
 </template>
 
@@ -15,7 +15,18 @@ export default {
     return {
       title: 'NutriData'
     }
-  }
+  },
+  computed: {
+    alert () {
+      return this.$store.state.alert
+    }
+  },
+  watch:{
+    $route (to, from){
+      // clear alert on location change
+      this.$store.dispatch('alert/clear');
+    }
+  } 
 }
 </script>
 

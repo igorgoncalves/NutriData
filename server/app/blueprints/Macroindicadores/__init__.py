@@ -1,13 +1,12 @@
-from flask import Blueprint, request,  Response
-from flask_restful import reqparse, abort, Api, Resource
-from domain.service.MacroindicadorService import MacroindicadorService
-from domain.service.LocalidadeService import LocalidadeService
-from domain.service.IndicadorService import IndicadorService
-from domain.service.VisaoService import VisaoService
-
-from app.adapters.xslxAdapter import xslxAdapter
-
 import json
+
+from app.adapters.xslxAdapter import XslxAdapter
+from domain.service.IndicadorService import IndicadorService
+from domain.service.LocalidadeService import LocalidadeService
+from domain.service.MacroindicadorService import MacroindicadorService
+from domain.service.VisaoService import VisaoService
+from flask import Blueprint, request, Response
+from flask_restful import abort, Resource
 
 localidade = Blueprint('localidade', __name__)
 
@@ -19,7 +18,7 @@ _service_visao = VisaoService()
 
 class MacroindicadorApi(Resource):
 
-    _xslxAdapter = xslxAdapter()
+    _xslxAdapter = XslxAdapter()
 
     def get(self):
         list_all = _service_macroindicador.get_all()

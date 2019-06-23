@@ -1,6 +1,8 @@
-from mongoengine import EmbeddedDocument, StringField, ListField, ReferenceField, EmbeddedDocumentField
 from marshmallow_mongoengine import ModelSchema, fields
-from .Amostra import Amostra, AmostraSchema
+from mongoengine import EmbeddedDocument, StringField, ListField, ReferenceField, EmbeddedDocumentField
+
+from .Amostra import AmostraSchema
+
 
 class Indicador(EmbeddedDocument):
 

@@ -1,8 +1,10 @@
-from mongoengine import *
 import marshmallow_mongoengine as ma
+from mongoengine import *
+
 from .Indicador import Indicador, IndicadorSchema
 from .Localidade import Localidade
-from .Visao import Visao, VisaoSchema
+from .Visao import Visao
+
 
 class Macroindicador(Document):
     # id          = StringField(required=True, max_length=200)

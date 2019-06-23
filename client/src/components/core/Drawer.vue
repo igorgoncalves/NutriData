@@ -61,7 +61,7 @@
           active-class="color"
           class="v-list-item v-list__tile--buy"
           avatar
-          to="/"
+          @click="logout"
         >
           <v-list-tile-action>
             <v-icon>mdi-package-up</v-icon>
@@ -139,7 +139,7 @@ export default {
     }
   },
   mounted () {
-    this.onResponsiveInverted()
+    this.onResponsiveInverted();
     window.addEventListener('resize', this.onResponsiveInverted)
   },
   beforeDestroy () {
@@ -153,6 +153,10 @@ export default {
       } else {
         this.responsive = false
       }
+    },
+    logout () {
+      this.$store.dispatch('authentication/logout');
+      this.$router.push({ path: `/` })
     }
   }
 }

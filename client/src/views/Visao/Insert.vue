@@ -142,15 +142,15 @@ export default {
       this.updateChart()
     },
     checkIndicador(valor) {
-      this.updateChart()
+      this.updateChart();
       return valor
     },
     updateChart(){
       let indicadores = this.filteredMacroindicador.indicadores.filter(el => {
         return el.value && el.value != false
-      })
+      });
 
-      var retorno = []
+      var retorno = [];
       switch (this.type) {
         case 'pie':
           retorno = indicadores.map((indicador) => {
@@ -158,10 +158,10 @@ export default {
               name: indicador.nome,
               value: indicador.amostras.filter(am => am.codigo_localidade == 0).map((el) => el)[0].valor
             }
-          })
-          this.chart.series[0].data = retorno
-          this.chart.series[0].name = this.filteredMacroindicador.unidade
-          this.chart.legend.data = indicadores.map(el => el.nome)
+          });
+          this.chart.series[0].data = retorno;
+          this.chart.series[0].name = this.filteredMacroindicador.unidade;
+          this.chart.legend.data = indicadores.map(el => el.nome);
           break;
         case 'line':
         case 'bar':
@@ -171,16 +171,16 @@ export default {
               name: indicador.nome,
               data: indicador.amostras.filter(am => am.codigo_localidade == 0).map(am => am.valor)
             }
-          })
+          });
           this.chart.xAxis = {
             type: 'category',
             boundaryGap: false,
             data: indicadores[0].amostras.filter(am => am.codigo_localidade == 0).map((am) => am.ano)
-          }
-          this.chart.series = retorno
+          };
+          this.chart.series = retorno;
           break;
       }
-      this.$refs.chart.clear()
+      this.$refs.chart.clear();
       this.$refs.chart.mergeOptions(this.chart)
     }
   }

@@ -8,7 +8,7 @@
 
 // Lib imports
 import Vue from 'vue'
-import VueAnalytics from 'vue-analytics'
+// import VueAnalytics from 'vue-analytics'
 import Router from 'vue-router'
 import Meta from 'vue-meta'
 
@@ -42,6 +42,19 @@ const router = new Router({
     }
     return { x: 0, y: 0 }
   }
+})
+
+router.beforeEach((to, from, next) => {
+  // redirect to login page if not logged in and trying to access a restricted page
+  const publicPages = ['/', '/login']
+  const authRequired = !publicPages.includes(to.path)
+  const loggedIn = localStorage.getItem('user')
+
+  if (authRequired && !loggedIn) {
+    return next('/login')
+  }
+
+  next()
 })
 
 Vue.use(Meta)
