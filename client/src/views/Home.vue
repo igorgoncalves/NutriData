@@ -27,7 +27,7 @@
         lg5
       >
         <div>
-          <h2>2º - Clique em um indicador de: {{ nomeLocalidade }}</h2>
+          <h2 class="step-2">2º - Clique em um indicador de: {{ nomeLocalidade }}</h2>
           <v-layout row wrap>            
             <!-- <transition-group name="fade" tag="div" class="layout row wrap"> -->
             <v-flex lg4 md6 v-for="indicador in macroindicadores" :key="indicador.nome + componentKey + Math.random()" >
