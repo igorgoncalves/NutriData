@@ -1,10 +1,11 @@
+import pytest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.common.exceptions import TimeoutException 
 
 
-def test_alteracao_titulo():
-  
+def get_titulo (login, password):
   # Cria instacia do navegador 
   firefox = webdriver.Firefox()
   
@@ -12,18 +13,42 @@ def test_alteracao_titulo():
   firefox.get('http://localhost:4000')
 
   # Espera eventos para execução
-  input_localidade = WebDriverWait(firefox, 10).until(
-      lambda firefox : firefox.find_element_by_css_selector('[aria-label="Localidade"]')
-    )
+  btn_admin = WebDriverWait(firefox, 10).until(
+    lambda firefox : firefox.find_element_by_css_selector('.v-toolbar__items .v-btn')
+  )
 
-  # Envio de ações de teclado
-  input_localidade.send_keys("Aracaju")
-  input_localidade.send_keys(Keys.ENTER)
+  btn_admin.click()
+
+  input_login = WebDriverWait(firefox, 10).until(
+    lambda firefox : firefox.find_element_by_css_selector('[name="login"]')
+  )
+
+  input_login.send_keys(login)
+
+  input_senha = firefox.find_element_by_css_selector('[name="password"]')
+
+  input_senha.send_keys(password)
+
+  btn_login = WebDriverWait(firefox, 10).until(
+    lambda firefox : firefox.find_element_by_css_selector('.v-btn')
+  )
+  btn_login.click()
   
-  titulo_alterado = firefox.find_element_by_class_name('step-2').get_attribute('textContent')
-  
+  try:
+    titulo = WebDriverWait(firefox, 10).until(
+      lambda firefox : firefox.find_element_by_css_selector('h2').get_attribute('textContent')
+    )  
+  finally:
+    firefox.quit()
   # Fechar navegador
   firefox.quit()
+  return titulo
 
-  assert titulo_alterado == '2º - Clique em um indicador de: Aracaju'
 
+def test_login_sucesso():
+  titulo = get_titulo("admin", "admin")
+  assert titulo == 'Lista de macroindicadores'
+
+def test_login_falha():  
+  with pytest.raises(TimeoutException):    
+    assert get_titulo("admin", "batata")
