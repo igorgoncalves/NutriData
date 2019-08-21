@@ -1,6 +1,6 @@
-from domain.models.User import User, UserSchema
-from domain.repository.UserRepository import UserRepository
-from domain.service._base import ServiceBase
+from server.domain.models.User import User, UserSchema
+from server.domain.repository.UserRepository import UserRepository
+from server.domain.service._base import ServiceBase
 from werkzeug.security import safe_str_cmp
 from pprint import pprint
 

@@ -1,5 +1,5 @@
-from domain.models.User import User
-from domain.repository._base import RepositoryBase
+from server.domain.models.User import User
+from server.domain.repository._base import RepositoryBase
 
 
 class UserRepository(RepositoryBase):

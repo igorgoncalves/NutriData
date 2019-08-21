@@ -1,5 +1,5 @@
-from domain.models.Indicador import Indicador
-from domain.repository._base import RepositoryBase
+from server.domain.models.Indicador import Indicador
+from server.domain.repository._base import RepositoryBase
 
 
 class IndicadorRepository(RepositoryBase):

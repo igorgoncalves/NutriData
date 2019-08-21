@@ -1,10 +1,10 @@
 import json
 
 from app.adapters.xslxAdapter import XslxAdapter
-from domain.service.IndicadorService import IndicadorService
-from domain.service.LocalidadeService import LocalidadeService
-from domain.service.MacroindicadorService import MacroindicadorService
-from domain.service.VisaoService import VisaoService
+from server.domain.service.IndicadorService import IndicadorService
+from server.domain.service.LocalidadeService import LocalidadeService
+from server.domain.service.MacroindicadorService import MacroindicadorService
+from server.domain.service.VisaoService import VisaoService
 from flask import Blueprint, request, Response
 from flask_restful import abort, Resource
 

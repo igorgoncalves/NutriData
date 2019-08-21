@@ -1,8 +1,8 @@
-from domain.service._base import ServiceBase
-from domain.service.IndicadorService import IndicadorService
-from domain.service.LocalidadeService import LocalidadeService
-from domain.repository.MacroindicadorRepository import MacroindicadorRepository
-from domain.models.Macroindicador import Macroindicador, MacroindicadorSchema
+from server.domain.service._base import ServiceBase
+from server.domain.service.IndicadorService import IndicadorService
+from server.domain.service.LocalidadeService import LocalidadeService
+from server.domain.repository.MacroindicadorRepository import MacroindicadorRepository
+from server.domain.models.Macroindicador import Macroindicador, MacroindicadorSchema
 
 
 import json

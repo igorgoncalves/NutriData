@@ -30,13 +30,21 @@ class XslxAdapter:
             for row in ws.values:
                 sheet.append(row)
             leitura.append(sheet)
-        
+    
         objeto_transformado = self._organizer_sheet(leitura, anos)
 
         return objeto_transformado
 
     def _organizer_sheet(self, planilha, anos):                
+        if not anos:
+            return False
 
+        if not planilha:
+            return False
+
+        if planilha[0] and len(planilha[0]) < 3:
+            return False
+            
         fonte, indicadores, unidade = planilha[0][0][1:],planilha[0][1][1:], planilha[0][2][1:]        
 
         valores = []
@@ -44,7 +52,7 @@ class XslxAdapter:
             valores.append(pagina[self.NUMERO_DE_LINHAS_FIXAS:])
             
         macroindicador = {}
-        localidades_com_valores = []        
+        localidades_com_valores = []     
         macroindicador['fonte'] = fonte[0]
         macroindicador['unidade'] = unidade[0]
         indicadores_list = []
@@ -82,8 +90,6 @@ class XslxAdapter:
         macroindicador['locais_id'] = localidades_com_valores
         macroindicador['posicoes_localidades'] = localidades
         macroindicador['indicadores'] = indicadores_list
-        
-
         return macroindicador
             
     def sheet_to_dict(self):

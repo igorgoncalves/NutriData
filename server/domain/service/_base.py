@@ -1,4 +1,4 @@
-from domain.repository._base import RepositoryBase
+from server.domain.repository._base import RepositoryBase
 from marshmallow import ValidationError
 
 
