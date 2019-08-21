@@ -13,10 +13,10 @@ class VisaoService(ServiceBase):
     def __init__(self):
         super(VisaoService, self).__init__(repository=self.repository, schema=self.schema)
 
-    def create(self, id_macroindicador, tipo_de_grafico, indicadores):
-        service_indicador = IndicadorService()
-        service_macroindicaor = MacroindicadorService()
-        new_visao = Visao()
+    def create(self, id_macroindicador, tipo_de_grafico, indicadores, service_indicador=IndicadorService(), service_macroindicaor = MacroindicadorService()):
+        # service_indicador = IndicadorService()
+        # service_macroindicaor = MacroindicadorService()
+        # new_visao = Visao()
         new_visao.tipo_do_grafico = tipo_de_grafico
         new_visao.indicadores = [service_indicador.deserialize(indicador) for indicador in indicadores]
         visao_salva = super().create(new_visao)

@@ -57,8 +57,8 @@ class MacroindicadorService(ServiceBase):
             valid_data = err.valid_data 
             return json.dumps(error, indent=2), False
 
-    def get_by_localidade(self, codigo_localidade):
-        service_localidade = LocalidadeService()
+    def get_by_localidade(self, codigo_localidade, service_localidade=LocalidadeService()):
+        # service_localidade = LocalidadeService()
         localidade = service_localidade.get_all(codigo=codigo_localidade)
         if len(localidade) > 0:
             return self.repository.get_by_localidade(localidade[0].id)

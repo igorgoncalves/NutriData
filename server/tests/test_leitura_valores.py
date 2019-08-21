@@ -12,117 +12,135 @@ from server.domain.service.MacroindicadorService import MacroindicadorService
 # from server.app.adapters.xslxAdapter import XslxAdapter
 
 import pytest
+from unittest.mock import Mock
 
-#region Repository
+class Test_RepositoryTeste:
+    
+    #region repository
 
-#region localidade
-def test_localidadeRepository_GetAll():
-    localidades = LocalidadeRepository().get_all()
-    assert len(localidades) == 84
+    def test_localidadeRepository_GetAll(self):
+        localidades = LocalidadeRepository().get_all()
+        assert len(localidades) == 84
 
-def test_localidadeRepository_Get():
-    localidade = LocalidadeRepository().get_by_id("5d5d363a7dca2c4410e947f4")
-    assert  localidade.nome == 'Brasil' 
+    def test_localidadeRepository_Get(self):
+        localidade = LocalidadeRepository().get_by_id("5d5d363a7dca2c4410e947f4")
+        assert  localidade.nome == 'Brasil' 
 
-def test_localidadeRepository_GetError():
-    localidade = LocalidadeRepository().get_by_id("5d5d363a7dca2d5510e947f4")
-    assert  localidade is None  
+    def test_localidadeRepository_GetError(self):
+        localidade = LocalidadeRepository().get_by_id("5d5d363a7dca2d5510e947f4")
+        assert  localidade is None  
 
-def test_localidadeRepository_GetTypeError():
-    with pytest.raises(Exception):
-        assert   LocalidadeRepository().get_by_id("0")
-# endregion
+    def test_localidadeRepository_GetTypeError(self):
+        with pytest.raises(Exception):
+            assert   LocalidadeRepository().get_by_id("0")
 
-#region macroindicador
+    def test_macroindicadorRepository_GetAll(self):
+        macroindicador = MacroindicadorRepository().get_all()
+        assert len(macroindicador) == 9
 
-def test_macroindicadorRepository_GetAll():
-    macroindicador = MacroindicadorRepository().get_all()
-    assert len(macroindicador) == 9
+    def test_macroindicadorRepository_Get(self):
+        macroindicador = MacroindicadorRepository().get_by_id("5d5d49ff7dca2c6353c92cd1")
+        assert  macroindicador.nome == 'Adubação' 
 
-def test_macroindicadorRepository_Get():
-    macroindicador = MacroindicadorRepository().get_by_id("5d5d49ff7dca2c6353c92cd1")
-    assert  macroindicador.nome == 'Adubação' 
+    def test_macroindicadorRepository_GetError(self):
+        macroindicador = MacroindicadorRepository().get_by_id("5d5d363a7dca2d5510e947f4")
+        assert  macroindicador is None  
 
-def test_macroindicadorRepository_GetError():
-    macroindicador = MacroindicadorRepository().get_by_id("5d5d363a7dca2d5510e947f4")
-    assert  macroindicador is None  
+    def test_macroindicadorRepository_GetTypeError(self):
+        with pytest.raises(Exception):
+            assert   MacroindicadorRepository().get_by_id("0")
 
-def test_macroindicadorRepository_GetTypeError():
-    with pytest.raises(Exception):
-        assert   MacroindicadorRepository().get_by_id("0")
+    def test_visaoRepository_GetAll(self):
+        visao = VisaoRepository().get_all()
+        assert len(visao) == 2
 
-# endregion
+    def test_visaoRepository_Get(self):
+        visao = VisaoRepository().get_by_id("5d5d4a1a7dca2c6353c92cd2")
+        assert  visao.tipo_do_grafico == 'bar' 
 
-#region indicador
+    def test_visaoRepository_GetError(self):
+        visao = VisaoRepository().get_by_id("5d5d363a7dca2d5510e947f4")
+        assert  visao is None  
 
-# def test_indicadorRepository_GetAll():
-#     indicador = IndicadorRepository().get_all()
-#     assert len(indicador) == 8
+    def test_visaoRepository_GetTypeError(self):
+        with pytest.raises(Exception):
+            assert   VisaoRepository().get_by_id("0")
 
-# def test_indicadorRepository_Get():
-#     indicador = IndicadorRepository().get_by_id("5d5d49ff7dca2c6353c92cd1")
-#     assert  indicador.nome == 'Adubação' 
+    #endregion
 
-# def test_indicadorRepository_GetError():
-#     indicador = IndicadorRepository().get_by_id("5d5d363a7dca2d5510e947f4")
-#     assert  indicador is None  
+    # region Mock
+    def test_macroindicadorService_get_localidade(self):
+        localidade = Localidade(
+                            codigo="0",
+                            nome="Brasil",
+                            posicao= "3")
+        service = Mock()
 
-# def test_indicadorRepository_GetTypeError():
-#     with pytest.raises(Exception):
-#         assert   IndicadorRepository().get_by_id("0")
+        service.get_by_localidade.return_value = localidade
+        assert service.get_by_localidade(0).nome == "Brasil"
 
-# endregion
+    def test_macroindicadorService_get_localidade_vazio(self):
+        service = Mock()
+        service.get_by_localidade.return_value = []
+        assert service.get_by_localidade(0) == []
 
-#region visao
+    def test_macroindicadorService_getAll(self):
+        macroindicadores = [
+            Macroindicador(id ="5d5d3bf47dca2c51a33b5fe0" , nome="Producao de frutas", descricao="producao de frutas e rutas", fonte="IBGE",
+                        unidade="quilos"),
+            Macroindicador(id ="5d5d3bf47dca2c51a33b6fe0", nome="Producao de frutas 2", descricao="producao de frutas e rutas", fonte="IBGE",
+                        unidade="quilos"),
+            Macroindicador(id ="5d5d3bf47dca2c51a33b7fe0", nome="Producao de frutas 3", descricao="producao de frutas e rutas", fonte="IBGE",
+                        unidade="quilos")
+        ]
 
-def test_visaoRepository_GetAll():
-    visao = VisaoRepository().get_all()
-    assert len(visao) == 2
+        service = Mock()
+        service.get_all.return_value = macroindicadores
+        assert len(service.get_all()) == 3
 
-def test_visaoRepository_Get():
-    visao = VisaoRepository().get_by_id("5d5d4a1a7dca2c6353c92cd2")
-    assert  visao.tipo_do_grafico == 'bar' 
+    def test_macroindicadorService_get(self):
+        macroindicadores = [
+            Macroindicador(id ="5d5d3bf47dca2c51a33b5fe0" , nome="Producao de frutas", descricao="producao de frutas e rutas", fonte="IBGE",
+                        unidade="quilos"),
+            Macroindicador(id ="5d5d3bf47dca2c51a33b6fe0", nome="Producao de frutas 2", descricao="producao de frutas e rutas", fonte="IBGE",
+                        unidade="quilos"),
+            Macroindicador(id ="5d5d3bf47dca2c51a33b7fe0", nome="Producao de frutas 3", descricao="producao de frutas e rutas", fonte="IBGE",
+                        unidade="quilos")
+        ]
+        service = Mock()
+        service.get_by_id.return_value = macroindicadores[0]
+        assert service.get_by_id("5d5d3bf47dca2c51a33b5fe0").nome == 'Producao de frutas' 
 
-def test_visaoRepository_GetError():
-    visao = VisaoRepository().get_by_id("5d5d363a7dca2d5510e947f4")
-    assert  visao is None  
+    def test_macroindicadorService_GetError(self):
+        macroindicadores = [
+            Macroindicador(id ="5d5d3bf47dca2c51a33b5fe0" , nome="Producao de frutas", descricao="producao de frutas e rutas", fonte="IBGE",
+                        unidade="quilos"),
+            Macroindicador(id ="5d5d3bf47dca2c51a33b6fe0", nome="Producao de frutas 2", descricao="producao de frutas e rutas", fonte="IBGE",
+                        unidade="quilos"),
+            Macroindicador(id ="5d5d3bf47dca2c51a33b7fe0", nome="Producao de frutas 3", descricao="producao de frutas e rutas", fonte="IBGE",
+                        unidade="quilos")
+        ]
+        service = Mock()
+        service.get_by_id.return_value = None
+        assert  service.get_by_id("5d5d363a7dca2d5510e947f4") is None  
 
-def test_visaoRepository_GetTypeError():
-    with pytest.raises(Exception):
-        assert   VisaoRepository().get_by_id("0")
-# endregion
+    def test_macroindicadorService_GetTypeError(self):
+        with pytest.raises(Exception):
+            assert   LocalidadeRepository().get_by_id("0")
 
-# region Service
+    def test_visaoService_create(self):
+        indicador_service = Mock()
+        macroindicador_service = Mock()
+        macroindicador_service.get_by_id.return_value = Macroindicador(id ="5d5d3bf47dca2c51a33b5fe0" , nome="Producao de frutas", descricao="producao de frutas e rutas", fonte="IBGE",unidade="quilos")
 
-def test_macroindicadorService_get_localidade():
-    service = MacroindicadorService()
-    localidade = service.get_by_localidade(0)
-    assert len(localidade) == 2
+        visao_service = Mock()
 
-def test_macroindicadorService_get_localidade_vazio():
-    service = MacroindicadorService()
-    localidade = service.get_by_localidade(300)
-    assert localidade == []
+        visao_service.create.return_value = Visao(tipo_do_grafico='bar')
+        assert visao_service.create("5d5d3bf47dca2c51a33b5fe0", 'bar', [], indicador_service, macroindicador_service)
 
-def test_macroindicadorService_getAll():
-    service = MacroindicadorService()
-    macroindicador = service.get_all()
-    assert len(macroindicador) == 9
+    #endregion
 
-def test_macroindicadorService_get():
-    service = MacroindicadorService()
-    macroindicador = service.get_by_id("5d5d3bf47dca2c51a33b5fe0")
-    assert macroindicador.nome == 'Producao de frutas' 
 
-def test_macroindicadorService_GetError():
-    macroindicador = MacroindicadorService().get_by_id("5d5d363a7dca2d5510e947f4")
-    assert  macroindicador is None  
-
-def test_macroindicadorService_GetTypeError():
-    with pytest.raises(Exception):
-        assert   LocalidadeRepository().get_by_id("0")
-
-#endregion
 
 # region Adapters
 
