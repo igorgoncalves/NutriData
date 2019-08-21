@@ -32,7 +32,7 @@ def test_alteracao_titulo():
   titulo_alterado = firefox.find_element_by_class_name('step-2').get_attribute('textContent')
   
   # Fechar navegador
-  # firefox.quit()
+  firefox.quit()
 
   assert titulo_alterado == '2º - Clique em um indicador de: Sergipe'
 
