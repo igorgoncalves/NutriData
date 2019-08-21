@@ -13,7 +13,7 @@ def test_alteracao_titulo():
   firefox.get('http://localhost:5000')
 
   # Espera eventos para execução
-  input_localidade = WebDriverWait(firefox, 1000).until(
+  input_localidade = WebDriverWait(firefox, 10).until(
       lambda firefox : firefox.find_element_by_css_selector('[aria-label="Localidade"]')
     )
 
@@ -21,7 +21,7 @@ def test_alteracao_titulo():
   input_localidade.send_keys("Sergipe")
   input_localidade.send_keys(Keys.ENTER)
 
-  ver_grafico = WebDriverWait(firefox, 2000).until(
+  ver_grafico = WebDriverWait(firefox, 10).until(
       lambda firefox : firefox.find_element_by_class_name('card-indicador')
     )
   ver_grafico.click()
