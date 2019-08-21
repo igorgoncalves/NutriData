@@ -1,7 +1,7 @@
 import json
 
-from domain.service.MacroindicadorService import MacroindicadorService
-from domain.service.VisaoService import VisaoService
+from server.domain.service.MacroindicadorService import MacroindicadorService
+from server.domain.service.VisaoService import VisaoService
 from flask import Blueprint, request, Response
 from flask_restful import Resource
 

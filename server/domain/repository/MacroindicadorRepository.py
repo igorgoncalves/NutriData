@@ -1,5 +1,5 @@
-from domain.models.Macroindicador import Macroindicador
-from domain.repository._base import RepositoryBase
+from server.domain.models.Macroindicador import Macroindicador
+from server.domain.repository._base import RepositoryBase
 
 
 class MacroindicadorRepository(RepositoryBase):

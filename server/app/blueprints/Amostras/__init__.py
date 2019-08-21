@@ -1,6 +1,6 @@
-from domain.service.IndicadorService import IndicadorService
-from domain.service.LocalidadeService import LocalidadeService
-from domain.service.MacroindicadorService import MacroindicadorService
+from server.domain.service.IndicadorService import IndicadorService
+from server.domain.service.LocalidadeService import LocalidadeService
+from server.domain.service.MacroindicadorService import MacroindicadorService
 from flask import Blueprint, request
 from flask_restful import abort, Resource
 
