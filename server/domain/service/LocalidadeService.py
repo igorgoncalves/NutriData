@@ -1,8 +1,8 @@
 import json
 
-from server.domain.models.Localidade import Localidade, LocalidadeSchema
-from server.domain.repository.LocalidadeRepository import LocalidadeRepository
-from server.domain.service._base import ServiceBase
+from domain.models.Localidade import Localidade, LocalidadeSchema
+from domain.repository.LocalidadeRepository import LocalidadeRepository
+from domain.service._base import ServiceBase
 from marshmallow import ValidationError
 
 

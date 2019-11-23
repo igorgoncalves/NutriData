@@ -35,7 +35,7 @@ class XslxAdapter:
 
         return objeto_transformado
 
-    def _organizer_sheet(self, planilha, anos):                
+    def _organizer_sheet(self, planilha, anos):
         if not anos:
             return False
 

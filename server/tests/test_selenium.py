@@ -18,7 +18,7 @@ def test_alteracao_titulo():
     )
 
   # Envio de ações de teclado
-  input_localidade.send_keys("Sergipe")
+  input_localidade.send_keys("Brasil")
   input_localidade.send_keys(Keys.ENTER)
 
   ver_grafico = WebDriverWait(firefox, 10).until(
@@ -34,5 +34,5 @@ def test_alteracao_titulo():
   # Fechar navegador
   firefox.quit()
 
-  assert titulo_alterado == '2º - Clique em um indicador de: Sergipe'
+  assert titulo_alterado == '2º - Clique em um indicador de: Brasil'
 

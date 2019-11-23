@@ -1,5 +1,5 @@
-from server.domain.models.Visao import Visao
-from server.domain.repository._base import RepositoryBase
+from domain.models.Visao import Visao
+from domain.repository._base import RepositoryBase
 
 
 class VisaoRepository(RepositoryBase):

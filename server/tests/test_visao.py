@@ -1,11 +1,11 @@
-# from server.domain.service.VisaoService import VisaoService
-# from server.domain.models.Visao import Visao, VisaoSchema
-# from server.domain.models.Indicador import Indicador
-# from server.domain.service.IndicadorService import IndicadorService
-# from server.domain.repository.IndicadorRepository import IndicadorRepository
-# from server.domain.models.Amostra import Amostra
-# from server.domain.repository.MacroindicadorRepository import MacroindicadorRepository
-# from server.domain.models.Macroindicador import Macroindicador
+# from domain.service.VisaoService import VisaoService
+# from domain.models.Visao import Visao, VisaoSchema
+# from domain.models.Indicador import Indicador
+# from domain.service.IndicadorService import IndicadorService
+# from domain.repository.IndicadorRepository import IndicadorRepository
+# from domain.models.Amostra import Amostra
+# from domain.repository.MacroindicadorRepository import MacroindicadorRepository
+# from domain.models.Macroindicador import Macroindicador
 
 
 # repository_macroindicador = MacroindicadorRepository()

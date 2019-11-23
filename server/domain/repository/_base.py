@@ -1,4 +1,4 @@
-from server.domain.infraestructure.DbMongo import *
+from domain.infraestructure.DbMongo import *
 
 
 class RepositoryBase(object):

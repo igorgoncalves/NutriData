@@ -1,9 +1,9 @@
-from server.domain.models.Amostra import AmostraSchema
-from server.domain.models.Indicador import Indicador, IndicadorSchema
-from server.domain.repository.IndicadorRepository import IndicadorRepository
-from server.domain.service.LocalidadeService import LocalidadeService
-from server.domain.service._base import ServiceBase
-from server.domain.service.helpers.NotificationServiceHelper import NotificationServiceHelper
+from domain.models.Amostra import AmostraSchema
+from domain.models.Indicador import Indicador, IndicadorSchema
+from domain.repository.IndicadorRepository import IndicadorRepository
+from domain.service.LocalidadeService import LocalidadeService
+from domain.service._base import ServiceBase
+from domain.service.helpers.NotificationServiceHelper import NotificationServiceHelper
 
 
 class IndicadorService(ServiceBase):

@@ -1,8 +1,8 @@
-from server.domain.service._base import ServiceBase
-from server.domain.service.IndicadorService import IndicadorService
-from server.domain.service.LocalidadeService import LocalidadeService
-from server.domain.repository.MacroindicadorRepository import MacroindicadorRepository
-from server.domain.models.Macroindicador import Macroindicador, MacroindicadorSchema
+from domain.service._base import ServiceBase
+from domain.service.IndicadorService import IndicadorService
+from domain.service.LocalidadeService import LocalidadeService
+from domain.repository.MacroindicadorRepository import MacroindicadorRepository
+from domain.models.Macroindicador import Macroindicador, MacroindicadorSchema
 
 
 import json
@@ -11,14 +11,14 @@ from marshmallow import ValidationError
 
 
 class MacroindicadorService(ServiceBase):
-
-    repository = MacroindicadorRepository()
+    
     schema = MacroindicadorSchema()
     _service_localidade = LocalidadeService()
     _service_indicador = IndicadorService()
     _errors = []
 
-    def __init__(self):
+    def __init__(self, repository=MacroindicadorRepository()):
+        self.repository = repository
         super(MacroindicadorService, self).__init__(repository=self.repository, schema=self.schema)
 
     def create(self, macroindicador):

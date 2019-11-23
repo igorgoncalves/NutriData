@@ -3,7 +3,7 @@ from flask import Flask
 from flask_restful import Api
 from flask_script import Manager
 from flask_jwt import JWT, jwt_required, current_identity
-from server.domain.service.UserService import UserService
+from domain.service.UserService import UserService
 app = Flask(__name__,
             static_folder = "../dist/static",
             template_folder = "../dist")

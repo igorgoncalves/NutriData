@@ -10,3 +10,5 @@ node_modules
 
 data/
 planilhas/
+server/geckodriver.log
+server/.coverage

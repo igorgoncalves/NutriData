@@ -10,7 +10,7 @@ def get_titulo (login, password):
   firefox = webdriver.Firefox()
   
 #   # Acessa um link
-#   firefox.get('http://localhost:4000')
+  firefox.get('http://localhost:5000')
 
   # Espera eventos para execução
   btn_admin = WebDriverWait(firefox, 10).until(

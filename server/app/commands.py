@@ -1,9 +1,9 @@
 import os
 from flask_script import Command
 from app import manager
-from server.domain.service.LocalidadeService import LocalidadeService
-from server.domain.service.IndicadorService import IndicadorService
-from server.domain.service.VisaoService import VisaoService
+from domain.service.LocalidadeService import LocalidadeService
+from domain.service.IndicadorService import IndicadorService
+from domain.service.VisaoService import VisaoService
 import json
 
 class Initdb(Command):
