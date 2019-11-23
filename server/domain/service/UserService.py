@@ -7,16 +7,17 @@ from pprint import pprint
 
 class UserService(ServiceBase):
 
-    repository = UserRepository()
+    
     schema = UserSchema()
 
-    def __init__(self):
+    def __init__(self, repository = UserRepository()):
+        self.repository = repository
         super(UserService, self).__init__(repository=self.repository, schema=self.schema)
 
 
     @staticmethod
-    def authenticate(username, password):
-        repository = UserRepository()
+    def authenticate(username, password, repository = UserRepository()):
+        
         user = repository.get_all(username=username)
         if (len(user) > 0):
             user = user[0]
@@ -26,13 +27,12 @@ class UserService(ServiceBase):
             return user
    
     @staticmethod
-    def identity(payload):
-        repository = UserRepository()
+    def identity(payload, repository = UserRepository()):        
         user_id = payload['identity']
         return repository.get_by_id(user_id)
 
-    @staticmethod
-    def create_admin():
-        repository = UserRepository()
-        new_user = User(username="igorgoncalves", password="batata", email="igor_goncalves@live.com")
-        repository.create(new_user)
+    # @staticmethod
+    # def create_admin():
+    #     repository = UserRepository()
+    #     new_user = User(username="igorgoncalves", password="batata", email="igor_goncalves@live.com")
+    #     repository.create(new_user)
