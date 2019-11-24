@@ -12,20 +12,7 @@ export default [
     path: '/login',
     name: 'Login',
     view: 'Login'
-  },
-  {
-    path: '/user-profile',
-    name: 'User Profile',
-    view: 'UserProfile'
-  },
-  {
-    path: '/typography',
-    view: 'Typography'
-  },
-  {
-    path: '/notifications',
-    view: 'Notifications'
-  },
+  },  
   {
     path: '/macroindicadores',
     name: 'Macroindicadores',
@@ -42,6 +29,11 @@ export default [
     view: 'Localidade/List'
   },
   {
+    path: '/localidade/:idLocalidade/macroindicadores',
+    name: 'LocalidadeMacroindicadores',
+    view: 'Localidade/Macroindicadores/List'
+  },
+  {
     path: '/visao',
     name: 'Visao',
     view: 'Visao/Insert'
@@ -51,4 +43,4 @@ export default [
     name: 'MacroindicadorVisao',
     view: 'Visao/Insert'
   }
-]
+];

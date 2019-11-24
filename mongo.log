@@ -1,0 +1,14 @@
+● mongod.service - mongodb database
+   Loaded: loaded (/usr/lib/systemd/system/mongod.service; disabled; vendor preset: disabled)
+   Active: failed (Result: exit-code) since Sat 2019-11-23 16:54:20 -03; 2min 17s ago
+  Process: 25947 ExecStart=/usr/bin/mongod $OPTIONS run (code=exited, status=1/FAILURE)
+ Main PID: 25947 (code=exited, status=1/FAILURE)
+
+nov 23 16:54:20 localhost.localdomain systemd[1]: Started mongodb database.
+nov 23 16:54:20 localhost.localdomain mongod[25947]: 2019-11-23T16:54:20.880-0300 I STORAGE  [main] Max cache overflow file size custom option: 0
+nov 23 16:54:20 localhost.localdomain mongod[25947]: about to fork child process, waiting until server is ready for connections.
+nov 23 16:54:20 localhost.localdomain mongod[25947]: forked process: 26007
+nov 23 16:54:20 localhost.localdomain mongod[25947]: ERROR: child process failed, exited with error number 1
+nov 23 16:54:20 localhost.localdomain mongod[25947]: To see additional information in this output, start without the "--fork" option.
+nov 23 16:54:20 localhost.localdomain systemd[1]: mongod.service: Main process exited, code=exited, status=1/FAILURE
+nov 23 16:54:20 localhost.localdomain systemd[1]: mongod.service: Failed with result 'exit-code'.

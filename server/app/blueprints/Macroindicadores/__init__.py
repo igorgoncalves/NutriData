@@ -54,10 +54,10 @@ class MacroindicadorApiDetail(Resource):
     def get(self, id_macroindicador):
         local = _service_macroindicador.get_by_id(id_macroindicador)        
         dump, err = _service_macroindicador.serialize(local, False)
-        aux = json.loads(dump)
-        visao = _service_visao.get_by_id(aux['visao'])
-        aux['visao'] = json.loads(_service_visao.serialize(visao).data)
-        return Response(json.dumps(aux), mimetype="application/json", status=200)
+        # aux = json.loads(dump)
+        # visao = _service_visao.get_by_id(aux['visao'])
+        # aux['visao'] = json.loads(_service_visao.serialize(visao).data)
+        return Response(dump, mimetype="application/json", status=200)
 
     def delete(self, id_macroindicador):
         local = _service_macroindicador.get_all(id=id_macroindicador)
