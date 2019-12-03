@@ -1,6 +1,13 @@
 <template>
   <v-container fill-height fluid grid-list-xl>
     <v-layout wrap>
+      <v-flex
+        md12
+        sm12
+        lg12>
+          <h2> {{ macroindicador.nome }} [{{ nomeLocalidade }}] </h2>
+          <p> {{ macroindicador.fonte }} </p>         
+        </v-flex>                                  
       <v-flex md12 sm12 lg8>
         <v-flex md12 sm12 lg12>
           <v-flex md12 sm12 lg12>
@@ -17,10 +24,10 @@
           <v-chart v-if="chart" :options="chart" ref="chart" autoresize />
         </v-flex>
         <v-flex md12 sm12 lg12>
-          <p>{{ macroindicador.fonte }}</p>
+           <span>{{ macroindicador.descricao }}</span>
         </v-flex>
       </v-flex>
-      <v-flex md12 sm12 lg4 scroll>
+      <v-flex md12 sm12 lg4 scroll>        
         <v-card>
           <v-list subheader>
             <v-subheader>Anos</v-subheader>
@@ -69,20 +76,22 @@ import line from "./ChartsDefault/line";
 import form from "./ChartsDefault/form";
 
 export default {
-  props: ["idMacroindicador"],
+  props: ["idMacroindicador", "idLocalidade"],
   components: {
     "v-chart": ECharts
   },
   computed: {
-    ...mapState("macroindicadores", ["macroindicador"]),
+    ...mapState("macroindicadores", ["macroindicador"]),    
     indicadores() {
       let indicadores = this.macroindicador.indicadores;
       if (indicadores === undefined) return;
-      this.anos = this.anos ? this.anos : indicadores[0].amostras
-        .filter(am => am.codigo_localidade == 0)
-        .map(am => {
-          return { label: am.ano, value: false };
-        });
+      this.anos = this.anos
+        ? this.anos
+        : indicadores[0].amostras
+            .filter(am => am.codigo_localidade == this.idLocalidade)
+            .map(am => {
+              return { label: am.ano, value: false };
+            });
 
       return indicadores;
     },
@@ -95,6 +104,18 @@ export default {
       return this.indicadores.filter(el => {
         return el.value && el.value != false;
       });
+    },
+    nomeLocalidade() {
+      let name = this.getLocalidadeName();
+      return name(this.idLocalidade);
+    }
+  },
+  watch: {
+    macroindicador() {
+      this.anos = undefined;
+      this.form[0].value = "";
+      this.$refs.chart.clear();
+      this.$refs.chart.mergeOptions({});
     }
   },
 
@@ -112,6 +133,7 @@ export default {
   methods: {
     ...mapActions("macroindicadores", ["fetchMacroindicadoresById"]),
     ...mapActions("visao", ["createVisao"]),
+    ...mapGetters('localidades', ['getLocalidadeName']),
     changeChart() {
       switch (this.form[0].value) {
         case "Pizza":
@@ -143,18 +165,18 @@ export default {
 
       switch (this.type) {
         case "pie":
-          retorno = indicadores.map(indicador => {            
+          retorno = indicadores.map(indicador => {
             const valores = indicador.amostras
               .filter(
-                am => am.codigo_localidade == 0 && anos && anos.includes(am.ano)
+                am => am.codigo_localidade == this.idLocalidade && anos && anos.includes(am.ano)
               )
-              .map(el => el.valor);              
+              .map(el => el.valor);
             return {
               name: indicador.nome,
               value: valores ? valores[0] : {}
             };
           });
-          console.log(retorno)
+          console.log(retorno);
           this.chart.series[0].data = retorno;
           this.chart.series[0].name = this.macroindicador.unidade;
           this.chart.legend.data = indicadores.map(el => el.nome);
@@ -166,7 +188,10 @@ export default {
               type: this.type,
               name: indicador.nome,
               data: indicador.amostras
-                .filter(am => am.codigo_localidade == 0 && anos && anos.includes(am.ano))
+                .filter(
+                  am =>
+                    am.codigo_localidade == this.idLocalidade && anos && anos.includes(am.ano)
+                )
                 .map(am => am.valor)
             };
           });
@@ -191,8 +216,9 @@ export default {
       this.createVisao(visao, idMacroindicador);
     }
   },
+
   mounted() {
-    this.fetchMacroindicadoresById(this.idMacroindicador);
+    // this.fetchMacroindicadoresById(this.idMacroindicador);
   }
 };
 </script>

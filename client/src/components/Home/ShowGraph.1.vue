@@ -23,8 +23,11 @@
           md12
           sm12
           lg12>
-          
-                    
+          <v-chart
+            :options="chart"
+            ref="chart"
+            autoresize
+          />
         </v-flex>        
       </v-flex>
     </v-layout>
@@ -126,8 +129,18 @@ export default {
       }
     }
   },
-  mounted () {    
-    this.fetchMacroindicadoresById(idMacroindicador)
+  mounted () {
+    this.$store.subscribe((mutation, state) => {
+      switch(mutation.type) {
+        case 'macroindicadores/updateMacroindicador':
+          this.updateChart(this.idLocalidade);
+          break;
+        case 'chart/load':
+          console.log(state)
+          this.loadChart(state.chart.idMacroindicador, state.chart.idLocalidade)
+          break;
+      }      
+    })
   }
 }
 

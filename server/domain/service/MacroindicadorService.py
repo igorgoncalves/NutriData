@@ -63,3 +63,7 @@ class MacroindicadorService(ServiceBase):
         if len(localidade) > 0:
             return self.repository.get_by_localidade(localidade[0].id)
         return []
+
+    def get_one_by_localidade(self, codigo_localidade, id_macroindicador):                        
+        return self.repository.get_one_by_localidade(codigo_localidade, id_macroindicador)
+        

@@ -10,7 +10,7 @@
 
         <v-divider></v-divider>
 
-        <v-stepper-step step="3">Criar Visão</v-stepper-step>
+        <v-stepper-step step="3">Vizualize os dados!</v-stepper-step>
       </v-stepper-header>
 
       <v-stepper-items>
@@ -50,11 +50,10 @@
           <v-layout row justify-end>
             <v-flex xs2>              
               <v-btn color="amber darken-4" style="margin-left: -70px;" @click="salvarVisao()">
-                Salvar Visão e Finalizar
+                Finalizar
               </v-btn>
              </v-flex>
            </v-layout>
-
           <create-view
             ref="createview"
             :idMacroindicador="idMacroindicador"
@@ -109,21 +108,9 @@ export default {
       this.$refs.iniForm.send()      
     },
     salvarVisao () {
-      this.$refs.createview.send(this.idMacroindicador);      
-      this.onLoading()      
+      this.$router.push({ path: `/macroindicadores` });      
     }
-  },
-  mounted () {
-    this.reset()
-    this.$store.subscribe((mutation, state) => {
-      switch(mutation.type) {
-        case 'visao/updateVisao':
-          this.$router.push({ path: `/macroindicadores` });
-          this.offLoading();
-          break;
-      }
-    })
-  }
+  },  
 }
 
 </script>

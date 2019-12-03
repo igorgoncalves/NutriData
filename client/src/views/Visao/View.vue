@@ -21,20 +21,7 @@ export default {
     idMacroindicador () {
       return this.$route.params.idMacroindicador;     
     }
-  },
-  methods: {        
-    
-  },
-  mounted () {    
-    this.$store.subscribe((mutation, state) => {
-      switch(mutation.type) {
-        case 'visao/updateVisao':
-          this.$router.push({ path: `/macroindicadores` });
-          this.offLoading();
-          break;
-      }
-    })
-  }
+  },  
 }
 
 </script>

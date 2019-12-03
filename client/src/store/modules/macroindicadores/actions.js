@@ -35,5 +35,17 @@ export default {
       .catch(error => {
         console.error(error);
       });
+  },
+  fetchMacroindicadoresByIdandLocaliade(context, { codigoLocalidade, idMacroindicador }) {
+    Vue.prototype.$http
+      .get(`/api/localidade/${codigoLocalidade}/macroindicadores/${idMacroindicador}`)
+      .then(response => {
+        context.commit("updateMacroindicador", response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
+
+  
 };

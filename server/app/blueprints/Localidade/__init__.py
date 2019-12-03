@@ -66,3 +66,13 @@ class MacroindicadoresLocalidadesApi(Resource):
         data, err = _service_macroindicador.serialize(macroindicadores, True)
 
         return Response(data, mimetype="application/json", status=200)
+
+class MacroindicadoresLocalidadesDetailsApi(Resource):
+    def get(self, codigo_localidade, id_macroindicador):
+        macroindicadores = _service_macroindicador.get_one_by_localidade(codigo_localidade, id_macroindicador)
+        if len(macroindicadores) == 0:
+            abort(404)
+
+        data, err = _service_macroindicador.serialize(macroindicadores[0], False)        
+
+        return Response(data, mimetype="application/json", status=200)
