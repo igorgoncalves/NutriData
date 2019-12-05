@@ -115,7 +115,7 @@ export default {
           });
           this.chart.xAxis = {
             type: 'category',
-            boundaryGap: false,
+            boundaryGap: true,
             data: indicadores[0].amostras.filter(am => am.codigo_localidade == idLocalidade).map((am) => am.ano)
           };
 

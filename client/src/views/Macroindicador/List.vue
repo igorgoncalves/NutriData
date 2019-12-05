@@ -55,7 +55,7 @@
               <td>{{ props.item.nome }}</td>
               <td class="text-xs-left">{{ props.item.descricao }}</td>
               <td class="justify-center px-0">
-                <v-tooltip top>
+                <!-- <v-tooltip top>
                   <template>
                     <v-icon
                       slot="activator"
@@ -65,7 +65,7 @@
                     </v-icon>
                   </template>
                   <span>Analisar dados</span>
-                </v-tooltip>
+                </v-tooltip> -->
                 <!-- <v-tooltip top>
                   <template>
                     <v-icon
@@ -122,7 +122,7 @@ export default {
       this.$router.push({ path: `/macroindicadores/novo` })
     },
     createView (macroindicador) {
-      this.$router.push({ path: `/macroindicador/${macroindicador.id}/visao` })
+      this.$router.push({path: `/localidade/0/macroindicador/${macroindicador}`})
     },
     deleteItem(macroindicador){      
       this.deleteIndicador(macroindicador.id);

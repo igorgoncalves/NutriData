@@ -51,7 +51,6 @@ export default {
     }
   },
   mounted () {    
-
     document.querySelectorAll('path').forEach(element => {      
       element.addEventListener('click', () => (this.localidade = element.getAttribute('class')));
       element.addEventListener('mouseover', (event) => {        

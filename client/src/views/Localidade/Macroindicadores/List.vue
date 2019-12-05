@@ -96,7 +96,7 @@ export default {
       this.$router.push({ path: `/macroindicadores/novo` });
     },
     createView(macroindicador) {
-      this.$router.push({ path: `/macroindicador/${macroindicador.id}/visao` });
+      this.$router.push({ path: `/localidade/${this.$route.params.idLocalidade}/macroindicador/${macroindicador.id}/admin` });
     },
     deleteItem(macroindicador) {
       this.deleteIndicador(macroindicador.id);

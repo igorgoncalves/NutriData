@@ -156,7 +156,7 @@ export default {
           retorno = indicadores.map((indicador) => {
             return {
               name: indicador.nome,
-              value: indicador.amostras.filter(am => am.codigo_localidade == 0).map((el) => el)[0].valor
+              value: indicador.amostras.filter(am => am.codigoLocalidade == 0).map((el) => el)[0].valor
             }
           });
           this.chart.series[0].data = retorno;
@@ -169,13 +169,13 @@ export default {
             return {
               type: this.type,
               name: indicador.nome,
-              data: indicador.amostras.filter(am => am.codigo_localidade == 0).map(am => am.valor)
+              data: indicador.amostras.filter(am => am.codigoLocalidade == 0).map(am => am.valor)
             }
           });
           this.chart.xAxis = {
             type: 'category',
             boundaryGap: false,
-            data: indicadores[0].amostras.filter(am => am.codigo_localidade == 0).map((am) => am.ano)
+            data: indicadores[0].amostras.filter(am => am.codigoLocalidade == 0).map((am) => am.ano)
           };
           this.chart.series = retorno;
           break;

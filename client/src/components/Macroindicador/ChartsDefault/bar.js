@@ -17,10 +17,7 @@ export default {
   xAxis: {
     type: 'category',
     data: [],
-    boundaryGap: true,
-    xAxisTicks: {
-      alignWithLabel: true
-    }
+    axisTick: {show: false},
 
   },
   yAxis: {},

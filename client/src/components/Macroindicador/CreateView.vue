@@ -1,33 +1,26 @@
 <template>
   <v-container fill-height fluid grid-list-xl>
     <v-layout wrap>
-      <v-flex
-        md12
-        sm12
-        lg12>
-          <h2> {{ macroindicador.nome }} [{{ nomeLocalidade }}] </h2>
-          <p> {{ macroindicador.fonte }} </p>         
-        </v-flex>                                  
-      <v-flex md12 sm12 lg8>
+      <v-flex offset-lg1 md8 sm8 lg7>
+        <h2
+          style="margin: 0;line-height:1em !important"
+        >{{ macroindicador.nome }} [{{ nomeLocalidade }}]</h2>
+        <small>{{ macroindicador.fonte }}</small>
+
+        <v-chart v-if="chart" :options="chart" ref="chart" autoresize />
         <v-flex md12 sm12 lg12>
-          <v-flex md12 sm12 lg12>
-            <v-select
-              :items="form[0].options"
-              :label="form[0].label"
-              v-model="form[0].value"
-              v-on:change="changeChart()"
-              outline
-            ></v-select>
-          </v-flex>
-        </v-flex>
-        <v-flex md12 sm12 lg12>
-          <v-chart v-if="chart" :options="chart" ref="chart" autoresize />
-        </v-flex>
-        <v-flex md12 sm12 lg12>
-           <span>{{ macroindicador.descricao }}</span>
+          <span>{{ macroindicador.descricao }}</span>
         </v-flex>
       </v-flex>
-      <v-flex md12 sm12 lg4 scroll>        
+
+      <v-flex md12 sm12 lg4 scroll>
+        <v-select
+          :items="form[0].options"
+          :label="form[0].label"
+          v-model="form[0].value"
+          v-on:change="changeChart()"
+          outline
+        ></v-select>
         <v-card>
           <v-list subheader>
             <v-subheader>Anos</v-subheader>
@@ -69,6 +62,8 @@ import "echarts/lib/component/legend";
 import "echarts/lib/component/legend/ScrollableLegendModel.js";
 import "echarts/lib/component/legend/ScrollableLegendView.js";
 import "echarts/lib/component/legend/scrollableLegendAction.js";
+import "echarts/lib/component/toolbox";
+import "echarts/lib/component/toolbox/feature/SaveAsImage";
 
 import pie from "./ChartsDefault/pie";
 import bar from "./ChartsDefault/bar";
@@ -81,24 +76,11 @@ export default {
     "v-chart": ECharts
   },
   computed: {
-    ...mapState("macroindicadores", ["macroindicador"]),    
-    indicadores() {
-      let indicadores = this.macroindicador.indicadores;
-      if (indicadores === undefined) return;
-      this.anos = this.anos
-        ? this.anos
-        : indicadores[0].amostras
-            .filter(am => am.codigo_localidade == this.idLocalidade)
-            .map(am => {
-              return { label: am.ano, value: false };
-            });
-
-      return indicadores;
-    },
+    ...mapState("macroindicadores", ["macroindicador"]),
     anosSelecionados() {
-      return this.anos.filter(el => {
+      return this.anos ? this.anos.filter(el => {
         return el.value && el.value != false;
-      });
+      }) : [];
     },
     indicadoresSelecionados() {
       return this.indicadores.filter(el => {
@@ -113,14 +95,29 @@ export default {
   watch: {
     macroindicador() {
       this.anos = undefined;
-      this.form[0].value = "";
+      this.indicadores = this.macroindicador.indicadores;
+      this.indicadores.forEach(indicadores => (indicadores.value = true));
+      this.form[0].value = "Pizza";
+      this.changeChart();
       this.$refs.chart.clear();
       this.$refs.chart.mergeOptions({});
+    },
+    indicadores() {
+      // if (this.indicadores === undefined) return;
+      this.anos = this.anos
+        ? this.anos
+        : this.indicadores[0].amostras
+            .filter(am => am.codigoLocalidade == this.idLocalidade)
+            .map(am => {
+              return { label: am.ano, value: true };
+            });
+        this.updateChart()
     }
   },
 
   data() {
     return {
+      indicadores: [],
       pie: pie,
       bar: bar,
       line: line,
@@ -133,7 +130,7 @@ export default {
   methods: {
     ...mapActions("macroindicadores", ["fetchMacroindicadoresById"]),
     ...mapActions("visao", ["createVisao"]),
-    ...mapGetters('localidades', ['getLocalidadeName']),
+    ...mapGetters("localidades", ["getLocalidadeName"]),
     changeChart() {
       switch (this.form[0].value) {
         case "Pizza":
@@ -159,7 +156,7 @@ export default {
       return valor;
     },
     updateChart() {
-      let indicadores = this.indicadoresSelecionados;
+      let indicadores = this.indicadoresSelecionados.filter((indicador) => indicador.value);
       let anos = this.anosSelecionados.map(a => a.label);
       var retorno = [];
 
@@ -168,7 +165,10 @@ export default {
           retorno = indicadores.map(indicador => {
             const valores = indicador.amostras
               .filter(
-                am => am.codigo_localidade == this.idLocalidade && anos && anos.includes(am.ano)
+                am =>
+                  am.codigoLocalidade == this.idLocalidade &&
+                  anos &&
+                  anos.includes(am.ano)
               )
               .map(el => el.valor);
             return {
@@ -176,7 +176,6 @@ export default {
               value: valores ? valores[0] : {}
             };
           });
-          console.log(retorno);
           this.chart.series[0].data = retorno;
           this.chart.series[0].name = this.macroindicador.unidade;
           this.chart.legend.data = indicadores.map(el => el.nome);
@@ -190,14 +189,17 @@ export default {
               data: indicador.amostras
                 .filter(
                   am =>
-                    am.codigo_localidade == this.idLocalidade && anos && anos.includes(am.ano)
+                    am.codigoLocalidade == this.idLocalidade &&
+                    anos &&
+                    anos.includes(am.ano)
                 )
                 .map(am => am.valor)
             };
           });
           this.chart.xAxis = {
             type: "category",
-            boundaryGap: false,
+            boundaryGap: true,
+            axisTick: { show: false },
             data: anos
           };
           this.chart.series = retorno;
@@ -219,6 +221,7 @@ export default {
 
   mounted() {
     // this.fetchMacroindicadoresById(this.idMacroindicador);
+    // this.updateChart()
   }
 };
 </script>
@@ -230,6 +233,6 @@ export default {
 
 .scroll {
   overflow-y: scroll;
-  height: 100vh;
+  max-height: 100%;
 }
 </style>

@@ -2,53 +2,47 @@
   <div>
     <v-container grid-list-md text-xs-center>
       <v-layout row wrap>
-        <v-flex md12 sm12 lg6>
-          <h2>1º - Selecione o local</h2>
-
+        <v-flex md12 sm12 lg4>
           <v-autocomplete
             :items="getLocalidadeNomes"
             item-text="name"
-            label="Localidade"
+            label="Busque uma localidade"
             v-model="nome"
           ></v-autocomplete>
 
-          <map-select v-model="localidade" />
+          <component :is="layoutLocalidade" v-model="localidade"></component>
+          <!-- <map-select  /> -->
         </v-flex>
         <v-flex xs1>
           <v-divider hidden-md-and-down vertical></v-divider>
         </v-flex>
-        <v-flex md12 sm12 lg5>
+        <v-flex xs12 md12 sm12 lg7>
           <div>
-            <h2 class="step-2">2º - Clique em um indicador de: {{ nomeLocalidade }}</h2>
+            <h2 class="text-orange step-2 display-1">
+              Indicadores:
+              <strong class="display-1">{{ nomeLocalidade }}</strong>
+            </h2>
             <v-layout row wrap>
-              <!-- <transition-group name="fade" tag="div" class="layout row wrap"> -->
               <v-flex
-                lg4
-                md6
+                lg12
+                md12
                 v-for="indicador in macroindicadores"
                 :key="indicador.nome + componentKey + Math.random()"
               >
-                <v-hover>
-                  <v-card
-                    slot-scope="{ hover }"
-                    :class="`elevation-${hover ? 12 : 2}`"
-                    class="mx-auto card-indicador"
-                    color="success"
-                    min-height="100px"
-                    @click="showVisao(indicador.id)"
-                  >
-                    <v-card-text>{{ indicador.nome }}</v-card-text>
-                  </v-card>
-                </v-hover>
+                <card-indicador :macroindicador="indicador" :codigoLocalidade="localidade" />
               </v-flex>
-              <!-- </transition-group> -->
+
+              <section v-if="Object.keys(macroindicadores).length === 0" style="display: contents;">
+                <span style="margin: 0 auto">Nenhum indicador disponivel para esse local</span>
+              </section>
+              
             </v-layout>
           </div>
         </v-flex>
 
         <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
           <v-card>
-            <v-btn class="close" @click="dialog = false">Voltar</v-btn>            
+            <v-btn class="close" @click="dialog = false">Voltar</v-btn>
             <show-graph :idMacroindicador="idMacroindicador" :idLocalidade="localidade" />
           </v-card>
         </v-dialog>
@@ -59,15 +53,21 @@
 
 <script>
 import MapSelect from "@/components/Home/MapSelect";
+import ListSelect from "@/components/Home/ListSelect";
 import ViewGraph from "@/components/Macroindicador/CreateView";
+import CardIndicador from "../components/Home/CardIndicador";
 import goTo from "vuetify/lib/components/Vuetify/goTo";
+
+import Macroindicador from "../models/macroindicador";
 
 import { mapGetters, mapActions, mapMutations } from "vuex";
 
 export default {
   components: {
     "map-select": MapSelect,
-    "show-graph": ViewGraph
+    "list-select": ListSelect,
+    "show-graph": ViewGraph,
+    "card-indicador": CardIndicador
   },
   data() {
     return {
@@ -86,6 +86,9 @@ export default {
       "getLocalidadeNomes",
       "getCodigoLocalidadePorNome"
     ]),
+    layoutLocalidade() {
+      return this.$mq !== "lg" ? "list-select" : "map-select";
+    },
     macroindicadores() {
       return this.getMacroindicadores;
     },
@@ -103,14 +106,24 @@ export default {
     }
   },
   methods: {
-    ...mapActions("macroindicadores", ["fetchMacroindicadoresByLocalidade", "fetchMacroindicadoresByIdandLocaliade"]),
+    ...mapActions("macroindicadores", [
+      "fetchMacroindicadoresByLocalidade",
+      "fetchMacroindicadoresByIdandLocaliade"
+    ]),
     ...mapActions("localidades", ["fetchLocalidades"]),
     ...mapMutations("app", ["onLoading", "offLoading"]),
     ...mapMutations("chart", ["load"]),
     showVisao(idMacroindicador) {
-      this.idMacroindicador = idMacroindicador
-      this.fetchMacroindicadoresByIdandLocaliade({ codigoLocalidade: this.localidade, idMacroindicador});
-      this.dialog = true;
+      this.idMacroindicador = idMacroindicador;
+      this.fetchMacroindicadoresByIdandLocaliade({
+        codigoLocalidade: this.localidade,
+        idMacroindicador
+      });
+      this.$router.push({
+        path: `/localidade/${this.localidade}/macroindicador/${idMacroindicador}`
+      });
+
+      // this.dialog = true;
     }
   },
   mounted() {
@@ -130,12 +143,6 @@ export default {
 </script>
 
 <style scoped>
-.card-indicador {
-  background: #27ae60;
-  text-align: left;
-  color: white;
-  font-weight: 700;
-}
 .fade-enter-active {
   transition: opacity 0.5s;
 }
@@ -143,9 +150,7 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
-.close {
-  background: #16a085 !important;
-  float: right;
-  margin-right: 40px;
+.text-orange {
+  color: #ffa21a;
 }
 </style>
