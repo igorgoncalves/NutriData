@@ -135,8 +135,7 @@ export default {
         case 'macroindicadores/updateMacroindicador':
           this.updateChart(this.idLocalidade);
           break;
-        case 'chart/load':
-          console.log(state)
+        case 'chart/load':          
           this.loadChart(state.chart.idMacroindicador, state.chart.idLocalidade)
           break;
       }      

@@ -36,16 +36,29 @@ export default {
         console.error(error);
       });
   },
-  fetchMacroindicadoresByIdandLocaliade(context, { codigoLocalidade, idMacroindicador }) {
+  fetchMacroindicadoresByIdandLocaliade(
+    context,
+    { codigoLocalidade, idMacroindicador }
+  ) {
     Vue.prototype.$http
-      .get(`/api/localidade/${codigoLocalidade}/macroindicadores/${idMacroindicador}`)
+      .get(
+        `/api/localidade/${codigoLocalidade}/macroindicadores/${idMacroindicador}`
+      )
       .then(response => {
         context.commit("updateMacroindicador", response.data);
       })
       .catch(error => {
         console.error(error);
       });
+  },
+  deleteMacroindicador(context, idMacroindicador) {
+    Vue.prototype.$http
+      .delete(`/api/macroindicadores/${idMacroindicador}`)
+      .then(response => {
+        context.commit("deleteMacroindicador", response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
-
-  
 };

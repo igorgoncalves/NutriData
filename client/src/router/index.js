@@ -46,11 +46,6 @@ const router = new Router({
 });
 
 
-router.afterEach((to, from) => {
-  console.log(to);
-  console.log(from);
-})
-
 
 router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page

@@ -9,7 +9,7 @@ export default {
 
   getIndicadoresById(context, { idMacroindicador }) {
     if (typeof idMacroindicador === "object") {
-      console.log(idMacroindicador);
+      
       idMacroindicador = idMacroindicador.values();
     }
 

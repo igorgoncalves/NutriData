@@ -1,113 +1,141 @@
 <template>
-<div>
-  <v-form
-    ref="form"
-    v-model="valid"
-    lazy-validation
-  >
-    <v-text-field
-      v-model="name"      
-      :rules="nameRules"
-      label="Nome"
-      required
-    ></v-text-field>
+  <div>
+    <h2>Cadastro de novos indicadores</h2>
+    <small>O cadastro de novos indicadores é feito por meio do envio de uma planilha com os dados dos macroindicadores</small>
+    <v-form ref="form" v-model="valid" lazy-validation>
+      <v-text-field v-model="name" :rules="nameRules" label="Nome" required></v-text-field>
 
-    <v-text-field
-      v-model="description"
-      :rules="descriptionRules"
-      label="Descricao"
-      required
-    ></v-text-field>
+      <!-- <v-text-field v-model="description"  label="Descricao" required></v-text-field> -->
 
-    <!-- <v-btn
+      <h5>Descrição do macro indicador</h5>
+      <tiptap-vuetify
+        v-model="description"
+        :extensions="extensions"
+        :toolbar-attributes="{ color: '#47a14b' }"
+      />
+
+      <!-- <v-btn
       :disabled="!valid"
       color="success"
       @click="validate"
     >
       Validate
-    </v-btn> -->    
+      </v-btn>-->
 
-    <!-- <v-btn
+      <!-- <v-btn
       color="warning"
       @click="resetValidation"
     >
       Reset Validation
-    </v-btn> -->
-  </v-form>
+      </v-btn>-->
+    </v-form>
 
-  <h3>Enviar arquivo</h3>
-  <vue-dropzone
-    id="dropzone"
-    ref="myVueDropzone"
-    v-on:vdropzone-complete.passive="updateIndicadores"
-    v-on:vdropzone-sending="addParams"
-    :options="dropzoneOptions"
-    :useCustomSlot=true>
-    <div class="dropzone-custom-content">
-      <h3 class="dropzone-custom-title">Arraste a arquivo da planilha para dentro dessa área</h3>
-    <div class="subtitle">...ou clique e selecione o arquivo</div>
+    <h3>Enviar arquivo</h3>
+    <vue-dropzone
+      id="dropzone"
+      ref="myVueDropzone"
+      v-on:vdropzone-complete.passive="updateIndicadores"
+      v-on:vdropzone-sending="addParams"
+      :options="dropzoneOptions"
+      :useCustomSlot="true"
+    >
+      <div class="dropzone-custom-content">
+        <h3 class="dropzone-custom-title">Arraste a arquivo da planilha para dentro dessa área</h3>
+        <div class="subtitle">...ou clique e selecione o arquivo</div>
+      </div>
+    </vue-dropzone>
+    <div style="float: right;">
+      <v-btn color="error" @click="reset">Limpar</v-btn>
+      <v-btn color="green darken-2" @click="send()">Salvar</v-btn>
     </div>
-  </vue-dropzone>
 
-  <v-btn
-      color="error"
-      @click="reset"
-    >
-      Limpar
-    </v-btn>
-
-  <v-dialog
-      v-model="dialogOps"
-      max-width="290"
-    >
+    <v-dialog v-model="dialogOps" max-width="290">
       <v-card>
         <v-card-title class="headline">Ops! Encontramos alguns problemas</v-card-title>
 
         <v-card-text>
-          <p> Acreditamos que sua planilha tem alguns problemas de formatação, acesse o link para abaixar o arquivo comentado</p>
+          <p>Acreditamos que sua planilha tem alguns problemas de formatação, acesse o link para abaixar o arquivo comentado</p>
           <v-spacer></v-spacer>
-       
-          <a :href="dialogLink" target="_blank"> Baixar arquivo</a>
+
+          <a :href="dialogLink" target="_blank">Baixar arquivo</a>
         </v-card-text>
 
         <v-card-actions>
-          <v-spacer></v-spacer>          
+          <v-spacer></v-spacer>
 
-          <v-btn
-            color="green darken-1"
-            flat="flat"
-            @click="dialogOps = false"
-          >
-            Entendi!
-          </v-btn>
+          <v-btn color="green darken-1" flat="flat" @click="dialogOps = false">Entendi!</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
-</div>
+  </div>
 </template>
 
 <script>
-import vue2Dropzone from 'vue2-dropzone'
-import 'vue2-dropzone/dist/vue2Dropzone.min.css'
-import { mapActions, mapMutations } from 'vuex'
+import vue2Dropzone from "vue2-dropzone";
+import "vue2-dropzone/dist/vue2Dropzone.min.css";
+import {
+  TiptapVuetify,
+  Heading,
+  Bold,
+  Italic,
+  Strike,
+  Underline,
+  Code,
+  CodeBlock,
+  Paragraph,
+  BulletList,
+  OrderedList,
+  ListItem,
+  Link,
+  Blockquote,
+  HardBreak,
+  HorizontalRule,
+  History
+} from "tiptap-vuetify";
+
+import { mapActions, mapMutations } from "vuex";
 
 export default {
   components: {
-    'vue-dropzone': vue2Dropzone
+    "vue-dropzone": vue2Dropzone,
+    TiptapVuetify
   },
 
   data: () => ({
-    valid: true,
-    name: '',
-    nameRules: [
-      v => !!v || 'Por favor, é necessŕio que preeencha o campo nome'
+    extensions: [
+      // you can specify options for extension
+      new Heading({
+        levels: [1, 2, 3]
+      }),
+      new Bold(),
+      new Italic(),
+      new Strike(),
+      new Underline(),
+      new Code(),
+      new CodeBlock(),
+      new Paragraph(),
+      new BulletList(),
+      new OrderedList(),
+      new ListItem(),
+      // new Link(),
+      new Blockquote(),
+      new HardBreak(),
+      new HorizontalRule(),
+      new History()
     ],
-    description: '',
+    // starting editor's content
+    content: "",
+    valid: true,
+    name: "",
+    nameRules: [
+      v => !!v || "Por favor, é necessŕio que preeencha o campo nome"
+    ],
+    description: "",
     descriptionRules: [
-      v => !!v || 'Por favor, é necessŕio que preeencha o campo descrição'
-    ],            
+      v => !!v || "Por favor, é necessŕio que preeencha o campo descrição"
+    ],
     dropzoneOptions: {
-      url: '/api/macroindicadores',
+      url: "/api/macroindicadores",
       thumbnailWidth: 150,
       maxFilesize: 0.5,
       maxFiles: 1,
@@ -118,67 +146,66 @@ export default {
   }),
 
   methods: {
-    ...mapActions('indicadores', ['getIndicadoresById']),
-    ...mapActions('macroindicadores', ['fetchMacroindicadores']),
-    ...mapActions('formsteps', ['nextStep']),
-    ...mapMutations('app', ['onLoading', 'offLoading']),
-    validate () {
+    ...mapActions("indicadores", ["getIndicadoresById"]),
+    ...mapActions("macroindicadores", ["fetchMacroindicadores"]),
+    ...mapActions("formsteps", ["nextStep"]),
+    ...mapMutations("app", ["onLoading", "offLoading"]),
+    validate() {
       if (this.$refs.form.validate()) {
-        this.snackbar = true
+        this.snackbar = true;
       }
     },
-    reset () {
+    reset() {
       this.$refs.form.reset();
-      this.$refs.myVueDropzone.removeAllFiles()
+      this.$refs.myVueDropzone.removeAllFiles();
     },
-    resetValidation () {
-      this.$refs.form.resetValidation()
+    resetValidation() {
+      this.$refs.form.resetValidation();
     },
-    updateIndicadores (response) {      
-      
+    updateIndicadores(response) {
       response = JSON.parse(response.xhr.response);
       let data = JSON.parse(response.data);
-      
-      if (response.detail !== "") {        
+
+      if (response.detail !== "") {
         this.$refs.myVueDropzone.removeAllFiles();
         this.dialogLink = "/" + response.detail;
         this.dialogOps = true;
         this.offLoading();
-        return 
-      }      
-            
-      this.$emit('update:id-macroindicador', data.id);
-      this.nextStep()
+        return;
+      }
+
+      this.$emit("update:id-macroindicador", data.id);
+      this.nextStep();
     },
-    send () {
-      if (this.$refs.form.validate() &&
-          this.$refs.myVueDropzone.getQueuedFiles().length > 0){                
-        
+    send() {
+      if (
+        this.$refs.form.validate() &&
+        this.$refs.myVueDropzone.getQueuedFiles().length > 0
+      ) {
         this.onLoading();
-        this.$refs.myVueDropzone.processQueue()
-        
+        this.$refs.myVueDropzone.processQueue();
       } else {
-        alert("Confira os campos do formulário antes de enviar")
+        alert("Confira os campos do formulário antes de enviar");
       }
     },
-    addParams (file, xhr, formData) {
-      formData.append('nome', this.name);
-      formData.append('descricao', this.description);
-      formData.append('codigoLocalidade', this.$route.params.codigoLocalidade)
-    },
+    addParams(file, xhr, formData) {
+      formData.append("nome", this.name);
+      formData.append("descricao", this.description);
+      formData.append("codigoLocalidade", this.$route.params.codigoLocalidade);
+    }
   },
-  mounted () {
+  mounted() {
     this.$store.subscribe((mutation, state) => {
-      switch(mutation.type) {
-        case 'indicadores/updateIndicadores':
-          
+      switch (mutation.type) {
+        case "indicadores/updateIndicadores":
       }
-    })
+    });
+  },
+  beforeDestroy() {
+    // this.editor.destroy();
   }
-  
-}
+};
 </script>
 
 <style scoped>
-
 </style>

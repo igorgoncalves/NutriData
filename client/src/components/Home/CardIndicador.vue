@@ -13,9 +13,9 @@
             <template>
               <p slot="activator" class="title text--primary">{{ props.macroindicador.nome }}</p>
             </template>
-            <span>{{ props.macroindicador.descricao }}</span>
+            <span>{{ $options.stripHTML(props.macroindicador.descricao) }}</span>
           </v-tooltip>
-          <div class="text--primary text-truncate">{{ props.macroindicador.descricao }}</div>
+          <div class="text--primary text-truncate">{{ $options.stripHTML(props.macroindicador.descricao) }}</div>
         </v-card-text>
       </v-flex>
       <v-flex xs2 md2 sm2 lg2 class="justify-center">
@@ -38,6 +38,9 @@ export default {
       type: Macroindicador
     },
     codigoLocalidade: Number
+  },
+  stripHTML(text) {
+    return text.replace(/<\/?[^>]+(>|$)/g, " ");
   }
 };
 </script>

@@ -9,7 +9,8 @@
 
         <v-chart v-if="chart" :options="chart" ref="chart" autoresize />
         <v-flex md12 sm12 lg12>
-          <span>{{ macroindicador.descricao }}</span>
+          <div class="tiptap-vuetify-editor__content" v-html="macroindicador.descricao" />
+          <!-- <span>{{  }}</span> -->
         </v-flex>
       </v-flex>
 
@@ -78,9 +79,11 @@ export default {
   computed: {
     ...mapState("macroindicadores", ["macroindicador"]),
     anosSelecionados() {
-      return this.anos ? this.anos.filter(el => {
-        return el.value && el.value != false;
-      }) : [];
+      return this.anos
+        ? this.anos.filter(el => {
+            return el.value && el.value != false;
+          })
+        : [];
     },
     indicadoresSelecionados() {
       return this.indicadores.filter(el => {
@@ -103,15 +106,23 @@ export default {
       this.$refs.chart.mergeOptions({});
     },
     indicadores() {
-      // if (this.indicadores === undefined) return;
+      if (this.indicadores === undefined) return;
       this.anos = this.anos
         ? this.anos
-        : this.indicadores[0].amostras
-            .filter(am => am.codigoLocalidade == this.idLocalidade)
-            .map(am => {
-              return { label: am.ano, value: true };
-            });
-        this.updateChart()
+        : [
+            ...new Set(
+              this.indicadores
+                .reduce((prev, current) =>
+                  prev.length > 0
+                    ? [...prev, ...current.amostras]
+                    : current.amostras
+                )
+                .filter(am => am.codigoLocalidade == this.idLocalidade).map(am => am.ano)
+            )
+          ].map(ano => {
+            return { label: ano, value: true };
+          });
+      this.updateChart();
     }
   },
 
@@ -156,7 +167,9 @@ export default {
       return valor;
     },
     updateChart() {
-      let indicadores = this.indicadoresSelecionados.filter((indicador) => indicador.value);
+      let indicadores = this.indicadoresSelecionados.filter(
+        indicador => indicador.value
+      );
       let anos = this.anosSelecionados.map(a => a.label);
       var retorno = [];
 

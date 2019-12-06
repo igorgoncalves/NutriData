@@ -117,7 +117,7 @@ export default {
     ...mapGetters('macroindicadores', ['getMacroindicadores'])
   },
   methods: {
-    ...mapActions('macroindicadores', ['fetchMacroindicadores', 'deleteIndicador']),
+    ...mapActions('macroindicadores', ['fetchMacroindicadores', 'deleteMacroindicador']),
     createNew () {
       this.$router.push({ path: `/macroindicadores/novo` })
     },
@@ -125,7 +125,7 @@ export default {
       this.$router.push({path: `/localidade/0/macroindicador/${macroindicador}`})
     },
     deleteItem(macroindicador){      
-      this.deleteIndicador(macroindicador.id);
+      this.deleteMacroindicador(macroindicador.id);
     }
   },
   mounted () {

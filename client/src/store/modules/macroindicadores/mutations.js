@@ -7,8 +7,7 @@ export default {
     state.macroindicadores = payload;
   },
   updateMacroindicadores(state, payload) {
-    state.macroindicadores = payload.map(macroindicador => {
-      console.log(macroindicador)
+    state.macroindicadores = payload.map(macroindicador => {      
       return new Macroindicador({ ...macroindicador });
     });
   },

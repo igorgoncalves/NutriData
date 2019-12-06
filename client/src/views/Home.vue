@@ -29,7 +29,7 @@
                 v-for="indicador in macroindicadores"
                 :key="indicador.nome + componentKey + Math.random()"
               >
-                <card-indicador :macroindicador="indicador" :codigoLocalidade="localidade" />
+                <card-indicador :macroindicador="indicador" :codigoLocalidade="parseInt(localidade)" />
               </v-flex>
 
               <section v-if="Object.keys(macroindicadores).length === 0" style="display: contents;">
@@ -56,7 +56,7 @@ import MapSelect from "@/components/Home/MapSelect";
 import ListSelect from "@/components/Home/ListSelect";
 import ViewGraph from "@/components/Macroindicador/CreateView";
 import CardIndicador from "../components/Home/CardIndicador";
-import goTo from "vuetify/lib/components/Vuetify/goTo";
+
 
 import Macroindicador from "../models/macroindicador";
 
