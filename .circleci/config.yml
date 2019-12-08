@@ -11,7 +11,7 @@ jobs:
       enabled: true
     steps:    
       - add_ssh_keys:
-          fingerprints:
+          fingerprints:            
             - "5a:59:6e:f5:c0:a1:82:da:1e:61:2e:48:de:d3:4a:91"
       - run:
           name: Capturando chaves de acesso
@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Copiando arquivos
           command: |            
-            rsync -avh --rsh="ssh -o StrictHostKeyChecking=no "  . $SSH_USER@$SSH_HOST:/root/NutriData
+            rsync -avh --delete --rsh="ssh -o StrictHostKeyChecking=no "  . $SSH_USER@$SSH_HOST:/root/NutriData
       - run: 
           name: Instalando dependencias da api
           command: |
