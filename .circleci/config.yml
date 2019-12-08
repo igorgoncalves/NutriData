@@ -32,7 +32,7 @@ jobs:
       - run: 
           name: Iniciando coitainers Docker-Compose
           command: |
-            ssh $SSH_USER@$SSH_HOST "cd /root/NutriData docker-compose up -d --no-deps --build application"
+            ssh $SSH_USER@$SSH_HOST "cd /root/NutriData && docker-compose up -d --no-deps --build application"
       
 
 
