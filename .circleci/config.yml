@@ -16,15 +16,15 @@ jobs:
       - run:
           name: Capturando chaves de acesso
           command: ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
-      # - checkout # check out the code in the project directory     
-      # - run:
-      #     name: Copiando arquivos
-      #     command: |            
-      #       rsync -avh --delete --rsh="ssh -o StrictHostKeyChecking=no "  . $SSH_USER@$SSH_HOST:/root/NutriData
-      - run: 
-          name: Pull na applicação
-          command: |
-            ssh $SSH_USER@$SSH_HOST "cd /root/Nutridata && git pull"
+      - checkout # check out the code in the project directory     
+      - run:
+          name: Copiando arquivos
+          command: |            
+            rsync -avh --delete --rsh="ssh -o StrictHostKeyChecking=no "  . $SSH_USER@$SSH_HOST:/root/NutriData
+      # - run: 
+      #     name: Pull na applicação
+      #     command: |
+      #       ssh $SSH_USER@$SSH_HOST "cd /root/Nutridata && git pull"
       - run: 
           name: Parando coitainers Docker-Compose
           command: |
