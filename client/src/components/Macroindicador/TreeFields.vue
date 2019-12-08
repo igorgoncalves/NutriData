@@ -46,7 +46,7 @@ export default {
   methods: {
     ...mapActions('indicadores', ['getIndicadoresById']),
     onNodeSelected (node) {
-      // console.log(node.text, node)
+      
     }
   },
   mounted () {

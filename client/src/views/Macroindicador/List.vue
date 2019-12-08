@@ -55,7 +55,7 @@
               <td>{{ props.item.nome }}</td>
               <td class="text-xs-left">{{ props.item.descricao }}</td>
               <td class="justify-center px-0">
-                <v-tooltip top>
+                <!-- <v-tooltip top>
                   <template>
                     <v-icon
                       slot="activator"
@@ -65,7 +65,7 @@
                     </v-icon>
                   </template>
                   <span>Analisar dados</span>
-                </v-tooltip>
+                </v-tooltip> -->
                 <!-- <v-tooltip top>
                   <template>
                     <v-icon
@@ -88,17 +88,18 @@
                   </template>
                   <span>Alterar</span>
                 </v-tooltip>
+                -->
                 <v-tooltip top>
                   <template>
                     <v-icon
                       slot="activator"
-                      @click="editItem(props.item)"
+                      @click="deleteItem(props.item)"
                     >
                       mdi-delete
                     </v-icon>
                   </template>
                   <span>Deletar</span>
-                </v-tooltip> -->
+                </v-tooltip> 
               </td>
             </template>
           </v-data-table>
@@ -116,13 +117,15 @@ export default {
     ...mapGetters('macroindicadores', ['getMacroindicadores'])
   },
   methods: {
-    ...mapActions('macroindicadores', ['fetchMacroindicadores']),
+    ...mapActions('macroindicadores', ['fetchMacroindicadores', 'deleteMacroindicador']),
     createNew () {
       this.$router.push({ path: `/macroindicadores/novo` })
     },
     createView (macroindicador) {
-
-      this.$router.push({ path: `/macroindicador/${macroindicador.id}/visao` })
+      this.$router.push({path: `/localidade/0/macroindicador/${macroindicador}`})
+    },
+    deleteItem(macroindicador){      
+      this.deleteMacroindicador(macroindicador.id);
     }
   },
   mounted () {

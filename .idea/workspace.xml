@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="FILTER_RESOLVED_ITEMS" value="false" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="84f9d5ac-9899-4839-b806-c05700f0091b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/server/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/.eslintrc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.postcssrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/.postcssrc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/babel.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Home/MapSelect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Home/MapSelect.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Home/ShowGraph.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Home/ShowGraph.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Macroindicador/CreateView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Macroindicador/CreateView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Macroindicador/InitialForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Macroindicador/InitialForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Macroindicador/TreeFields.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Macroindicador/TreeFields.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/core/Drawer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/core/Drawer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/core/Toolbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/core/Toolbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/material/Card.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/material/Card.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/i18n/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/i18n/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/lang/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/lang/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/plugins/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/plugins/axios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/plugins/chartist.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/plugins/chartist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/plugins/echart.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/plugins/echart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/plugins/vuetify.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/plugins/vuetify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/modules/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/modules/indicadores/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/indicadores/actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/modules/localidades/getters.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/localidades/getters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/modules/macroindicadores/getters.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/macroindicadores/getters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/utils/vuex.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/vuex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/Localidade/Insert.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/Localidade/Insert.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/Macroindicador/Insert.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/Macroindicador/Insert.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/Notifications.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/Notifications.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/Typography.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/Typography.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/Visao/Insert.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/Visao/Insert.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/vue.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app/Routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/Routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app/adapters/xslxAdapter.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/adapters/xslxAdapter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app/blueprints/Amostras/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/blueprints/Amostras/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app/blueprints/Indicadores/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/blueprints/Indicadores/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app/blueprints/Localidade/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/blueprints/Localidade/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app/blueprints/Macroindicadores/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/blueprints/Macroindicadores/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app/blueprints/Visaoes/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/blueprints/Visaoes/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app/blueprints/home/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/blueprints/home/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app/commands.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/commands.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/domain/infraestructure/DbAlchemy.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/domain/infraestructure/DbAlchemy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/domain/models/Amostra.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/domain/models/Amostra.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/domain/models/Indicador.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/domain/models/Indicador.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/domain/models/Localidade.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/domain/models/Localidade.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/domain/models/Macroindicador.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/domain/models/Macroindicador.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/domain/models/Visao.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/domain/models/Visao.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/domain/repository/IndicadorRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/domain/repository/IndicadorRepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/domain/repository/LocalidadeRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/domain/repository/LocalidadeRepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/domain/repository/MacroindicadorRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/domain/repository/MacroindicadorRepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/domain/repository/VisaoRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/domain/repository/VisaoRepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/domain/repository/_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/domain/repository/_base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/domain/service/IndicadorService.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/domain/service/IndicadorService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/domain/service/LocalidadeService.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/domain/service/LocalidadeService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/domain/service/MacroindicadorService.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/domain/service/MacroindicadorService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/domain/service/VisaoService.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/domain/service/VisaoService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/domain/service/_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/domain/service/_base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/domain/service/helpers/NotificationServiceHelper.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/domain/service/helpers/NotificationServiceHelper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/output.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/tests/test_localidade.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/tests/test_localidade.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/tests/test_macroindicador.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/tests/test_macroindicador.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/tests/test_visao.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/tests/test_visao.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="264" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>loadPartial</find>
+      <find>domain.</find>
+      <find>xslxAdapter</find>
+      <find>localidadeCodigo</find>
+      <find>create</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>server.domain.</replace>
+      <replace>localidade_codigo</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/server/tests/test_create.py" />
+        <option value="$PROJECT_DIR$/server/tests/test_test_create.py" />
+        <option value="$PROJECT_DIR$/server/tests/test_macroindicador.py" />
+        <option value="$PROJECT_DIR$/server/domain/repository/IndicadorRepository.py" />
+        <option value="$PROJECT_DIR$/server/app/blueprints/Localidade/__init__.py" />
+        <option value="$PROJECT_DIR$/server/app/__init__.py" />
+        <option value="$PROJECT_DIR$/server/app/commands.py" />
+        <option value="$PROJECT_DIR$/server/app/Routes.py" />
+        <option value="$PROJECT_DIR$/server/run.py" />
+        <option value="$PROJECT_DIR$/server/app/blueprints/Indicadores/__init__.py" />
+        <option value="$PROJECT_DIR$/server/domain/service/IndicadorService.py" />
+        <option value="$PROJECT_DIR$/server/app/blueprints/Macroindicadores/__init__.py" />
+        <option value="$PROJECT_DIR$/server/app/adapters/xslxAdapter.py" />
+        <option value="$PROJECT_DIR$/server/domain/service/_base.py" />
+        <option value="$PROJECT_DIR$/server/domain/repository/_base.py" />
+        <option value="$PROJECT_DIR$/server/domain/repository/MacroindicadorRepository.py" />
+        <option value="$PROJECT_DIR$/server/domain/service/helpers/NotificationServiceHelper.py" />
+        <option value="$PROJECT_DIR$/server/domain/service/LocalidadeService.py" />
+        <option value="$PROJECT_DIR$/server/domain/models/Localidade.py" />
+        <option value="$PROJECT_DIR$/server/app/blueprints/Amostras/__init__.py" />
+        <option value="$PROJECT_DIR$/server/domain/service/MacroindicadorService.py" />
+      </list>
+    </option>
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/NutriData.iml" />
+        <option value="$PROJECT_DIR$/.idea/misc.xml" />
+        <option value="$PROJECT_DIR$/.idea/modules.xml" />
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/.idea/vagrant.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="10" />
+    <option name="y" value="47" />
+    <option name="width" value="1346" />
+    <option name="height" value="701" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="NutriData" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NutriData" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/server/requeriments.txt" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="NutriData" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="NutriData" />
+      </console-settings>
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="test_macroindicador" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="NutriData" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/server/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/server/tests/test_macroindicador.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.test_macroindicador" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="84f9d5ac-9899-4839-b806-c05700f0091b" name="Default Changelist" comment="" />
+      <created>1559170306465</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1559170306465</updated>
+      <workItem from="1559170311478" duration="86000" />
+      <workItem from="1559171856785" duration="692000" />
+      <workItem from="1559172568390" duration="154000" />
+      <workItem from="1559172744238" duration="5142000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="6074000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="27" width="1366" height="741" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25757575" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Inspection Results" visible="true" weight="0.3245033" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3294702" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3294702" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="11" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" weight="0.3294702" />
+      <window_info anchor="bottom" id="Thumbnails" order="13" visible="true" weight="0.3294702" />
+      <window_info anchor="bottom" id="REST Client" order="14" weight="0.5281457" />
+      <window_info anchor="right" id="Coverage" side_tool="true" weight="0.32954547" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/NutriData$test_macroindicador.coverage" NAME="test_macroindicador Coverage Results" MODIFIED="1559245258678" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/server/tests" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/server/requeriments.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="uml://Python/#/home/igorgoncalves/Projetos/NutriData/server/tests/test_macroindicador.py">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>Python</ID>
+          <OriginalElement>#/home/igorgoncalves/Projetos/NutriData/server/tests/test_macroindicador.py</OriginalElement>
+          <nodes />
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="495.0" y="176.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/tests/test_create.py" />
+    <entry file="file://$PROJECT_DIR$/server/tests/test_test_create.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/domain/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/Home/nordeste.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="uml://Python/#/home/igorgoncalves/Projetos/NutriData/server">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>Python</ID>
+          <OriginalElement>#/home/igorgoncalves/Projetos/NutriData/server</OriginalElement>
+          <nodes>
+            <node x="" y="">server.app.commands.test</node>
+            <node x="" y="">server.app.blueprints.Indicadores.IndicadorApiDetail</node>
+            <node x="" y="">server.app.blueprints.Localidade.LocalidadeDetails</node>
+            <node x="" y="">server.domain.repository.LocalidadeRepository.LocalidadeRepository</node>
+            <node x="" y="">server.domain.repository.IndicadorRepository.IndicadorRepository</node>
+            <node x="" y="">Resource</node>
+            <node x="" y="">server.domain.repository._base.RepositoryBase</node>
+            <node x="" y="">server.domain.service.MacroindicadorService.MacroindicadorService</node>
+            <node x="" y="">server.app.blueprints.Visaoes.VisaoPreview</node>
+            <node x="" y="">EmbeddedDocument</node>
+            <node x="" y="">server.domain.service.IndicadorService.IndicadorService</node>
+            <node x="" y="">type</node>
+            <node x="" y="">server.app.blueprints.Macroindicadores.IndicadoresMacroApi</node>
+            <node x="" y="">server.domain.models.Localidade.LocalidadeSchema</node>
+            <node x="" y="">server.domain.service.LocalidadeService.LocalidadeService</node>
+            <node x="" y="">server.domain.service.VisaoService.VisaoService</node>
+            <node x="" y="">server.app.adapters.xslxAdapter.xslxAdapter</node>
+            <node x="" y="">server.domain.models.Visao.VisaoSchema</node>
+            <node x="" y="">server.domain.models.Indicador.IndicadorSchema</node>
+            <node x="" y="">server.domain.models.Macroindicador.MacroindicadorSchema</node>
+            <node x="" y="">server.app.blueprints.Visaoes.VisaoApi</node>
+            <node x="" y="">server.domain.repository.VisaoRepository.VisaoRepository</node>
+            <node x="" y="">server.app.blueprints.Localidade.LocalidadeApi</node>
+            <node x="" y="">Command</node>
+            <node x="" y="">server.app.blueprints.Indicadores.IndicadorApi</node>
+            <node x="" y="">server.domain.service.helpers.NotificationServiceHelper.NotificationServiceHelper</node>
+            <node x="" y="">server.app.commands.Initdb</node>
+            <node x="" y="">server.config.ProductionConfig</node>
+            <node x="" y="">server.domain.service.helpers.NotificationServiceHelper.Singleton</node>
+            <node x="" y="">server.app.blueprints.Macroindicadores.MacroindicadorApi</node>
+            <node x="" y="">server.app.blueprints.Amostras.MacroindicadorApiDetail</node>
+            <node x="" y="">Document</node>
+            <node x="" y="">server.domain.repository.MacroindicadorRepository.MacroindicadorRepository</node>
+            <node x="" y="">server.domain.service.helpers.NotificationServiceHelper.Notification</node>
+            <node x="" y="">server.domain.models.Amostra.AmostraSchema</node>
+            <node x="" y="">server.config.DevelopmentConfig</node>
+            <node x="" y="">server.domain.models.Indicador.Indicador</node>
+            <node x="" y="">server.config.Config</node>
+            <node x="" y="">server.domain.models.Macroindicador.Macroindicador</node>
+            <node x="" y="">server.app.blueprints.Localidade.MacroindicadoresLocalidadesApi</node>
+            <node x="" y="">server.domain.models.Amostra.Amostra</node>
+            <node x="" y="">server.domain.service._base.ServiceBase</node>
+            <node x="" y="">ModelSchema</node>
+            <node x="" y="">server.domain.models.Visao.Visao</node>
+            <node x="" y="">server.app.blueprints.Amostras.MacroindicadorApi</node>
+            <node x="" y="">object</node>
+            <node x="" y="">server.domain.models.Localidade.Localidade</node>
+            <node x="" y="">server.app.blueprints.Macroindicadores.MacroindicadorApiDetail</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.9801570423687223" x="489.91988918003244" y="218.99999999999986" />
+          <SelectedNodes />
+          <Categories />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/domain/models/Amostra.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/app/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/domain/repository/IndicadorRepository.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="36" lean-forward="true" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/tests/test_macroindicador.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#0#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/app/blueprints/Localidade/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="48" column="7" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="7" />
+          <folding>
+            <element signature="e#1#78#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/tests/test_localidade.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/app/commands.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="29" lean-forward="true" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/app/Routes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/run.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="12" selection-start-column="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/domain/service/IndicadorService.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="56" column="71" selection-start-line="56" selection-start-column="71" selection-end-line="56" selection-end-column="71" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/app/blueprints/Indicadores/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+          <folding>
+            <element signature="e#0#67#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/app/blueprints/Macroindicadores/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="44" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/app/adapters/xslxAdapter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/domain/repository/MacroindicadorRepository.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="13" column="61" selection-start-line="13" selection-start-column="61" selection-end-line="13" selection-end-column="61" />
+          <folding>
+            <element signature="e#0#62#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/domain/service/helpers/NotificationServiceHelper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-223">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/domain/service/_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-583">
+          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/domain/service/LocalidadeService.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="30" column="22" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/domain/models/Localidade.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/app/blueprints/Amostras/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="94" column="30" lean-forward="true" selection-start-line="94" selection-start-column="30" selection-end-line="94" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/domain/service/MacroindicadorService.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="46" column="64" selection-start-line="46" selection-start-column="64" selection-end-line="46" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+            <element signature="e#838#1954#0" />
+            <element signature="e#2040#2324#0" />
+            <element signature="e#2386#2621#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/domain/repository/_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Envs/flask-3/lib/python3.7/site-packages/mongoengine/queryset/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="41">
+          <caret line="287" column="38" selection-start-line="287" selection-start-column="32" selection-end-line="287" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

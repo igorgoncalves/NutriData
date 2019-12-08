@@ -16,16 +16,17 @@ module.exports = {
   ],
   chainWebpack: config => {
     config.module
-      .rule('vue')
+      .rule('vue')      
       .use('vue-svg-inline-loader')
-      .loader('vue-svg-inline-loader')
-      .options({})
+      .loader('vue-svg-inline-loader')      
+      .options({});    
+      
 
     config.module
       .rule('xlxs')
       .test(/\.xlsx$/)
       .use('webpack-xlsx-loader')
       .loader('webpack-xlsx-loader')
-      .options({})
+      .options({});
   }
 }

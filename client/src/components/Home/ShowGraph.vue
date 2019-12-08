@@ -23,11 +23,8 @@
           md12
           sm12
           lg12>
-          <v-chart
-            :options="chart"
-            ref="chart"
-            autoresize
-          />
+          
+                    
         </v-flex>        
       </v-flex>
     </v-layout>
@@ -93,7 +90,7 @@ export default {
       switch (this.macroindicador.visao.tipo_do_grafico) {
         case 'pie':
           retorno = indicadores.map((indicador) => {
-            var amostras = indicador.amostras.filter(am => am.codigo_localidade == idLocalidade);
+            var amostras = indicador.amostras.filter(am => am.codigoLocalidade == idLocalidade);
             if (amostras.length == 0) return;
             return {
               name: indicador.nome,
@@ -110,13 +107,14 @@ export default {
             return {
               type: this.macroindicador.visao.tipo_do_grafico,
               name: indicador.nome,
-              data: indicador.amostras.filter(am => am.codigo_localidade == idLocalidade).map(am => am.valor)
+              data: indicador.amostras.filter(am => am.codigoLocalidade == idLocalidade).map(am => am.valor)
             }
           });
           this.chart.xAxis = {
             type: 'category',
-            boundaryGap: false,
-            data: indicadores[0].amostras.filter(am => am.codigo_localidade == idLocalidade).map((am) => am.ano)
+            // boundaryGap: true,
+            axisTick: {show: false},
+            data: indicadores[0].amostras.filter(am => am.codigoLocalidade == idLocalidade).map((am) => am.ano)
           };
 
           this.chart.series = retorno;
@@ -129,18 +127,8 @@ export default {
       }
     }
   },
-  mounted () {
-    this.$store.subscribe((mutation, state) => {
-      switch(mutation.type) {
-        case 'macroindicadores/updateMacroindicador':
-          this.updateChart(this.idLocalidade);
-          break;
-        case 'chart/load':
-          console.log(state)
-          this.loadChart(state.chart.idMacroindicador, state.chart.idLocalidade)
-          break;
-      }      
-    })
+  mounted () {    
+    this.fetchMacroindicadoresById(idMacroindicador)
   }
 }
 

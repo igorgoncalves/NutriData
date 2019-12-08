@@ -48,8 +48,7 @@ class MacroindicadorApi(Resource):
 
         return resposta, 400
 
-class MacroindicadorApiDetail(Resource):
-    
+class MacroindicadorApiDetail(Resource):    
     def get(self, localidade_codigo, mid):
         local = _service_indicador.get_all(codigo=localidade_codigo)
         if len(local) == 0:
@@ -65,20 +64,18 @@ class MacroindicadorApiDetail(Resource):
         abort(404)
 
 
-    #Obejct Macroindicador has no attribute delete
-    def delete(self, localidade_codigo, mid):
-        local = _service_indicador.get_all(codigo=localidade_codigo)
-        if len(local) == 0:
+    #Object Macroindicador has no attribute delete
+    def delete(self, mid):
+        localizacoes = _service_indicador.get_all()
+        for local in localizacoes:            
+            listaMid = local['macroindicadores']
+            for midObj in listaMid:
+                idObj = midObj.id
+                idC = mid
+                if idObj == idC:
+                    dump = _service_macroindicador.delete(midObj)
+                    return {"object": "deleted"}, 201
             abort(404)
-        local = local[0]
-        listaMid = local['macroindicadores']
-        for midObj in listaMid:
-            idObj = midObj.id
-            idC = mid
-            if idObj == idC:
-                dump = _service_macroindicador.delete(midObj)
-                return {"object": "deleted"}, 201
-        abort(404)
 
     # def put(self, localidade_codigo, mid):
     #     locais = _service_indicador.get_all(codigo=codigo)

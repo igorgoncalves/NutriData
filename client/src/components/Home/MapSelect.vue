@@ -5,7 +5,7 @@
       class="succes"
       dark
       icon
-      @click="localidade = '0'"
+      @click="localidade = 0"
     >
       Brasil
     </v-btn>
@@ -13,7 +13,7 @@
       class="succes"
       dark
       icon
-      @click="localidade = '2'"
+      @click="localidade = 2"
     >
       Nordeste
     </v-btn>
@@ -21,7 +21,7 @@
       class="succes"
       dark
       icon
-      @click="localidade = '28'"
+      @click="localidade = 28"
     >
       Sergipe
     </v-btn>
@@ -51,11 +51,10 @@ export default {
     }
   },
   mounted () {    
-
     document.querySelectorAll('path').forEach(element => {      
       element.addEventListener('click', () => (this.localidade = element.getAttribute('class')));
       element.addEventListener('mouseover', (event) => {        
-        let localidadeSelecionada = event.target.getAttribute('class');
+        let localidadeSelecionada = parseInt(event.target.getAttribute('class'));
         this.nomeLocalidade = this.getLocalidadeName(localidadeSelecionada);
         this.tooltipSpan = this.showTooltip(event.target, this.nomeLocalidade)
 
@@ -94,10 +93,10 @@ export default {
     },
     showNordeste () {
 
-      return (this.localidade === '2' || this.localidade > 10) && !this.showSergipe
+      return (this.localidade == 2 || this.localidade > 10) && !this.showSergipe
     },
     showSergipe () {
-      return this.localidade === '28' || this.localidade > 1000
+      return this.localidade == 28 || this.localidade > 1000
     }    
   },
   watch: {
