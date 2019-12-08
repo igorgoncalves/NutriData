@@ -22,9 +22,18 @@ jobs:
       #     command: |            
       #       rsync -avh --delete --rsh="ssh -o StrictHostKeyChecking=no "  . $SSH_USER@$SSH_HOST:/root/NutriData
       - run: 
-          name: Instalando dependencias da api
+          name: Pull na applicação
           command: |
-            ssh $SSH_USER@$SSH_HOST "cd /root/Nutridata && git pull && docker-compose stop application && docker-compose kill application && docker-compose up -d --no-deps --build"      
+            ssh $SSH_USER@$SSH_HOST "cd /root/Nutridata && git pull"
+      - run: 
+          name: Parando coitainers Docker-Compose
+          command: |
+            ssh $SSH_USER@$SSH_HOST "cd /root/Nutridata && docker-compose stop application && docker-compose kill application"
+      - run: 
+          name: Iniciando coitainers Docker-Compose
+          command: |
+            ssh $SSH_USER@$SSH_HOST "cd /root/Nutridata docker-compose up -d --no-deps --build application"
+      
 
 
 workflows:
