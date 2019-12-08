@@ -28,11 +28,11 @@ jobs:
       - run: 
           name: Parando coitainers Docker-Compose
           command: |
-            ssh $SSH_USER@$SSH_HOST "cd /root/Nutridata && docker-compose stop application && docker-compose kill application"
+            ssh $SSH_USER@$SSH_HOST "cd /root/NutriData && docker-compose stop application && docker-compose kill application"
       - run: 
           name: Iniciando coitainers Docker-Compose
           command: |
-            ssh $SSH_USER@$SSH_HOST "cd /root/Nutridata docker-compose up -d --no-deps --build application"
+            ssh $SSH_USER@$SSH_HOST "cd /root/NutriData docker-compose up -d --no-deps --build application"
       
 
 
