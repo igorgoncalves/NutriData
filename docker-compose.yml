@@ -10,7 +10,9 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
     networks:
-      - backend
+      - backend      
+    ports:
+      - '27017:27017'
   application:
     container_name: nutridata_app    
     build: .
@@ -19,7 +21,7 @@ services:
     networks:
       - backend
 networks:
-  frontend:
-    driver: bridge
+  dockernet:
+    driver: host  
   backend:
     driver: bridge

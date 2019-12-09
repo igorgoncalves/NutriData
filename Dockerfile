@@ -7,14 +7,6 @@ RUN apk add build-base
 
 COPY . /srv/nutridata/
 
-# RUN curl -sL https://dl.yarnpkg.com/rpm/yarn.repo -o /etc/yum.repos.d/yarn.repo
-
-# RUN dnf -y install python3 python3-pip nodejs yarn
-
-# WORKDIR /srv/nutridata/client/
-
-# RUN yarn && yarn build
-
 WORKDIR /srv/nutridata/server/
 
 RUN pip install -r requirements.txt

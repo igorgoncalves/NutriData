@@ -20,11 +20,8 @@ jobs:
       - run:
           name: Copiando arquivos
           command: |            
-            rsync -avh --delete --rsh="ssh -o StrictHostKeyChecking=no "  . $SSH_USER@$SSH_HOST:/root/NutriData
-      # - run: 
-      #     name: Pull na applicação
-      #     command: |
-      #       ssh $SSH_USER@$SSH_HOST "cd /root/Nutridata && git pull"
+            rsync -avh --rsh="ssh -o StrictHostKeyChecking=no "  . $SSH_USER@$SSH_HOST:/root/NutriData
+  
       - run: 
           name: Parando coitainers Docker-Compose
           command: |

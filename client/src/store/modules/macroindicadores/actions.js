@@ -55,7 +55,7 @@ export default {
     Vue.prototype.$http
       .delete(`/api/macroindicadores/${idMacroindicador}`)
       .then(response => {
-        context.commit("deleteMacroindicador", response.data);
+        context.commit("deleteMacroindicador", idMacroindicador);
       })
       .catch(error => {
         console.error(error);

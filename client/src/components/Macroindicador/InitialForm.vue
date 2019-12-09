@@ -156,6 +156,7 @@ export default {
       }
     },
     reset() {
+      this.description = '';
       this.$refs.form.reset();
       this.$refs.myVueDropzone.removeAllFiles();
     },
@@ -181,9 +182,9 @@ export default {
       if (
         this.$refs.form.validate() &&
         this.$refs.myVueDropzone.getQueuedFiles().length > 0
-      ) {
-        this.onLoading();
+      ) {        
         this.$refs.myVueDropzone.processQueue();
+        // this.reset();
       } else {
         alert("Confira os campos do formulário antes de enviar");
       }
