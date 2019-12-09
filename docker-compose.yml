@@ -9,7 +9,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
-    networks:
+    networks:    
       - backend      
     ports:
       - '27017:27017'
@@ -18,10 +18,8 @@ services:
     build: .
     ports:
       - '4000:4000'
-    networks:
+    networks:      
       - backend
-networks:
-  dockernet:
-    driver: host  
+networks:  
   backend:
     driver: bridge

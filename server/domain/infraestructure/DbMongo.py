@@ -2,7 +2,7 @@ from mongoengine import connect
 
 connect(
     'dbNutridata',
-    host='localhost',
+    host='mongo',
     port=27017,
     username='root',
     password='example',
