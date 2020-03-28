@@ -87,7 +87,8 @@ export default {
       "getCodigoLocalidadePorNome"
     ]),
     layoutLocalidade() {
-      return this.$mq !== "lg" || this.$mq !== "xl" ? "list-select" : "map-select";
+      console.log(this.$mq)
+      return (this.$mq === "lg" || this.$mq === "xl") ? "map-select": "list-select";
     },
     macroindicadores() {
       return this.getMacroindicadores;
