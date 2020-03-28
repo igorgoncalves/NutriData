@@ -10,13 +10,13 @@
               </v-toolbar>
               <v-card-text>
                 <v-form>
-                  <v-text-field v-model="username"  name="login" label="Login" type="text"></v-text-field>
-                  <v-text-field v-model="password" id="password"  name="password" label="Password" type="password"></v-text-field>
+                  <v-text-field v-on:keyup.enter="handleSubmit" v-model="username"  name="login" label="Login" type="text"></v-text-field>
+                  <v-text-field v-on:keyup.enter="handleSubmit" v-model="password" id="password"  name="password" label="Password" type="password"></v-text-field>
                 </v-form>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="#ffa21a" @click="handleSubmit">Login</v-btn>
+                <v-btn color="#ffa21a" @click="handleSubmit" style="margin: 0 20px 10px 20px">Login</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -40,8 +40,7 @@ export default {
             return this.$store.state.authentication.status.loggingIn;
         }
     },
-    created () {
-        // reset login status
+    created () {        
         this.$store.dispatch('authentication/logout');
     },
     methods: {
