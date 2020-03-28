@@ -107,17 +107,14 @@ export default {
     },
     indicadores() {
       if (this.indicadores === undefined) return;
+      console.log(this.indicadores);
       this.anos = this.anos
         ? this.anos
         : [
             ...new Set(
-              this.indicadores
-                .reduce((prev, current) =>
-                  prev.length > 0
-                    ? [...prev, ...current.amostras]
-                    : current.amostras
-                )
-                .filter(am => am.codigoLocalidade == this.idLocalidade).map(am => am.ano)
+              this.getAmostras(this.indicadores)
+                .filter(am => am.codigoLocalidade == this.idLocalidade)
+                .map(am => am.ano)
             )
           ].map(ano => {
             return { label: ano, value: true };
@@ -229,6 +226,17 @@ export default {
         return el.value && el.value != false;
       });
       this.createVisao(visao, idMacroindicador);
+    },
+    getAmostras(indicadores) {
+      
+      if(indicadores.length == 1){
+        return indicadores[0].amostras;
+      }
+
+      return indicadores.reduce((prev, current) =>
+        prev.length > 0 ? [...prev, ...current.amostras] : current.amostras
+      );
+
     }
   },
 
