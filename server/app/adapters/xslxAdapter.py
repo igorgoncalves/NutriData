@@ -64,8 +64,8 @@ class XslxAdapter:
             indicador = {}
             if(nome_do_indicador == 'TOTAL'):
                 continue
-            coluna = idx                
-            indicador['nome'] = nome_do_indicador            
+            coluna = idx
+            indicador['nome'] = nome_do_indicador
             indicador['indicadores_filho'] = []
             amostras = []
             localidades = []
@@ -77,8 +77,9 @@ class XslxAdapter:
                     valor_obtido = territorio[self.NUMERO_DE_COLUNAS_FIXAS:]
                     valor_amostral = valor_obtido[coluna]
                     amostra_obj['posicao_localidade_arquivo'] = posicao_localidade_arquivo
-                    amostra_obj['ano'] = anos[ano]                    
-                    amostra_obj['valor'] = re.sub(r'[\s.]', '', str(valor_amostral))
+                    amostra_obj['ano'] = anos[ano]
+                    amostra_obj['valor'] = re.sub(
+                        r'[\s.]', '', str(valor_amostral))
                     amostra_obj['coordenada_planilha'] = {
                         'coluna': coluna + self.NUMERO_DE_COLUNAS_FIXAS, 'linha': posicao_localidade_arquivo, 'tabela': ano}
 
@@ -157,7 +158,7 @@ class XslxAdapter:
 
                              }
                          ]
-                 },
+                         },
              ]}
         ]
         return out
