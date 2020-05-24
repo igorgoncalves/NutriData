@@ -47,8 +47,7 @@ class MacroindicadorService(ServiceBase):
         return super().create(novo_macroindicador), self._errors
 
     # validate entrada
-    def validate(self, macroindicador_dict):
-        
+    def validate(self, macroindicador_dict):        
         try:
             macroindicador = self.deserialize(macroindicador_dict)
             return macroindicador_dict, True

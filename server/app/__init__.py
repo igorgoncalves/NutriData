@@ -4,6 +4,7 @@ from flask_restful import Api
 from flask_script import Manager
 from flask_jwt import JWT, jwt_required, current_identity
 from domain.service.UserService import UserService
+
 app = Flask(__name__,
             static_folder = "../dist/static",
             template_folder = "../dist")
@@ -16,6 +17,7 @@ jwt = JWT(app, UserService.authenticate, UserService.identity)
 
 # components
 # toolbar = DebugToolbarExtension(app)
+
 manager = Manager(app)
 
 # UserService.create_admin()

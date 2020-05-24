@@ -74,7 +74,7 @@ class MacroindicadorApiDetail(Resource):
         for k in json_data:
             macroindicador[k] = json_data[k]
         print(macroindicador)
-        resposta, validated = _service_indicador.validate(macroindicador)
+        resposta, validated = _service_macroindicador.validate(macroindicador)
         if validated:
             obj = _service_macroindicador.update(macroindicador)
             dump, err = _service_macroindicador.serialize(obj, False)
