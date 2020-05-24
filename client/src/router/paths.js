@@ -23,6 +23,12 @@ export default [
     type: 'admin'
   },
   {
+    path: '/macroindicadores/:idMacroindicador/update',
+    name: 'Macroindicadores/Update',
+    view: 'Macroindicador/Update',
+    type: 'admin'
+  },
+  {
     path: '/macroindicadores/novo',
     name: 'Macroindicadores/Novo',
     view: 'Macroindicador/Insert',

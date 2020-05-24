@@ -77,18 +77,19 @@
                   </template>
                   <span>Gerenciar indicadores</span>
                 </v-tooltip>
+                -->
                 <v-tooltip top>
                   <template>
                     <v-icon
                       slot="activator"
-                      @click="editItem(props.item)"
+                      @click="editItem(props.item.id)"
                     >
                       mdi-settings
                     </v-icon>
                   </template>
                   <span>Alterar</span>
                 </v-tooltip>
-                -->
+                
                 <v-tooltip top>
                   <template>
                     <v-icon
@@ -123,6 +124,9 @@ export default {
     },
     createView (macroindicador) {
       this.$router.push({path: `/localidade/0/macroindicador/${macroindicador}`})
+    },
+    editItem (macroindicador) {
+      this.$router.push({path: `/macroindicadores/${macroindicador}/update`})
     },
     deleteItem(macroindicador){      
       this.deleteMacroindicador(macroindicador.id);

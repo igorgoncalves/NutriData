@@ -11,7 +11,7 @@ export default {
       return new Macroindicador({ ...macroindicador });
     });
   },
-  updateMacroindicador(state, payload) {
+  updateMacroindicador(state, payload) {        
     state.macroindicador = new Macroindicador({ ...payload });
   },
   deleteMacroindicador(state, idMacroindicador) {

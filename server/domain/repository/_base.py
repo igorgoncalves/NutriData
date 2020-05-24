@@ -35,4 +35,4 @@ class RepositoryBase(object):
 
     def update(self, object_instance):
         """Deletes a object in mongodb by a existent instance."""
-        self.model_class.save(object_instance)
+        return object_instance.save()
