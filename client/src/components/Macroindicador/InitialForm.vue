@@ -70,7 +70,7 @@
         </v-card>
       </v-dialog>
     </div>
-    <div style="float: right;">
+    <div v-if="!isNew" style="float: right;">
        <v-btn color="green darken-2" @click="update()">Atualizar</v-btn>
     </div>
 

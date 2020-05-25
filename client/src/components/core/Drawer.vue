@@ -96,6 +96,11 @@ export default {
         icon: 'mdi-map',
         text: 'Localidades'
       },
+      {
+        to: '/categorias',
+        icon: 'mdi-map',
+        text: 'Categorias'
+      }
       // {
       //   to: '/table-list',
       //   icon: 'mdi-clipboard-outline',
