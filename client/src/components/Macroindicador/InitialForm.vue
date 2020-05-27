@@ -13,7 +13,13 @@
         required
       ></v-text-field>
 
-      <!-- <v-text-field v-model="description"  label="Descricao" required></v-text-field> -->
+      <v-select
+        :items="nomesDasCategorias"
+        label="Categoria"
+        item-text="nome"
+        item-value="nome"
+        v-model="categoria"
+      ></v-select>      
 
       <h5>Descrição do macro indicador</h5>
       <tiptap-vuetify
@@ -71,9 +77,8 @@
       </v-dialog>
     </div>
     <div v-if="!isNew" style="float: right;">
-       <v-btn color="green darken-2" @click="update()">Atualizar</v-btn>
+      <v-btn color="green darken-2" @click="update()">Atualizar</v-btn>
     </div>
-
   </div>
 </template>
 
@@ -100,7 +105,7 @@ import {
   History,
 } from "tiptap-vuetify";
 
-import { mapActions, mapMutations } from "vuex";
+import { mapActions, mapMutations, mapState, mapGetters } from "vuex";
 
 export default {
   props: ["macroindicador"],
@@ -138,6 +143,10 @@ export default {
     nameRules: [
       (v) => !!v || "Por favor, é necessŕio que preeencha o campo nome",
     ],
+    categoria: "",
+    categoriaRules: [
+      (v) => !!v || "Por favor, é necessŕio que preeencha o campo categoria",
+    ],
     description: "",
     descriptionRules: [
       (v) => !!v || "Por favor, é necessŕio que preeencha o campo descrição",
@@ -157,10 +166,15 @@ export default {
     isNew() {
       return !this.macroindicador;
     },
+    ...mapGetters("categorias", ["nomesDasCategorias"]),
   },
   methods: {
     ...mapActions("indicadores", ["getIndicadoresById"]),
-    ...mapActions("macroindicadores", ["fetchMacroindicadores", "updateMacroindicador"]),
+    ...mapActions("categorias", ["fetchCategorias"]),
+    ...mapActions("macroindicadores", [
+      "fetchMacroindicadores",
+      "updateMacroindicador",
+    ]),
     ...mapActions("formsteps", ["nextStep"]),
     ...mapMutations("app", ["onLoading", "offLoading"]),
     validate() {
@@ -201,24 +215,32 @@ export default {
       } else {
         alert("Confira os campos do formulário antes de enviar");
       }
-    },    
+    },
     addParams(file, xhr, formData) {
       formData.append("nome", this.name);
+      formData.append("categoria", this.categoria);
       formData.append("descricao", this.description);
       formData.append("codigoLocalidade", this.$route.params.codigoLocalidade);
     },
-    async update(){
-      await this.updateMacroindicador({ idMacroindicador: this.macroindicador.id, nome: this.name, descricao: this.description });      
-      this.$router.push({path: `/macroindicadores`})
-    }
+    async update() {
+      await this.updateMacroindicador({
+        idMacroindicador: this.macroindicador.id,
+        nome: this.name,
+        descricao: this.description,
+      });
+      this.$router.push({ path: `/macroindicadores` });
+    },
   },
   watch: {
     macroindicador: function() {
-      this.name = this.macroindicador.nome
-      this.description = this.macroindicador.descricao
+      console.log(this.macroindicador)
+      this.name = this.macroindicador.nome;
+      this.description = this.macroindicador.descricao;
+      this.categoria = this.macroindicador.categoria;
     },
   },
   mounted() {
+    this.fetchCategorias();
     this.$store.subscribe((mutation, state) => {
       switch (mutation.type) {
         case "indicadores/updateIndicadores":

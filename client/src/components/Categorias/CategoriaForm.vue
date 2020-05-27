@@ -31,59 +31,14 @@
 </template>
 
 <script>
-import vue2Dropzone from "vue2-dropzone";
-import "vue2-dropzone/dist/vue2Dropzone.min.css";
-import {
-  TiptapVuetify,
-  Heading,
-  Bold,
-  Italic,
-  Strike,
-  Underline,
-  Code,
-  CodeBlock,
-  Paragraph,
-  BulletList,
-  OrderedList,
-  ListItem,
-  Link,
-  Blockquote,
-  HardBreak,
-  HorizontalRule,
-  History,
-} from "tiptap-vuetify";
-
 import { mapActions, mapMutations } from "vuex";
 
 export default {
   props: ["categoria"],
-  components: {
-    "vue-dropzone": vue2Dropzone,
-    TiptapVuetify,
+  components: {        
   },
 
-  data: () => ({
-    extensions: [
-      // you can specify options for extension
-      new Heading({
-        levels: [1, 2, 3],
-      }),
-      new Bold(),
-      new Italic(),
-      new Strike(),
-      new Underline(),
-      new Code(),
-      new CodeBlock(),
-      new Paragraph(),
-      new BulletList(),
-      new OrderedList(),
-      new ListItem(),
-      // new Link(),
-      new Blockquote(),
-      new HardBreak(),
-      new HorizontalRule(),
-      new History(),
-    ],
+  data: () => ({  
     // starting editor's content
     content: "",
     valid: true,
