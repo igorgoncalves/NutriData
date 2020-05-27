@@ -34,6 +34,7 @@ class MacroindicadorApi(Resource):
         dict_dump = resposta
         dict_dump['descricao'] = request.form['descricao']
         dict_dump['nome'] = request.form['nome']
+        dict_dump['categoria'] = request.form['categoria']
         macroindicador_obj, validacao_erros = _service_macroindicador.create(
             dict_dump)
 

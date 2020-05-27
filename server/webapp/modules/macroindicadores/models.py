@@ -40,6 +40,7 @@ class Macroindicador(Document):
 
 class Categoria(Document):
     nome = StringField(required=True, max_length=200)
+    descricao = StringField(required=True, max_length=200)
 
     def __repr__(self):
         return '''<Categoria(nome={self.nome!r})>'''.format(self=self)

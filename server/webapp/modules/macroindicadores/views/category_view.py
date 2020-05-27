@@ -36,13 +36,13 @@ class CategoriaDetails(Resource):
         return {"object": "deleted"}, 204
 
     def patch(self, categoria_id):
-        macroindicador = _service_categoria.get_by_id(categoria_id)
+        categoria = _service_categoria.get_by_id(categoria_id)
         json_data = request.get_json(force=True)
         for k in json_data:
-            macroindicador[k] = json_data[k]
-        resposta, validated = _service_categoria.validate(macroindicador)
+            categoria[k] = json_data[k]
+        resposta, validated = _service_categoria.validate(categoria)
         if validated:
-            obj = _service_categoria.update(macroindicador)
+            obj = _service_categoria.update(categoria)
             dump, err = _service_categoria.serialize(obj, False)
             return Response(dump, mimetype="application/json", status=201)
         return resposta, 401
