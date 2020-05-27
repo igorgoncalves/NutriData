@@ -68,6 +68,10 @@ class MacroindicadorApiDetail(Resource):
 
     def patch(self, macroindicador_id):
         macroindicador = _service_macroindicador.get_by_id(macroindicador_id)
+        
+        if macroindicador['categoria']:
+            macroindicador['categoria'] = ""
+
         json_data = request.get_json(force=True)
         for k in json_data:
             macroindicador[k] = json_data[k]

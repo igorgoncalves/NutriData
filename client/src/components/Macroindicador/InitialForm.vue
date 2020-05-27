@@ -227,6 +227,7 @@ export default {
         idMacroindicador: this.macroindicador.id,
         nome: this.name,
         descricao: this.description,
+        categoria: this.categoria,
       });
       this.$router.push({ path: `/macroindicadores` });
     },

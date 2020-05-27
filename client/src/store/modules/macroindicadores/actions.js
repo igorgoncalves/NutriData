@@ -61,9 +61,9 @@ export default {
         console.error(error);
       });
   },
-  updateMacroindicador(context, { idMacroindicador, nome, descricao }) {
+  updateMacroindicador(context, { idMacroindicador, nome, descricao, categoria }) {
     Vue.prototype.$http
-      .patch(`/api/macroindicadores/${idMacroindicador}`,  { nome, descricao })
+      .patch(`/api/macroindicadores/${idMacroindicador}`,  { nome, descricao, categoria })
       .then((response) => {
         console.log(response.data);
         
