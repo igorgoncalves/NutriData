@@ -130,6 +130,9 @@ class MacroindicadorService(ServiceBase):
     def get_by_localidade(self, codigo_localidade):
         return self.get_all(indicadores__amostras__codigo_localidade=codigo_localidade)
 
+    def get_by_localidade_and_categoria(self, codigo_localidade, categoria_id):
+        return self.get_all(indicadores__amostras__codigo_localidade=codigo_localidade, categoria=categoria_id)
+
     def get_one_by_localidade(self, codigo_localidade, macroindicador_id):
         return self.get_all(indicadores__amostras__codigo_localidade=codigo_localidade, id=macroindicador_id)
 

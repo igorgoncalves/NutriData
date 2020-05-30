@@ -68,7 +68,7 @@ class MacroindicadorApiDetail(Resource):
 
     def patch(self, macroindicador_id):
         macroindicador = _service_macroindicador.get_by_id(macroindicador_id)
-        
+
         if macroindicador['categoria']:
             macroindicador['categoria'] = ""
 
@@ -92,11 +92,13 @@ class IndicadoresMacroApi(Resource):
         return Response(dump, mimetype="application/json", status=200)
 
 
+
 api.add_resource(MacroindicadorApi,
                  '/api/macroindicadores')
 
 api.add_resource(MacroindicadorApiDetail,
                  '/api/macroindicadores/<macroindicador_id>')
-                 
+
 api.add_resource(IndicadoresMacroApi,
                  '/api/macroindicador/<macroindicador_id>/indicadores')
+
