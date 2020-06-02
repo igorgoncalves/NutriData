@@ -17,7 +17,7 @@
         :items="nomesDasCategorias"
         label="Categoria"
         item-text="nome"
-        item-value="nome"
+        item-value="id"
         v-model="categoria"
       ></v-select>      
 

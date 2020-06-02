@@ -26,6 +26,16 @@ export default {
         console.error(error);
       });
   },
+  fetchMacroindicadoresByCategoria(context, codigoLocalidade, categoria) {
+    Vue.prototype.$http
+      .get(`/api/categorias/${categoria}/${codigoLocalidade}`)
+      .then((response) => {
+        context.commit("updateMacroindicadores", response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  },
   fetchMacroindicadoresById(context, idMacroindicador) {
     Vue.prototype.$http
       .get(`/api/macroindicadores/${idMacroindicador}`)
@@ -61,12 +71,19 @@ export default {
         console.error(error);
       });
   },
-  updateMacroindicador(context, { idMacroindicador, nome, descricao, categoria }) {
+  updateMacroindicador(
+    context,
+    { idMacroindicador, nome, descricao, categoria }
+  ) {
     Vue.prototype.$http
-      .patch(`/api/macroindicadores/${idMacroindicador}`,  { nome, descricao, categoria })
+      .patch(`/api/macroindicadores/${idMacroindicador}`, {
+        nome,
+        descricao,
+        categoria,
+      })
       .then((response) => {
         console.log(response.data);
-        
+
         context.commit("updateMacroindicador", response.data);
       })
       .catch((error) => {

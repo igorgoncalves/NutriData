@@ -2,8 +2,7 @@
 
 export default {
   nomesDasCategorias: (state) => {
-    console.log(state.categorias);
-    
+    console.log(state.categorias);    
     return state.categorias
   },
 };
