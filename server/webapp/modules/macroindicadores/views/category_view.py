@@ -4,7 +4,7 @@ from flask_restful import Resource, abort
 from webapp import api
 from webapp.modules.macroindicadores.services import CategoriaService, MacroindicadorService, IndicadorService
 
-bp_categoria = Blueprint('categoria', __name__)
+cd bp_categoria = Blueprint('categoria', __name__)
 
 _service_categoria = CategoriaService()
 _service_macroindicador = MacroindicadorService()
