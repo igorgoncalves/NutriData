@@ -9,7 +9,7 @@ from webapp.modules.macroindicadores.services import (
     MacroindicadorService, IndicadorService)
 from webapp.modules.localidade.services import LocalidadeService
 
-localidade = Blueprint('localidade', __name__)
+bp_macroindicador = Blueprint('macroindicador', __name__)
 
 _service_localidade = LocalidadeService()
 _service_macroindicador = MacroindicadorService()

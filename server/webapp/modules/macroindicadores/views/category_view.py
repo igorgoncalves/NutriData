@@ -4,7 +4,7 @@ from flask_restful import Resource, abort
 from webapp import api
 from webapp.modules.macroindicadores.services import CategoriaService, MacroindicadorService, IndicadorService
 
-Blueprint('categoria', __name__)
+bp_categoria = Blueprint('categoria', __name__)
 
 _service_categoria = CategoriaService()
 _service_macroindicador = MacroindicadorService()
@@ -49,9 +49,9 @@ class CategoriaDetails(Resource):
             return Response(dump, mimetype="application/json", status=201)
         return resposta, 401
 
-
 api.add_resource(CategoriaApi, '/api/categorias')
 api.add_resource(CategoriaDetails, '/api/categorias/<categoria_id>')
+
 class MacroindicadorByCategory(Resource):
     def get(self, categoria_id, localidade_codigo):
         local = _service_macroindicador.get_by_localidade_and_categoria(localidade_codigo, categoria_id)
