@@ -13,4 +13,4 @@ RUN pip install -r requirements.txt
 
 EXPOSE 4000
 
-CMD ["gunicorn"  , "-b", "0.0.0.0:4000", "app:app"]
+CMD ["gunicorn"  , "-b", "0.0.0.0:4000", "webapp:app"]
